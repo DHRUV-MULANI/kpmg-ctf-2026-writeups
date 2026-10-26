@@ -1,0 +1,27 @@
+# ---------------------------------------------------------------------------
+# Public snapshot rules for the KPMG CTF 2026 writeup repository.
+# The full working tree holds ~225 MB of decompiled APK output and several
+# nested Git clones; writeups, solve scripts and lightweight artefacts are
+# published instead.
+# ---------------------------------------------------------------------------
+
+# Python caches / byte-compiled files
+__pycache__/
+*.py[cod]
+
+# Decompiled Android working tree (the APK and analysis/ folder are kept)
+Mobile/work/
+
+# Nested cloned repositories: preserved as OSINT/golden_hour/repos-full.zip
+OSINT/golden_hour/repos/
+
+# Private key material from expired challenge instances (see README notice)
+**/*.pem
+**/id_rsa
+**/*.key
+
+# Editor / OS noise
+.DS_Store
+Thumbs.db
+*.swp
+*~

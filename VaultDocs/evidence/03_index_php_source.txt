@@ -1,0 +1,23 @@
+&lt;?php
+$allowed_dir = realpath(&#039;/var/www/html/docs&#039;);
+$error = &#039;&#039;;
+$content = &#039;&#039;;
+$requested = &#039;&#039;;
+
+if (isset($_POST[&#039;page&#039;])) {
+    $page = $_POST[&#039;page&#039;];
+    $requested = htmlspecialchars($page);
+    // Intentionally vulnerable - no path traversal protection
+    $filepath = &#039;/var/www/html/&#039; . $page;
+    if (file_exists($filepath) &amp;&amp; is_file($filepath)) {
+        $content = file_get_contents($filepath);
+    } else {
+        // Still vulnerable to /etc/passwd etc via absolute-like paths
+        if (file_exists($page) &amp;&amp; is_file($page)) {
+            $content = file_get_contents($page);
+        } else {
+            $error = &quot;Document not found&quot;;
+        }
+    }
+}
+?&gt;

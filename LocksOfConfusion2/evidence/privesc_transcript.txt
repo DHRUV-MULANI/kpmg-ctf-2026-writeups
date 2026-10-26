@@ -1,0 +1,2 @@
+uid=0(root) gid=0(root) groups=0(root)
+KPMG_CTF{czJY_4n20_2NmVtHxXsUS_p5xEvKpJ01KpsO9yhJ1UaA}

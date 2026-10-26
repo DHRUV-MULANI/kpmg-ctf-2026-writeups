@@ -1,0 +1,49 @@
+PALACE TRAINING RECORDS -- DISCIPLE FILE
+
+Name: Po
+Status: Enrolled Trainee
+Standing: Good
+Lessons on file: 7 (fundamentals, combat, lore)
+Restricted material: None
+Remarks: Attends training. Eats dumplings. Otherwise unremarkable.
+
+---
+
+def decrypt(token: str, key: bytes = b"jade-cipher-77") -> str:
+    data = bytes.fromhex(token)
+    return bytes(b ^ key[i % len(key)] for i, b in enumerate(data)).decode()
+
+def encrypt(text: str, key: bytes = b"jade-cipher-77") -> str:
+    data = text.encode()
+    return bytes(b ^ key[i % len(key)] for i, b in enumerate(data)).hex()
+
+
+def main() -> None:
+    while True:
+        print("=== Jade Cipher ===\n")
+        print("1. Encrypt")
+        print("2. Decrypt")
+        print("3. Exit\n")
+        choice = input("Select an option: ").strip()
+
+        if choice == "1":
+            text = input("Enter text to encrypt: ")
+            print(encrypt(text))
+        elif choice == "2":
+            token = input("Enter token to decrypt: ").strip()
+            try:
+                print(decrypt(token))
+            except ValueError:
+                print("Invalid hexadecimal input.")
+            except UnicodeDecodeError:
+                print("Decrypted data is not valid text.")
+        elif choice == "3":
+            break
+        else:
+            print("Invalid option, please try again.")
+
+        print()
+
+
+if __name__ == "__main__":
+    main()

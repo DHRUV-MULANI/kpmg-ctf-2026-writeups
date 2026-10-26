@@ -1,0 +1,105 @@
+### [1] newline injection PoC -> RCE as appuser
+
+uid=1000(appuser) gid=1000(appuser) groups=1000(appuser)
+c333fb8cb97c
+
+            
+
+### [2] crontab (root-run healthcheck)
+
+# /etc/crontab: system-wide crontab
+# Unlike any other crontab you don't have to run the `crontab'
+# command to install the new version when you edit this file
+# and files in /etc/cron.d. These files also have username fields,
+# that none of the other crontabs do.
+
+SHELL=/bin/sh
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+# Example of job definition:
+# .---------------- minute (0 - 59)
+# |  .------------- hour (0 - 23)
+# |  |  .---------- day of month (1 - 31)
+# |  |  |  .------- month (1 - 12) OR jan,feb,mar,apr ...
+# |  |  |  |  .---- day of week (0 - 6) (Sunday=0 or 7) OR sun,mon,tue,wed,thu,fri,sat
+# |  |  |  |  |
+# *  *  *  *  * user-name command to be executed
+17 *	* * *	root	cd / && run-parts --report /etc/cron.hourly
+25 6	* * *	root	test -x /usr/sbin/anacron || { cd / && run-parts --report /etc/cron.daily; }
+47 6	* * 7	root	test -x /usr/sbin/anacron || { cd / && run-parts --report /etc/cron.weekly; }
+52 6	1 * *	root	test -x /usr/sbin/anacron || { cd / && run-parts --report /etc/cron.monthly; }
+#
+* * * * * root /opt/healthcheck.sh
+* * * * * root sleep 10 && /opt/healthcheck.sh
+* * * * * root sleep 20 && /opt/healthcheck.sh
+* * * * * root sleep 30 && /opt/healthcheck.sh
+* * * * * root sleep 40 && /opt/healthcheck.sh
+* * * * * root sleep 50 && /opt/healthcheck.sh
+* * * * * root find /tmp -perm /4000 -delete
+
+            
+
+### [3] /opt/healthcheck.sh perms
+
+total 16
+drwxr-xr-x 1 root root 4096 May 21 16:06 .
+drwxr-xr-x 1 root root 4096 Oct 11 02:38 ..
+-rwxrwxrwx 1 root root   59 Oct 11 02:39 healthcheck.sh
+#!/bin/sh
+# System healthcheck
+echo "OK" > /tmp/health.log
+
+            
+
+### [4] entrypoint.sh (flag creation + cron)
+
+#!/bin/sh
+
+# Generate defaults separately
+DEFAULT_USER_FLAG="KPMG_CTF{$(head -c 16 /dev/urandom | xxd -p)}"
+DEFAULT_ROOT_FLAG="KPMG_CTF{$(head -c 16 /dev/urandom | xxd -p)}"
+
+# Use provided env vars or defaults
+USER_FLAG="${USER_FLAG:-$DEFAULT_USER_FLAG}"
+ROOT_FLAG="${ROOT_FLAG:-$DEFAULT_ROOT_FLAG}"
+
+# Write user flag
+mkdir -p /home/appuser
+
+echo "$USER_FLAG" > /home/appuser/user.txt
+
+chown appuser:appuser /home/appuser/user.txt
+chmod 644 /home/appuser/user.txt
+
+# Write root flag
+mkdir -p /root
+
+echo "$ROOT_FLAG" > /root/root.txt
+chmod 600 /root/root.txt
+
+# Cleanup env vars
+unset USER_FLAG
+unset ROOT_FLAG
+
+# Cleanup SUID binaries planted by players (every 1 minute)
+echo '* * * * * root find /tmp -perm /4000 -delete' >> /etc/crontab
+
+
+# Start cron
+service cron start
+
+# Run app
+exec su appuser -c "python /app/app.py"
+            
+
+### [5] user flag
+
+KPMG_CTF{034900d5c0ef21d3548e7bc6e9c1db9b}
+
+            
+
+### [6] root flag via exfil
+
+KPMG_CTF{YTJYAkR73q4J5WjnWc8wB0fwV5dfbvJNPaTPajwa0Xzu}
+
+            

@@ -1,0 +1,2 @@
+# HELP http_requests_total
+http_requests_total{code="200"} 11489

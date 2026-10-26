@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Settings | OnboardX Intranet</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+  <!--
+    TODO(dave): retire the legacy PHP admin panel once everyone is migrated
+    to the new /admin dashboard. -mgmt
+  -->
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><a href="/">🐇 OnboardX</a></div>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/careers">Careers</a>
+      <a href="/about">About</a>
+      
+        <a href="/dashboard">Dashboard</a>
+        <a href="/directory">Directory</a>
+        <a href="/profile">My Profile</a>
+        <a href="/settings">Settings</a>
+        
+        <a href="/logout">Logout</a>
+      
+    </nav>
+  </header>
+
+  <main class="container">
+    
+<h1>Settings</h1>
+
+<div class="formbox">
+  <h3>Preferences</h3>
+  <label>Theme
+    <select disabled>
+      <option>Light</option>
+      <option>Dark</option>
+    </select>
+  </label>
+  <p class="hint">(Theme switching is coming soon.)</p>
+
+  <h3>Your data</h3>
+  <button class="btn secondary"
+    onclick="fetch('/settings/export').then(r=>r.json()).then(d=>alert(JSON.stringify(d)))">
+    Download my data
+  </button>
+
+  <h3>Account info</h3>
+  <p class="hint">
+    Live from <code><a href="/api/user/me" target="_blank">GET /api/user/me</a></code>
+    &nbsp;·&nbsp;
+    <a href="/api" target="_blank">API docs</a>
+  </p>
+  <pre id="account-data" class="output-box">Loading…</pre>
+</div>
+
+<script>
+fetch('/api/user/me')
+  .then(r => r.json())
+  .then(data => {
+    document.getElementById('account-data').textContent =
+      JSON.stringify(data, null, 2);
+  })
+  .catch(() => {
+    document.getElementById('account-data').textContent = 'Could not load.';
+  });
+</script>
+
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2026 OnboardX. All rights reserved. | <a href="#">Privacy</a> | <a href="#">Status Page</a></p>
+  </footer>
+  <script src="/static/js/main.js"></script>
+</body>
+</html>

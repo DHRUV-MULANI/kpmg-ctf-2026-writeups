@@ -1,0 +1,22 @@
+### HTTP (port 80)
+HTTP/1.1 301 Moved Permanently
+Server: openresty/1.27.1.2
+Date: Sat, 10 Oct 2026 20:30:19 GMT
+Content-Type: text/html
+Content-Length: 175
+Connection: keep-alive
+Location: https://kicyber-d6e8a2dfaeea-vaultdocs-2-0-0.chals.io/
+
+
+### HTTPS (port 443)
+HTTP/1.1 200 OK
+Date: Sat, 10 Oct 2026 20:30:20 GMT
+Server: Apache/2.4.68 (Debian)
+Vary: Accept-Encoding
+Transfer-Encoding: chunked
+Content-Type: text/html; charset=UTF-8
+
+<!DOCTYPE html>
+
+### SSH banner
+SSH-2.0-OpenSSH_9.2p1 Debian-2+deb12u10

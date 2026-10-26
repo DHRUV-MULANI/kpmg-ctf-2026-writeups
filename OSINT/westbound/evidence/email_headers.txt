@@ -1,0 +1,15 @@
+Return-Path: <nulltide@nulltide.example>
+X-Originating-IP: [198.51.100.77]
+Received: from mail.nulltide.example (mail.nulltide.example [198.51.100.77])
+        by mx.kestrelmaritime.example (Postfix) with ESMTPS id 7C41F9A2E0B
+        for <ir@kestrelmaritime.example>; Mon, 09 Mar 2026 03:07:19 +0100 (CET)
+Authentication-Results: mx.kestrelmaritime.example;
+        spf=none smtp.mailfrom=nulltide.example; dkim=none; dmarc=none
+From: "nulltide" <nulltide@nulltide.example>
+To: ir@kestrelmaritime.example
+Subject: westbound manifest
+Date: Mon, 09 Mar 2026 03:06:44 +0100
+Message-ID: <20260309030644.7c41f9a2@nulltide.example>
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="=-nulltide-westbound"
+X-Mailer: Swaks 20240103.0 (https://jetmore.org/john/code/swaks/)

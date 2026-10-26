@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard | OnboardX Intranet</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+  <!--
+    TODO(dave): retire the legacy PHP admin panel once everyone is migrated
+    to the new /admin dashboard. -mgmt
+  -->
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><a href="/">🐇 OnboardX</a></div>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/careers">Careers</a>
+      <a href="/about">About</a>
+      
+        <a href="/dashboard">Dashboard</a>
+        <a href="/directory">Directory</a>
+        <a href="/profile">My Profile</a>
+        <a href="/settings">Settings</a>
+        
+        <a href="/logout">Logout</a>
+      
+    </nav>
+  </header>
+
+  <main class="container">
+    
+<h1>Welcome, X</h1>
+
+<div id="status-banner" class="banner warning">
+  <span id="status-text">Checking account status…</span>
+</div>
+
+<section class="cards">
+  <div class="card">
+    <h3>Team announcement</h3>
+    <p>🎂 Cake in the breakroom this Friday to celebrate shipping v2 of the onboarding portal.</p>
+  </div>
+  <div class="card">
+    <h3>Profile completion</h3>
+    <p id="profile-status">Loading…</p>
+  </div>
+  <div class="card">
+    <h3>Need something changed?</h3>
+    <p>Visit <a href="/settings">Settings</a> to update your bio and theme.</p>
+  </div>
+</section>
+
+<script>
+// Fetch live account state from the API so we always show the latest
+// approval status without a full page reload.
+fetch('/api/user/me')
+  .then(r => r.json())
+  .then(data => {
+    const banner = document.getElementById('status-banner');
+    const text   = document.getElementById('status-text');
+
+    if (data.is_approved) {
+      banner.className = 'banner success';
+      text.innerHTML =
+        'You\'re a fully approved employee. Head to <a href="/profile">My Profile</a> ' +
+        'to upload your ID card photo.';
+    } else {
+      banner.className = 'banner warning';
+      text.innerHTML =
+        '<strong>Your account is pending HR approval.</strong> ' +
+        'Estimated wait: 48 hours. Uploads unlock once you\'re approved.';
+    }
+
+    document.getElementById('profile-status').textContent =
+      data.avatar_path ? 'ID Card photo uploaded ✓' : 'No ID card photo yet.';
+  })
+  .catch(() => {
+    document.getElementById('status-text').textContent =
+      'Could not load account status.';
+  });
+</script>
+
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2026 OnboardX. All rights reserved. | <a href="#">Privacy</a> | <a href="#">Status Page</a></p>
+  </footer>
+  <script src="/static/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,5 @@
+Matching Defaults entries for vboxuser on ddc07d8eb024:
+    env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin, use_pty
+
+User vboxuser may run the following commands on ddc07d8eb024:
+    (root) NOPASSWD: /bin/tar

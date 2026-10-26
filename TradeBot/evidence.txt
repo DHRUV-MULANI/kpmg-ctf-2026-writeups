@@ -1,0 +1,15 @@
+Evidence — TradeBot vault reconciliation leak (captured during exploit run)
+
+Instance: https://kicyber-ec28a209729d-tradebot-0-0.chals.io
+Trigger: 22 concurrent SELL AAPL orders (capacity 19 exceeded at fill time)
+
+Leaked responses (full):
+
+{"order":{"order_id":"ORD-000174","symbol":"AAPL","type":"sell","quantity":1,"price":178.15,"total":178.15,"status":"filled","timestamp":1791686569.6463473},"status":"success","risk_engine":{"integrity":"COMPROMISED","incident":"SETTLEMENT_OVERSUBSCRIPTION"},"vault_reconciliation":{"vault":"TRADEBOT-RESERVE","instrument":"TRADEBOT-RESERVE-NOTE","integrity":"COMPROMISED","reason":"Settlement exclusivity violated: the reserve vault was read while more than one settlement held a slot. Reconciling by returning the sealed vault record.","vault_seal":"KPMG_CTF{O_YU0ekuwGw6DQrzqfo3wExRMZdAiU1I-OR3CAebtGbf}"}}
+
+{"order":{"order_id":"ORD-000175","symbol":"AAPL","type":"sell","quantity":1,"price":178.84,"total":178.84,"status":"filled","timestamp":1791686569.6469507},"status":"success","risk_engine":{"integrity":"COMPROMISED","incident":"SETTLEMENT_OVERSUBSCRIPTION"},"vault_reconciliation":{"vault":"TRADEBOT-RESERVE","instrument":"TRADEBOT-RESERVE-NOTE","integrity":"COMPROMISED","reason":"Settlement exclusivity violated: the reserve vault was read while more than one settlement held a slot. Reconciling by returning the sealed vault record.","vault_seal":"KPMG_CTF{O_YU0ekuwGw6DQrzqfo3wExRMZdAiU1I-OR3CAebtGbf}"}}
+
+Risk report after run:
+{"max_concurrent_settlements":19,"settlements_inflight":0,"inflight_order_ids":[],"routing_latency_seconds":1.0,"fill_latency_seconds":0.8,"integrity_violations":33}
+
+Flag: KPMG_CTF{O_YU0ekuwGw6DQrzqfo3wExRMZdAiU1I-OR3CAebtGbf} (verified stable across runs)

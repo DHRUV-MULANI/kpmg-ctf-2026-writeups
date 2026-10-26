@@ -1,0 +1,5 @@
+Matching Defaults entries for vboxuser on 47a1e3a5969d:
+    env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin, use_pty
+
+User vboxuser may run the following commands on 47a1e3a5969d:
+    (root) NOPASSWD: /bin/tar

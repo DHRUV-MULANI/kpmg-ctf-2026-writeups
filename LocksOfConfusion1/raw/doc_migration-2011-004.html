@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>MIG-2011-004: legacy-03 P2V Consolidation - Internal Ops Portal</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header class="top">
+    <div class="brand">Internal Ops Portal</div>
+    <div class="meta">host: ops-gw01 &middot; env: internal-ops</div>
+  </header>
+  <nav class="main">
+    <a href="/">Dashboard</a>
+    <a href="/inventory">Inventory</a>
+    <a href="/monitoring">Monitoring</a>
+    <a href="/status">Service Status</a>
+    <a href="/tickets">Tickets</a>
+    <a href="/backups">Backups</a>
+    <a href="/dns">DNS</a>
+    <a href="/network">Network</a>
+    <a href="/cron-reports">Cron Reports</a>
+    <a href="/docs">Docs / Wiki</a>
+    <a href="/wiki/notes">Notes</a>
+  </nav>
+  <main>
+    
+<h1>MIG-2011-004: legacy-03 P2V Consolidation</h1>
+<p class="lead"><a href="/docs">&larr; all docs</a></p>
+<div class="doc-body">MIG-2011-004 -- legacy-03 P2V Consolidation
+Author: R. Alvarez (Infra)
+Date: 2011-06-14
+Status: Closed
+
+Summary
+-------
+Physical host legacy-03 (Debian 4.0 &#34;etch&#34;, originally provisioned 2007-11-14
+by R. Alvarez per provisioning checklist v3) has been converted to a virtual
+machine and consolidated onto the ops-gw01 hypervisor cluster as part of the
+2011 datacenter footprint reduction project. The physical chassis has been
+decommissioned; the guest continued running under the original hostname
+until its DB role was fully retired in 2019 (see server inventory).
+
+Migration notes
+----------------
+- Filesystem and package state carried over as-is via dd image + rsync
+  delta, no reinstall performed.
+- SSH host keys AND the svc-legacydb user keypair from the original
+  2007-11-14 provisioning were carried over without regeneration, to avoid
+  re-establishing trust with dependent monitoring/cron systems that pin the
+  host key fingerprint. This was flagged as technical debt at the time
+  (see ticket backlog) but never scheduled for remediation before the DB
+  role itself was retired.
+- Post-migration, SSH access for svc-legacydb briefly broke due to a
+  restore-order issue -- see TICK-4471 for details and resolution.
+- A partial tape restore of /etc/ssh, /home/svc-legacydb and
+  /var/log/provision.log from backup set B-2007-11 was pulled for
+  troubleshooting during that incident and left in cold storage for
+  audit purposes. Not linked from the main archive index. Ask infra if
+  you need the exact path -- it&#39;s not repeated here.
+
+Outcome
+-------
+Migration considered successful. legacy-03 continued serving as a DB
+read-replica under ops-gw01 until full retirement in 2019. No further
+action taken on the carried-over-keys tech debt item since the account
+was scheduled for deprovisioning along with the DB role.
+</div>
+
+  </main>
+  <footer>
+    Internal Ops Portal &middot; ops-gw01 &middot; for authorized personnel only &middot; build portal-frontend@3.4.1
+  </footer>
+</body>
+</html>

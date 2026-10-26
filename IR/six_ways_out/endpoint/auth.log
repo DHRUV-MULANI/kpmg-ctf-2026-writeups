@@ -1,0 +1,15 @@
+Sep 22 09:08:40 prod-web-03 sshd[8821]: Accepted publickey for admin from 99.56.34.67 port 51243 ssh2
+Sep 22 09:08:40 prod-web-03 sshd[8821]: pam_unix(sshd:session): session opened for user admin by (uid=0)
+Sep 22 09:09:00 prod-web-03 sudo: admin : TTY=pts/0 ; PWD=/home/admin ; USER=root ; COMMAND=/usr/bin/systemctl status nginx
+Sep 22 09:09:00 prod-web-03 sudo: pam_unix(sudo:session): session opened for user root by admin(uid=1001)
+Sep 22 09:09:05 prod-web-03 sudo: pam_unix(sudo:session): session closed for user root
+Sep 22 09:14:05  prod-web-03 sudo: www-data : TTY=(none) ; PWD=/var/www/html ; USER=root ; COMMAND=/usr/bin/python3 -c import os; os.setuid(0); os.system("/bin/bash -i")
+Sep 22 09:14:05  prod-web-03 sudo: pam_unix(sudo:session): session opened for user root by www-data(uid=33)
+Sep 22 09:14:06  prod-web-03 sudo: pam_unix(sudo:session): session closed for user root
+Sep 22 09:14:07  prod-web-03 su[19234]: Successful su for root by www-data
+Sep 22 09:14:07  prod-web-03 su[19234]: + ??? www-data:root
+Sep 22 09:14:07  prod-web-03 su[19234]: pam_unix(su:session): session opened for user root by www-data(uid=33)
+Sep 22 09:24:00  prod-web-03 apt-get[22100]: pam_unix(apt:session): session opened for user root(uid=0)
+Sep 22 09:57:00 prod-web-03 sshd[8821]: pam_unix(sshd:session): session closed for user admin
+Sep 22 09:57:00 prod-web-03 sshd[29312]: Accepted publickey for admin from 99.56.34.67 port 51899 ssh2
+Sep 22 09:57:00 prod-web-03 sshd[29312]: pam_unix(sshd:session): session opened for user admin by (uid=0)

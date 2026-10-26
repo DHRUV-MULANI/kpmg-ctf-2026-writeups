@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Monitoring - Internal Ops Portal</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header class="top">
+    <div class="brand">Internal Ops Portal</div>
+    <div class="meta">host: ops-gw01 &middot; env: internal-ops</div>
+  </header>
+  <nav class="main">
+    <a href="/">Dashboard</a>
+    <a href="/inventory">Inventory</a>
+    <a href="/monitoring">Monitoring</a>
+    <a href="/status">Service Status</a>
+    <a href="/tickets">Tickets</a>
+    <a href="/backups">Backups</a>
+    <a href="/dns">DNS</a>
+    <a href="/network">Network</a>
+    <a href="/cron-reports">Cron Reports</a>
+    <a href="/docs">Docs / Wiki</a>
+    <a href="/wiki/notes">Notes</a>
+  </nav>
+  <main>
+    
+<h1>Resource Monitoring</h1>
+<table>
+  <tr><th>Host</th><th>CPU</th><th>Memory</th><th>Disk</th></tr>
+  
+  <tr><td>web-01</td><td>CPU 22%</td><td>mem 41%</td><td>disk 38%</td></tr>
+  
+  <tr><td>web-02</td><td>CPU 19%</td><td>mem 39%</td><td>disk 40%</td></tr>
+  
+  <tr><td>web-03</td><td>CPU 25%</td><td>mem 44%</td><td>disk 37%</td></tr>
+  
+  <tr><td>app-01</td><td>CPU 31%</td><td>mem 55%</td><td>disk 52%</td></tr>
+  
+  <tr><td>app-02</td><td>CPU 29%</td><td>mem 53%</td><td>disk 51%</td></tr>
+  
+  <tr><td>app-03</td><td>CPU 34%</td><td>mem 58%</td><td>disk 81%</td></tr>
+  
+  <tr><td>db-01</td><td>CPU 47%</td><td>mem 71%</td><td>disk 63%</td></tr>
+  
+  <tr><td>db-02</td><td>CPU 12%</td><td>mem 68%</td><td>disk 62%</td></tr>
+  
+  <tr><td>db-03</td><td>CPU 11%</td><td>mem 67%</td><td>disk 61%</td></tr>
+  
+  <tr><td>cache-01</td><td>CPU 8%</td><td>mem 33%</td><td>disk 15%</td></tr>
+  
+  <tr><td>mon-01</td><td>CPU 18%</td><td>mem 44%</td><td>disk 29%</td></tr>
+  
+  <tr><td>ops-gw01</td><td>CPU 14%</td><td>mem 36%</td><td>disk 47%</td></tr>
+  
+</table>
+
+  </main>
+  <footer>
+    Internal Ops Portal &middot; ops-gw01 &middot; for authorized personnel only &middot; build portal-frontend@3.4.1
+  </footer>
+</body>
+</html>

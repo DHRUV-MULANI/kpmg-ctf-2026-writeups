@@ -1,0 +1,126 @@
+============================================================
+FILE: sites/blog/index.html
+============================================================
+nulltide.example 
+ null tide .net trophies and tides 
+ 2026-03-08 trophies 
+ the locker is open 
+ Three souvenirs from the westbound job are up: the sensor dump, the helpdesk call, and the
+ view from my desk. Take them - none of them will help you. 
+ → nulltide.example/files/ 
+ 2026-03-07 opsec 
+ on writing things down 
+ Rules I actually follow, since people keep asking: 
+ Never type a key that you can say out loud. Never leave a password where a search
+ engine can reach it. And never trust a photo's paperwork - I edit mine by hand, so the
+ paperwork says whatever I want it to say. 
+ The export is packed and encrypted. The marker is inside it. The key is not in the file,
+ not in the mail, and not on this page. 
+ 2026-02-26 code 
+ tidewatch 
+ Small tool I use to watch a target's egress. Public repo, because hiding in plain sight works
+ better than hiding - and because nobody reads the history of a recon tool. 
+ → gitstash.example/nulltide/tidewatch 
+ 2026-02-14 drop 
+ vault notes 
+ Drops live at vault.nulltide.example/d/<code> . The code is written down once,
+ on paper, and burned after. If you are reading this looking for it: it is in front of you,
+ in a picture, and you have already seen it. 
+ nulltide.example - fictional site. no analytics, no cookies, no cloud.
+
+============================================================
+FILE: sites/files/index.html
+============================================================
+Index of /files/ 
+ nulltide.example / files / 
+ trophy locker 
+ westbound job · kestrel maritime · packed 08 Mar 2026 · three items, one withheld 
+ westbound.pcap 
+ 8.0 KB · packet capture · egress sensor, 08 Mar 22:40 UTC 
+ The dump their own sensor took of me. They never read it. 
+ DOWNLOAD 
+ call.wav 
+ 3.1 MB · 35 s · helpdesk line recording 
+ Me, on the phone, saying nothing useful. Listen carefully anyway. 
+ DOWNLOAD 
+ desk.jpg 
+ 160 KB · 1600×1000 · straight off the camera 
+ The view I get paid to look at. No filter, no crop, no cleanup. 
+ DOWNLOAD 
+ westbound-export.zip.enc 
+ 21 KB · AES-256 · withheld 
+ Not here. Behind the vault, behind a code, behind a key. The marker is inside it. 
+ WITHHELD 
+ Looking for the export? It is at the drop, and the drop wants a code.
+ I wrote the code down exactly once. You are one picture away from it. 
+ nulltide.example - fictional host. 
+[SCRIPT]
+
+============================================================
+FILE: sites/git/index.html
+============================================================
+nulltide/tidewatch 
+ gitstash.example - plain git hosting for people who read history 
+ nulltide / tidewatch 
+ Public main 
+ Download (encrypted) 
+ Code Commits Issues 0 About 
+ Diffs require sign-in on this instance. The public export is encrypted - the operator keeps
+ the key off-site. Take the archive and work the key out yourself.
+ Files 
+ Name Last commit message Last commit date 
+ .gitignore init: host lookup Jan 21, 2026 
+ README.md init: host lookup Jan 21, 2026 
+ tidewatch.py tag the fields i care about Feb 9, 2026 
+ 3 files · 12 KB · no releases · no license 
+ Commits on main 
+ Commit message Author Date 
+ remove notes before push diff hidden - sign in, or download the archive 
+ T. Voss t.voss@kestrelmaritime.example Mar 4, 2026 
+ notes before i forget added notes.b64 
+ T. Voss t.voss@kestrelmaritime.example Mar 3, 2026 
+ tag the fields i care about +3 −0 in tidewatch.py 
+ T. Voss t.voss@kestrelmaritime.example Feb 9, 2026 
+ init: host lookup 3 files added 
+ T. Voss t.voss@kestrelmaritime.example Jan 21, 2026 
+ README 
+ # tidewatch
+Watches a target's egress. Nothing clever.
+ python3 tidewatch.py <host>
+Output is boring on purpose. 
+ gitstash.example - a fictional host. Nothing here resolves on the real internet. 
+[SCRIPT]
+
+============================================================
+FILE: sites/vault/index.html
+============================================================
+403 Forbidden 
+ vault.nulltide.example 
+ personal dead-drop service · operator: nulltide 
+ 403 - token required. 
+ drops are addressed as /d/<code> . codes are issued once. 
+ The service stores nothing for you. If you are reading this, you are either on the wrong path
+ or you have not finished reading his things. 
+ fictional host · no logs, no cookies, no mercy
+
+============================================================
+FILE: sites/vault/7c41f9a2e0b3/index.html
+============================================================
+vault.nulltide.example/d/7c41f9a2e0b3 
+ dead drop · code accepted 
+ /d/7c41f9a2e0b3 
+ operator: nulltide · one artefact held · release requires the access phrase 
+ you have the code. good - most people never look past the desk.
+the phrase is not written on anything you can photograph. i said it out loud
+once, on a line i do not control, and i typed it into a login that somebody
+else's sensor was recording.
+say it back to me.
+- n. 
+ RELEASE 
+ westbound-export.zip.enc 
+ AES-256-CBC · pbkdf2 · openssl-compatible · the marker is inside 
+ DOWNLOAD 
+ vault.nulltide.example - fictional dead-drop. 
+[SCRIPT]
+[SCRIPT]
+

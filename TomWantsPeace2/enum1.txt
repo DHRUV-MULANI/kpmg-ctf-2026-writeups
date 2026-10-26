@@ -1,0 +1,25 @@
+== whoami ==
+uid=1000(Ross) gid=1000(Ross) groups=1000(Ross)
+== home ==
+total 24
+drwxr-xr-x 3 root root 4096 Oct 11 02:50 .
+drwxr-xr-x 1 root root 4096 Oct 11 02:45 ..
+-rw-r--r-- 1 root root    0 Oct 11 02:50 .bash_history
+-rw-r--r-- 1 Ross Ross  220 Feb 25  2020 .bash_logout
+-rw-r--r-- 1 Ross Ross 3771 Feb 25  2020 .bashrc
+-rw-r--r-- 1 Ross Ross  807 Feb 25  2020 .profile
+drwx------ 2 Ross Ross 4096 Oct 11 02:45 .ssh
+== sudo -l ==
+Matching Defaults entries for Ross on f94d0d15662f:
+    env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin
+
+User Ross may run the following commands on f94d0d15662f:
+    (ALL) NOPASSWD: /usr/bin/id
+== passwd users ==
+root:x:0:0:root:/root:/bin/bash
+Ross:x:1000:1000::/home/Ross:/bin/bash
+== uname ==
+Linux f94d0d15662f 6.8.0-136-generic #136~22.04.1-Ubuntu SMP PREEMPT_DYNAMIC Fri Jul  3 16:29:11 UTC  x86_64 x86_64 x86_64 GNU/Linux
+f94d0d15662f
+== pwd ==
+/home/Ross

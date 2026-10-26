@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Notes - Internal Ops Portal</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header class="top">
+    <div class="brand">Internal Ops Portal</div>
+    <div class="meta">host: ops-gw01 &middot; env: internal-ops</div>
+  </header>
+  <nav class="main">
+    <a href="/">Dashboard</a>
+    <a href="/inventory">Inventory</a>
+    <a href="/monitoring">Monitoring</a>
+    <a href="/status">Service Status</a>
+    <a href="/tickets">Tickets</a>
+    <a href="/backups">Backups</a>
+    <a href="/dns">DNS</a>
+    <a href="/network">Network</a>
+    <a href="/cron-reports">Cron Reports</a>
+    <a href="/docs">Docs / Wiki</a>
+    <a href="/wiki/notes">Notes</a>
+  </nav>
+  <main>
+    
+<h1>Team Notes</h1>
+<p class="lead">Informal notes pinned by the infra/SRE team. Not authoritative -- see Docs/Wiki for official procedures.</p>
+
+<h2>K. Nomura -- 2024-03-11</h2>
+<div class="doc-body">Reminder for whoever's on call this week: the Grafana alert for
+app-03 disk usage has a 5 minute grouping window now, so don't panic if you
+see a burst of identical alerts land at once, it's one incident not five.</div>
+
+<h2>R. Alvarez -- 2011-06-15</h2>
+<div class="doc-body">Closed out TICK-4471. For the record since I don't
+think this made it into the migration doc clearly enough: the svc-legacydb
+keypair on legacy-03 was never something we generated as part of the P2V
+work in 2011 -- it's the original one from when I first provisioned that
+box back in Nov 2007, per the standard checklist step 4.2 (create service
+account, generate keypair, install to authorized_keys, done). We just
+carried it forward through the migration instead of rotating it, since
+nothing downstream was expecting a fingerprint change. Flagging here so
+it doesn't get lost -- should probably be rotated properly at some point,
+but the DB role on that host is basically legacy at this point so it never
+made it up the priority list.</div>
+
+<h2>D. Okafor -- 2022-09-02</h2>
+<div class="doc-body">FYI the old shared "opstools" account password from the
+pre-2020 runbooks (the one that used to float around in onboarding docs) was
+rotated out when we moved to individual accounts + VPN + key-based access
+only. If you still have "opstools / Summer2019!" written down somewhere,
+it's stale -- that account doesn't exist anymore.</div>
+
+<h2>K. Nomura -- 2025-01-20</h2>
+<div class="doc-body">Heads up, ci-01's build queue backs up if more than
+~15 jobs queue at once during a dependency bump. Not urgent, just don't be
+surprised, see TICK-4588 if it needs more agents.</div>
+
+  </main>
+  <footer>
+    Internal Ops Portal &middot; ops-gw01 &middot; for authorized personnel only &middot; build portal-frontend@3.4.1
+  </footer>
+</body>
+</html>

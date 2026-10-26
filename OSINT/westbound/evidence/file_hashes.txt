@@ -1,0 +1,7 @@
+call.wav                      3117110  md5=9823d4e5c940d0fe58b9beb181753721  sha256=9f3eb275fdc6ba5c4c75f66a9ad27076d71efcbdd957d720eb48fe4c205c7064
+desk.jpg                       160533  md5=57582b6722d1117f84cef7fbdc0e1f57  sha256=ffc0e3490bde0c1bfd946a3db97676f5d2bc1af03faad5e7ea33e921046d4a69
+proof.png                       46061  md5=4305770d298da8ede91ae6aed03d52a5  sha256=c919faac273fbabc5fdcb64fd680af1635ca0a2505bcc203d477a36ceaea47c8
+phish.eml                       63753  md5=5d1aa48b04686c1b2e0add7c3d4c2921  sha256=39e4a2e97a5404dccfed1323ea32a812a99d4d05f1b6b0a37ccd972bee26f8d8
+westbound-export.zip.enc        21408  md5=de5b24b2c7be432592931d4a721fe243  sha256=17f92996cc161b1eec4833a1c4a5d6dbad2999b44b503dad45a12f4d9239c11f
+index.html                       4257  md5=2191eb402dd906833614271939e23d01  sha256=2705c67203e86a0c7d32f24ff111b117c507f88149c18e94a67809f7f24fda9a
+README.txt                        901  md5=ecb739edd1bd62c17a1124bc3b64fcdb  sha256=336ead9648c2cc4954249c914070f06321e2733b96d16788f93f29b173db9fa5

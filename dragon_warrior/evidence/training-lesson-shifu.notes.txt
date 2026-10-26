@@ -1,0 +1,8 @@
+MASTER SHIFU -- PRIVATE TRAINING RECORD
+"Dragon Warrior Certification"
+
+Candidates are authenticated through the Jade Palace Dragon Seal.
+Seal algorithm: HS256.
+The signing phrase is not written here, nor anywhere a disciple is meant to read. Master Oogway alone has been known to speak of it, and only to those who have already proven they know how to look.
+Required rank claim for chamber access: dragon-warrior.
+The chamber keeps no entry in the palace hall's directory. It answers only at its own door -- /scroll -- and opens solely to one bearing a seal the palace recognizes.

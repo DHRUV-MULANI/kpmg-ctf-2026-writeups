@@ -1,0 +1,16 @@
+GreenLeaf Plant Network Diagram (DEPRECATED - v3.2)
+====================================================
+
+[IoT Gateway] ---MQTT---> [Historian Server]
+     |
+     +---Modbus TCP---> [PLC-01] (Tank Farm)
+     +---Modbus TCP---> [PLC-02] (Pump Station)
+     +---OPC UA-------> [SCADA HMI]
+
+NOTE: This diagram is outdated. The MQTT broker has been
+migrated to a non-standard port as part of the IoT protocol
+consolidation project. Refer to the latest network documentation
+on the internal wiki.
+
+Last revision: 2023-11-20
+Author: J. Martinez, Network Engineering

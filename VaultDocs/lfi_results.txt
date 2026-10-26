@@ -1,0 +1,1291 @@
+>>> FOUND: /etc/passwd
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+sync:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/usr/sbin/nologin
+man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
+mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
+news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
+uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin
+proxy:x:13:13:proxy:/bin:/usr/sbin/nologin
+www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
+backup:x:34:34:backup:/var/backups:/usr/sbin/nologin
+list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin
+irc:x:39:39:ircd:/run/ircd:/usr/sbin/nologin
+_apt:x:42:65534::/nonexistent:/usr/sbin/nologin
+nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
+sshd:x:100:65534::/run/sshd:/usr/sbin/nologin
+vboxuser:x:1000:1000::/home/vboxuser:/bin/bash
+
+------------------------------------------------------------
+>>> FOUND: /etc/group
+root:x:0:
+daemon:x:1:
+bin:x:2:
+sys:x:3:
+adm:x:4:
+tty:x:5:
+disk:x:6:
+lp:x:7:
+mail:x:8:
+news:x:9:
+uucp:x:10:
+man:x:12:
+proxy:x:13:
+kmem:x:15:
+dialout:x:20:
+fax:x:21:
+voice:x:22:
+cdrom:x:24:
+floppy:x:25:
+tape:x:26:
+sudo:x:27:
+audio:x:29:
+dip:x:30:
+www-data:x:33:
+backup:x:34:
+operator:x:37:
+list:x:38:
+irc:x:39:
+src:x:40:
+shadow:x:42:
+utmp:x:43:
+video:x:44:
+sasl:x:45:
+plugdev:x:46:
+staff:x:50:
+games:x:60:
+users:x:100:
+nogroup:x:65534:
+_ssh:x:101:
+vboxuser:x:1000:
+
+------------------------------------------------------------
+>>> FOUND: /etc/hostname
+47a1e3a5969d
+
+------------------------------------------------------------
+>>> FOUND: /etc/os-release
+PRETTY_NAME=&quot;Debian GNU/Linux 12 (bookworm)&quot;
+NAME=&quot;Debian GNU/Linux&quot;
+VERSION_ID=&quot;12&quot;
+VERSION=&quot;12 (bookworm)&quot;
+VERSION_CODENAME=bookworm
+ID=debian
+HOME_URL=&quot;https://www.debian.org/&quot;
+SUPPORT_URL=&quot;https://www.debian.org/support&quot;
+BUG_REPORT_URL=&quot;https://bugs.debian.org/&quot;
+
+------------------------------------------------------------
+>>> FOUND: /etc/profile
+# /etc/profile: system-wide .profile file for the Bourne shell (sh(1))
+# and Bourne compatible shells (bash(1), ksh(1), ash(1), ...).
+
+if [ &quot;$(id -u)&quot; -eq 0 ]; then
+  PATH=&quot;/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin&quot;
+else
+  PATH=&quot;/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games&quot;
+fi
+export PATH
+
+if [ &quot;${PS1-}&quot; ]; then
+  if [ &quot;${BASH-}&quot; ] &amp;&amp; [ &quot;$BASH&quot; != &quot;/bin/sh&quot; ]; then
+    # The file bash.bashrc already sets the default PS1.
+    # PS1=&#039;\h:\w\$ &#039;
+    if [ -f /etc/bash.bashrc ]; then
+      . /etc/bash.bashrc
+    fi
+  else
+    if [ &quot;$(id -u)&quot; -eq 0 ]; then
+      PS1=&#039;# &#039;
+    else
+      PS1=&#039;$ &#039;
+    fi
+  fi
+fi
+
+if [ -d /etc/profile.d ]; then
+  for i in /etc/profile.d/*.sh; do
+    if [ -r $i ]; then
+      . $i
+    fi
+  done
+  unset i
+fi
+
+------------------------------------------------------------
+>>> FOUND: /etc/bash.bashrc
+# System-wide .bashrc file for interactive bash(1) shells.
+
+# To enable the settings / commands in this file for login shells as well,
+# this file has to be sourced in /etc/profile.
+
+# If not running interactively, don&#039;t do anything
+[ -z &quot;$PS1&quot; ] &amp;&amp; return
+
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
+
+# set variable identifying the chroot you work in (used in the prompt below)
+if [ -z &quot;${debian_chroot:-}&quot; ] &amp;&amp; [ -r /etc/debian_chroot ]; then
+    debian_chroot=$(cat /etc/debian_chroot)
+fi
+
+# set a fancy prompt (non-color, overwrite the one in /etc/profile)
+# but only if not SUDOing and have SUDO_PS1 set; then assume smart user.
+if ! [ -n &quot;${SUDO_USER}&quot; -a -n &quot;${SUDO_PS1}&quot; ]; then
+  PS1=&#039;${debian_chroot:+($debian_chroot)}\u@\h:\w\$ &#039;
+fi
+
+# Commented out, don&#039;t overwrite xterm -T &quot;title&quot; -n &quot;icontitle&quot; by default.
+# If this is an xterm set the title to user@host:dir
+#case &quot;$TERM&quot; in
+#xterm*|rxvt*)
+#    PROMPT_COMMAND=&#039;echo -ne &quot;\033]0;${USER}@${HOSTNAME}: ${PWD}\007&quot;&#039;
+#    ;;
+#*)
+#    ;;
+#esac
+
+# enable bash completion in interactive shells
+#if ! shopt -oq posix; then
+#  if [ -f /usr/share/bash-completion/bash_completion ]; then
+#    . /usr/share/bash-completion/bash_completion
+#  elif [ -f /etc/bash_completion ]; then
+#    . /etc/bash_completion
+#  fi
+#fi
+
+# if the command-not-found package is installed, use it
+if [ -x /usr/lib/command-not-found -o -x /usr/share/command-not-found/command-not-found ]; then
+	function command_not_found_handle {
+	        # check because c-n-f could&#039;ve been removed in the meantime
+                if [ -x /usr/lib/command-not-found ]; then
+		   /usr/lib/command-not-found -- &quot;$1&quot;
+                   return $?
+                elif [ -x /usr/share/command-not-found/command-not-found ]; then
+		   /usr/share/command-not-found/command-not-found -- &quot;$1&quot;
+                   return $?
+		else
+		   printf &quot;%s: command not found\n&quot; &quot;$1&quot; &gt;&amp;2
+		   return 127
+		fi
+	}
+fi
+
+------------------------------------------------------------
+>>> FOUND: /etc/apache2/ports.conf
+# If you just change the port or add more ports here, you will likely also
+# have to change the VirtualHost statement in
+# /etc/apache2/sites-enabled/000-default.conf
+
+Listen 80
+
+&lt;IfModule ssl_module&gt;
+	Listen 443
+&lt;/IfModule&gt;
+
+&lt;IfModule mod_gnutls.c&gt;
+	Listen 443
+&lt;/IfModule&gt;
+
+------------------------------------------------------------
+>>> FOUND: /etc/apache2/envvars
+# envvars - default environment variables for apache2ctl
+
+# this won&#039;t be correct after changing uid
+unset HOME
+
+# for supporting multiple apache2 instances
+if [ &quot;${APACHE_CONFDIR##/etc/apache2-}&quot; != &quot;${APACHE_CONFDIR}&quot; ] ; then
+	SUFFIX=&quot;-${APACHE_CONFDIR##/etc/apache2-}&quot;
+else
+	SUFFIX=
+fi
+
+# Since there is no sane way to get the parsed apache2 config in scripts, some
+# settings are defined via environment variables and then used in apache2ctl,
+# /etc/init.d/apache2, /etc/logrotate.d/apache2, etc.
+export APACHE_RUN_USER=www-data
+export APACHE_RUN_GROUP=www-data
+# temporary state file location. This might be changed to /run in Wheezy+1
+export APACHE_PID_FILE=/var/run/apache2$SUFFIX/apache2.pid
+export APACHE_RUN_DIR=/var/run/apache2$SUFFIX
+export APACHE_LOCK_DIR=/var/lock/apache2$SUFFIX
+# Only /var/log/apache2 is handled by /etc/logrotate.d/apache2.
+export APACHE_LOG_DIR=/var/log/apache2$SUFFIX
+
+## The locale used by some modules like mod_dav
+export LANG=C
+## Uncomment the following line to use the system default locale instead:
+#. /etc/default/locale
+
+export LANG
+
+## The command to get the status for &#039;apache2ctl status&#039;.
+## Some packages providing &#039;www-browser&#039; need &#039;--dump&#039; instead of &#039;-dump&#039;.
+#export APACHE_LYNX=&#039;www-browser -dump&#039;
+
+## If you need a higher file descriptor limit, uncomment and adjust the
+## following line (default is 8192):
+#APACHE_ULIMIT_MAX_FILES=&#039;ulimit -n 65536&#039;
+
+## If you would like to pass arguments to the web server, add them below
+## to the APACHE_ARGUMENTS environment.
+#export APACHE_ARGUMENTS=&#039;&#039;
+
+## Enable the debug mode for maintainer scripts.
+## This will produce a verbose output on package installations of web server modules and web application
+## installations which interact with Apache
+#export APACHE2_MAINTSCRIPT_DEBUG=1
+
+------------------------------------------------------------
+>>> FOUND: /etc/apache2/apache2.conf
+# This is the main Apache server configuration file.  It contains the
+# configuration directives that give the server its instructions.
+# See http://httpd.apache.org/docs/2.4/ for detailed information about
+# the directives and /usr/share/doc/apache2/README.Debian about Debian specific
+# hints.
+#
+#
+# Summary of how the Apache 2 configuration works in Debian:
+# The Apache 2 web server configuration in Debian is quite different to
+# upstream&#039;s suggested way to configure the web server. This is because Debian&#039;s
+# default Apache2 installation attempts to make adding and removing modules,
+# virtual hosts, and extra configuration directives as flexible as possible, in
+# order to make automating the changes and administering the server as easy as
+# possible.
+
+# It is split into several files forming the configuration hierarchy outlined
+# below, all located in the /etc/apache2/ directory:
+#
+#	/etc/apache2/
+#	|-- apache2.conf
+#	|	`--  ports.conf
+#	|-- mods-enabled
+#	|	|-- *.load
+#	|	`-- *.conf
+#	|-- conf-enabled
+#	|	`-- *.conf
+# 	`-- sites-enabled
+#	 	`-- *.conf
+#
+#
+# * apache2.conf is the main configuration file (this file). It puts the pieces
+#   together by including all remaining configuration files when starting up the
+#   web server.
+#
+# * ports.conf is always included from the main configuration file. It is
+#   supposed to determine listening ports for incoming connections which can be
+#   customized anytime.
+#
+# * Configuration files in the mods-enabled/, conf-enabled/ and sites-enabled/
+#   directories contain particular configuration snippets which manage modules,
+#   global configuration fragments, or virtual host configurations,
+#   respectively.
+#
+#   They are activated by symlinking available configuration files from their
+#   respective *-available/ counterparts. These should be managed by using our
+#   helpers a2enmod/a2dismod, a2ensite/a2dissite and a2enconf/a2disconf. See
+#   their respective man pages for detailed information.
+#
+# * The binary is called apache2. Due to the use of environment variables, in
+#   the default configuration, apache2 needs to be started/stopped with
+#   /etc/init.d/apache2 or apache2ctl. Calling /usr/bin/apache2 directly will not
+#   work with the default configuration.
+
+
+# Global configuration
+#
+
+#
+# ServerRoot: The top of the directory tree under which the server&#039;s
+# configuration, error, and log files are kept.
+#
+# NOTE!  If you intend to place this on an NFS (or otherwise network)
+# mounted filesystem then please read the Mutex documentation (available
+# at &lt;URL:http://httpd.apache.org/docs/2.4/mod/core.html#mutex&gt;);
+# you will save yourself a lot of trouble.
+#
+# Do NOT add a slash at the end of the directory path.
+#
+#ServerRoot &quot;/etc/apache2&quot;
+
+#
+# The accept serialization lock file MUST BE STORED ON A LOCAL DISK.
+#
+#Mutex file:${APACHE_LOCK_DIR} default
+
+#
+# The directory where shm and other runtime files will be stored.
+#
+
+DefaultRuntimeDir ${APACHE_RUN_DIR}
+
+#
+# PidFile: The file in which the server should record its process
+# identification number when it starts.
+# This needs to be set in /etc/apache2/envvars
+#
+PidFile ${APACHE_PID_FILE}
+
+#
+# Timeout: The number of seconds before receives and sends time out.
+#
+Timeout 300
+
+#
+# KeepAlive: Whether or not to allow persistent connections (more than
+# one request per connection). Set to &quot;Off&quot; to deactivate.
+#
+KeepAlive On
+
+#
+# MaxKeepAliveRequests: The maximum number of requests to allow
+# during a persistent connection. Set to 0 to allow an unlimited amount.
+# We recommend you leave this number high, for maximum performance.
+#
+MaxKeepAliveRequests 100
+
+#
+# KeepAliveTimeout: Number of seconds to wait for the next request from the
+# same client on the same connection.
+#
+KeepAliveTimeout 5
+
+
+# These need to be set in /etc/apache2/envvars
+User ${APACHE_RUN_USER}
+Group ${APACHE_RUN_GROUP}
+
+#
+# HostnameLookups: Log the names of clients or just their IP addresses
+# e.g., www.apache.org (on) or 204.62.12
+------------------------------------------------------------
+>>> FOUND: /etc/apache2/sites-enabled/000-default.conf
+&lt;VirtualHost *:80&gt;
+	# The ServerName directive sets the request scheme, hostname and port that
+	# the server uses to identify itself. This is used when creating
+	# redirection URLs. In the context of virtual hosts, the ServerName
+	# specifies what hostname must appear in the request&#039;s Host: header to
+	# match this virtual host. For the default virtual host (this file) this
+	# value is not decisive as it is used as a last resort host regardless.
+	# However, you must set it for any further virtual host explicitly.
+	#ServerName www.example.com
+
+	ServerAdmin webmaster@localhost
+	DocumentRoot /var/www/html
+
+	# Available loglevels: trace8, ..., trace1, debug, info, notice, warn,
+	# error, crit, alert, emerg.
+	# It is also possible to configure the loglevel for particular
+	# modules, e.g.
+	#LogLevel info ssl:warn
+
+	ErrorLog ${APACHE_LOG_DIR}/error.log
+	CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+	# For most configuration files from conf-available/, which are
+	# enabled or disabled at a global level, it is possible to
+	# include a line for only one particular virtual host. For example the
+	# following line enables the CGI configuration for this host only
+	# after it has been globally disabled with &quot;a2disconf&quot;.
+	#Include conf-available/serve-cgi-bin.conf
+&lt;/VirtualHost&gt;
+
+------------------------------------------------------------
+>>> FOUND: /etc/apache2/sites-available/000-default.conf
+&lt;VirtualHost *:80&gt;
+	# The ServerName directive sets the request scheme, hostname and port that
+	# the server uses to identify itself. This is used when creating
+	# redirection URLs. In the context of virtual hosts, the ServerName
+	# specifies what hostname must appear in the request&#039;s Host: header to
+	# match this virtual host. For the default virtual host (this file) this
+	# value is not decisive as it is used as a last resort host regardless.
+	# However, you must set it for any further virtual host explicitly.
+	#ServerName www.example.com
+
+	ServerAdmin webmaster@localhost
+	DocumentRoot /var/www/html
+
+	# Available loglevels: trace8, ..., trace1, debug, info, notice, warn,
+	# error, crit, alert, emerg.
+	# It is also possible to configure the loglevel for particular
+	# modules, e.g.
+	#LogLevel info ssl:warn
+
+	ErrorLog ${APACHE_LOG_DIR}/error.log
+	CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+	# For most configuration files from conf-available/, which are
+	# enabled or disabled at a global level, it is possible to
+	# include a line for only one particular virtual host. For example the
+	# following line enables the CGI configuration for this host only
+	# after it has been globally disabled with &quot;a2disconf&quot;.
+	#Include conf-available/serve-cgi-bin.conf
+&lt;/VirtualHost&gt;
+
+------------------------------------------------------------
+>>> FOUND: /etc/apache2/conf-enabled/security.conf
+# Changing the following options will not really affect the security of the
+# server, but might make attacks slightly more difficult in some cases.
+
+#
+# ServerTokens
+# This directive configures what you return as the Server HTTP response
+# Header. The default is &#039;Full&#039; which sends information about the OS-Type
+# and compiled in modules.
+# Set to one of:  Full | OS | Minimal | Minor | Major | Prod
+# where Full conveys the most information, and Prod the least.
+#ServerTokens Minimal
+ServerTokens OS
+#ServerTokens Full
+
+#
+# Optionally add a line containing the server version and virtual host
+# name to server-generated pages (internal error documents, FTP directory
+# listings, mod_status and mod_info output etc., but not CGI generated
+# documents or custom error documents).
+# Set to &quot;EMail&quot; to also include a mailto: link to the ServerAdmin.
+# Set to one of:  On | Off | EMail
+#ServerSignature Off
+ServerSignature On
+
+#
+# Allow TRACE method
+#
+# Set to &quot;extended&quot; to also reflect the request body (only for testing and
+# diagnostic purposes).
+#
+# Set to one of:  On | Off | extended
+TraceEnable Off
+#TraceEnable On
+
+#
+# Forbid access to version control directories
+#
+# If you use version control systems in your document root, you should
+# probably deny access to their directories.
+#
+# Examples:
+#
+#RedirectMatch 404 /\.git
+#RedirectMatch 404 /\.svn
+
+#
+# Setting this header will prevent MSIE from interpreting files as something
+# else than declared by the content type in the HTTP headers.
+# Requires mod_headers to be enabled.
+#
+#Header set X-Content-Type-Options: &quot;nosniff&quot;
+
+#
+# Setting this header will prevent other sites from embedding pages from this
+# site as frames. This defends against clickjacking attacks.
+# Requires mod_headers to be enabled.
+#
+#Header set Content-Security-Policy &quot;frame-ancestors &#039;self&#039;;&quot;
+
+------------------------------------------------------------
+>>> FOUND: /etc/ssh/sshd_config
+
+# This is the sshd server system-wide configuration file.  See
+# sshd_config(5) for more information.
+
+# This sshd was compiled with PATH=/usr/local/bin:/usr/bin:/bin:/usr/games
+
+# The strategy used for options in the default sshd_config shipped with
+# OpenSSH is to specify options with their default value where
+# possible, but leave them commented.  Uncommented options override the
+# default value.
+
+Include /etc/ssh/sshd_config.d/*.conf
+
+#Port 22
+#AddressFamily any
+#ListenAddress 0.0.0.0
+#ListenAddress ::
+
+#HostKey /etc/ssh/ssh_host_rsa_key
+#HostKey /etc/ssh/ssh_host_ecdsa_key
+#HostKey /etc/ssh/ssh_host_ed25519_key
+
+# Ciphers and keying
+#RekeyLimit default none
+
+# Logging
+#SyslogFacility AUTH
+#LogLevel INFO
+
+# Authentication:
+
+#LoginGraceTime 2m
+PermitRootLogin no
+#StrictModes yes
+#MaxAuthTries 6
+#MaxSessions 10
+
+#PubkeyAuthentication yes
+
+# Expect .ssh/authorized_keys2 to be disregarded by default in future.
+#AuthorizedKeysFile	.ssh/authorized_keys .ssh/authorized_keys2
+
+#AuthorizedPrincipalsFile none
+
+#AuthorizedKeysCommand none
+#AuthorizedKeysCommandUser nobody
+
+# For this to work you will also need host keys in /etc/ssh/ssh_known_hosts
+#HostbasedAuthentication no
+# Change to yes if you don&#039;t trust ~/.ssh/known_hosts for
+# HostbasedAuthentication
+#IgnoreUserKnownHosts no
+# Don&#039;t read the user&#039;s ~/.rhosts and ~/.shosts files
+#IgnoreRhosts yes
+
+# To disable tunneled clear text passwords, change to no here!
+PasswordAuthentication yes
+#PermitEmptyPasswords no
+
+# Change to yes to enable challenge-response passwords (beware issues with
+# some PAM modules and threads)
+KbdInteractiveAuthentication no
+
+# Kerberos options
+#KerberosAuthentication no
+#KerberosOrLocalPasswd yes
+#KerberosTicketCleanup yes
+#KerberosGetAFSToken no
+
+# GSSAPI options
+#GSSAPIAuthentication no
+#GSSAPICleanupCredentials yes
+#GSSAPIStrictAcceptorCheck yes
+#GSSAPIKeyExchange no
+
+# Set this to &#039;yes&#039; to enable PAM authentication, account processing,
+# and session processing. If this is enabled, PAM authentication will
+# be allowed through the KbdInteractiveAuthentication and
+# PasswordAuthentication.  Depending on your PAM configuration,
+# PAM authentication via KbdInteractiveAuthentication may bypass
+# the setting of &quot;PermitRootLogin prohibit-password&quot;.
+# If you just want the PAM account and session checks to run without
+# PAM authentication, then enable this but set PasswordAuthentication
+# and KbdInteractiveAuthentication to &#039;no&#039;.
+UsePAM yes
+
+#AllowAgentForwarding yes
+#AllowTcpForwarding yes
+#GatewayPorts no
+X11Forwarding yes
+#X11DisplayOffset 10
+#X11UseLocalhost yes
+#PermitTTY yes
+PrintMotd no
+#PrintLastLog yes
+#TCPKeepAlive yes
+#PermitUserEnvironment no
+#Compression delayed
+#ClientAliveInterval 0
+#ClientAliveCountMax 3
+#UseDNS no
+#PidFile /run/sshd.pid
+#MaxStartups 10:30:100
+#PermitTunnel no
+#ChrootDirectory none
+#VersionAddendum none
+
+# no default banner path
+#Banner none
+
+# Allow client to pass locale environment variables
+AcceptEnv LANG LC_*
+
+# override default of no subsystems
+Subsystem	sftp	/usr/lib/openssh/sftp-server
+
+# Example of overriding settings on a per-user basis
+#Match User anoncvs
+#	X11Forwarding no
+#	AllowTcpForwarding no
+#	PermitTTY no
+#	ForceCommand cvs server
+PermitRootLogin no
+PasswordAuthentication yes
+
+------------------------------------------------------------
+>>> FOUND: /etc/ssh/ssh_config
+
+# This is the ssh client system-wide configuration file.  See
+# ssh_config(5) for more information.  This file provides defaults for
+# users, and the values can be changed in per-user configuration files
+# or on the command line.
+
+# Configuration data is parsed as follows:
+#  1. command line options
+#  2. user-specific file
+#  3. system-wide file
+# Any configuration value is only changed the first time it is set.
+# Thus, host-specific definitions should be at the beginning of the
+# configuration file, and defaults at the end.
+
+# Site-wide defaults for some commonly used options.  For a comprehensive
+# list of available options, their meanings and defaults, please see the
+# ssh_config(5) man page.
+
+Include /etc/ssh/ssh_config.d/*.conf
+
+Host *
+#   ForwardAgent no
+#   ForwardX11 no
+#   ForwardX11Trusted yes
+#   PasswordAuthentication yes
+#   HostbasedAuthentication no
+#   GSSAPIAuthentication no
+#   GSSAPIDelegateCredentials no
+#   GSSAPIKeyExchange no
+#   GSSAPITrustDNS no
+#   BatchMode no
+#   CheckHostIP yes
+#   AddressFamily any
+#   ConnectTimeout 0
+#   StrictHostKeyChecking ask
+#   IdentityFile ~/.ssh/id_rsa
+#   IdentityFile ~/.ssh/id_dsa
+#   IdentityFile ~/.ssh/id_ecdsa
+#   IdentityFile ~/.ssh/id_ed25519
+#   Port 22
+#   Ciphers aes128-ctr,aes192-ctr,aes256-ctr,aes128-cbc,3des-cbc
+#   MACs hmac-md5,hmac-sha1,umac-64@openssh.com
+#   EscapeChar ~
+#   Tunnel no
+#   TunnelDevice any:any
+#   PermitLocalCommand no
+#   VisualHostKey no
+#   ProxyCommand ssh -q -W %h:%p gateway.example.com
+#   RekeyLimit 1G 1h
+#   UserKnownHostsFile ~/.ssh/known_hosts.d/%k
+    SendEnv LANG LC_*
+    HashKnownHosts yes
+    GSSAPIAuthentication yes
+
+------------------------------------------------------------
+>>> FOUND: /etc/php/8.2/apache2/php.ini
+[PHP]
+
+;;;;;;;;;;;;;;;;;;;
+; About php.ini   ;
+;;;;;;;;;;;;;;;;;;;
+; PHP&#039;s initialization file, generally called php.ini, is responsible for
+; configuring many of the aspects of PHP&#039;s behavior.
+
+; PHP attempts to find and load this configuration from a number of locations.
+; The following is a summary of its search order:
+; 1. SAPI module specific location.
+; 2. The PHPRC environment variable.
+; 3. A number of predefined registry keys on Windows
+; 4. Current working directory (except CLI)
+; 5. The web server&#039;s directory (for SAPI modules), or directory of PHP
+; (otherwise in Windows)
+; 6. The directory from the --with-config-file-path compile time option, or the
+; Windows directory (usually C:\windows)
+; See the PHP docs for more specific information.
+; https://php.net/configuration.file
+
+; The syntax of the file is extremely simple.  Whitespace and lines
+; beginning with a semicolon are silently ignored (as you probably guessed).
+; Section headers (e.g. [Foo]) are also silently ignored, even though
+; they might mean something in the future.
+
+; Directives following the section heading [PATH=/www/mysite] only
+; apply to PHP files in the /www/mysite directory.  Directives
+; following the section heading [HOST=www.example.com] only apply to
+; PHP files served from www.example.com.  Directives set in these
+; special sections cannot be overridden by user-defined INI files or
+; at runtime. Currently, [PATH=] and [HOST=] sections only work under
+; CGI/FastCGI.
+; https://php.net/ini.sections
+
+; Directives are specified using the following syntax:
+; directive = value
+; Directive names are *case sensitive* - foo=bar is different from FOO=bar.
+; Directives are variables used to configure PHP or PHP extensions.
+; There is no name validation.  If PHP can&#039;t find an expected
+; directive because it is not set or is mistyped, a default value will be used.
+
+; The value can be a string, a number, a PHP constant (e.g. E_ALL or M_PI), one
+; of the INI constants (On, Off, True, False, Yes, No and None) or an expression
+; (e.g. E_ALL &amp; ~E_NOTICE), a quoted string (&quot;bar&quot;), or a reference to a
+; previously set variable or directive (e.g. ${foo})
+
+; Expressions in the INI file are limited to bitwise operators and parentheses:
+; |  bitwise OR
+; ^  bitwise XOR
+; &amp;  bitwise AND
+; ~  bitwise NOT
+; !  boolean NOT
+
+; Boolean flags can be turned on using the values 1, On, True or Yes.
+; They can be turned off using the values 0, Off, False or No.
+
+; An empty string can be denoted by simply not writing anything after the equal
+; sign, or by using the None keyword:
+
+; foo =         ; sets foo to an empty string
+; foo = None    ; sets foo to an empty string
+; foo = &quot;None&quot;  ; sets foo to the string &#039;None&#039;
+
+; If you use constants in your value, and these constants belong to a
+; dynamically loaded extension (either a PHP extension or a Zend extension),
+; you may only use these constants *after* the line that loads the extension.
+
+;;;;;;;;;;;;;;;;;;;
+; About this file ;
+;;;;;;;;;;;;;;;;;;;
+; PHP comes packaged with two INI files. One that is recommended to be used
+; in production environments and one that is recommended to be used in
+; development environments.
+
+; php.ini-production contains settings which hold security, performance and
+; best practices at its core. But please be aware, these settings may break
+; compatibility with older or less security-conscious applications. We
+; recommending using the production ini in production and testing environments.
+
+; php.ini-development is very similar to its production variant, except it is
+; much more verbose when it comes to errors. We recommend using the
+; development version only in development environments, as errors shown to
+; application users can inadvertently leak otherwise secure information.
+
+; This is the php.ini-production INI file.
+
+;;;;;;;;;;;;;;;;;;;
+; Quick Reference ;
+;;;;;;;;;;;;;;;;;;;
+
+; The following are all the settings which are different 
+------------------------------------------------------------
+>>> FOUND: /etc/php/8.2/cli/php.ini
+[PHP]
+
+;;;;;;;;;;;;;;;;;;;
+; About php.ini   ;
+;;;;;;;;;;;;;;;;;;;
+; PHP&#039;s initialization file, generally called php.ini, is responsible for
+; configuring many of the aspects of PHP&#039;s behavior.
+
+; PHP attempts to find and load this configuration from a number of locations.
+; The following is a summary of its search order:
+; 1. SAPI module specific location.
+; 2. The PHPRC environment variable.
+; 3. A number of predefined registry keys on Windows
+; 4. Current working directory (except CLI)
+; 5. The web server&#039;s directory (for SAPI modules), or directory of PHP
+; (otherwise in Windows)
+; 6. The directory from the --with-config-file-path compile time option, or the
+; Windows directory (usually C:\windows)
+; See the PHP docs for more specific information.
+; https://php.net/configuration.file
+
+; The syntax of the file is extremely simple.  Whitespace and lines
+; beginning with a semicolon are silently ignored (as you probably guessed).
+; Section headers (e.g. [Foo]) are also silently ignored, even though
+; they might mean something in the future.
+
+; Directives following the section heading [PATH=/www/mysite] only
+; apply to PHP files in the /www/mysite directory.  Directives
+; following the section heading [HOST=www.example.com] only apply to
+; PHP files served from www.example.com.  Directives set in these
+; special sections cannot be overridden by user-defined INI files or
+; at runtime. Currently, [PATH=] and [HOST=] sections only work under
+; CGI/FastCGI.
+; https://php.net/ini.sections
+
+; Directives are specified using the following syntax:
+; directive = value
+; Directive names are *case sensitive* - foo=bar is different from FOO=bar.
+; Directives are variables used to configure PHP or PHP extensions.
+; There is no name validation.  If PHP can&#039;t find an expected
+; directive because it is not set or is mistyped, a default value will be used.
+
+; The value can be a string, a number, a PHP constant (e.g. E_ALL or M_PI), one
+; of the INI constants (On, Off, True, False, Yes, No and None) or an expression
+; (e.g. E_ALL &amp; ~E_NOTICE), a quoted string (&quot;bar&quot;), or a reference to a
+; previously set variable or directive (e.g. ${foo})
+
+; Expressions in the INI file are limited to bitwise operators and parentheses:
+; |  bitwise OR
+; ^  bitwise XOR
+; &amp;  bitwise AND
+; ~  bitwise NOT
+; !  boolean NOT
+
+; Boolean flags can be turned on using the values 1, On, True or Yes.
+; They can be turned off using the values 0, Off, False or No.
+
+; An empty string can be denoted by simply not writing anything after the equal
+; sign, or by using the None keyword:
+
+; foo =         ; sets foo to an empty string
+; foo = None    ; sets foo to an empty string
+; foo = &quot;None&quot;  ; sets foo to the string &#039;None&#039;
+
+; If you use constants in your value, and these constants belong to a
+; dynamically loaded extension (either a PHP extension or a Zend extension),
+; you may only use these constants *after* the line that loads the extension.
+
+;;;;;;;;;;;;;;;;;;;
+; About this file ;
+;;;;;;;;;;;;;;;;;;;
+; PHP comes packaged with two INI files. One that is recommended to be used
+; in production environments and one that is recommended to be used in
+; development environments.
+
+; php.ini-production contains settings which hold security, performance and
+; best practices at its core. But please be aware, these settings may break
+; compatibility with older or less security-conscious applications. We
+; recommending using the production ini in production and testing environments.
+
+; php.ini-development is very similar to its production variant, except it is
+; much more verbose when it comes to errors. We recommend using the
+; development version only in development environments, as errors shown to
+; application users can inadvertently leak otherwise secure information.
+
+; This is the php.ini-production INI file.
+
+;;;;;;;;;;;;;;;;;;;
+; Quick Reference ;
+;;;;;;;;;;;;;;;;;;;
+
+; The following are all the settings which are different 
+------------------------------------------------------------
+>>> FOUND: /lib/systemd/system/ssh.service
+[Unit]
+Description=OpenBSD Secure Shell server
+Documentation=man:sshd(8) man:sshd_config(5)
+After=network.target auditd.service
+ConditionPathExists=!/etc/ssh/sshd_not_to_be_run
+
+[Service]
+EnvironmentFile=-/etc/default/ssh
+ExecStartPre=/usr/sbin/sshd -t
+ExecStart=/usr/sbin/sshd -D $SSHD_OPTS
+ExecReload=/usr/sbin/sshd -t
+ExecReload=/bin/kill -HUP $MAINPID
+KillMode=process
+Restart=on-failure
+RestartPreventExitStatus=255
+Type=notify
+RuntimeDirectory=sshd
+RuntimeDirectoryMode=0755
+
+[Install]
+WantedBy=multi-user.target
+Alias=sshd.service
+
+------------------------------------------------------------
+>>> FOUND: /proc/net/tcp
+  sl  local_address rem_address   st tx_queue rx_queue tr tm-&gt;when retrnsmt   uid  timeout inode                                                     
+   0: 0B00007F:90CF 00000000:0000 0A 00000000:00000000 00:00000000 00000000 65534        0 22792212 1 0000000000000000 100 0 0 10 0                  
+   1: 00000000:0016 00000000:0000 0A 00000000:00000000 00:00000000 00000000     0        0 22797524 1 0000000000000000 100 0 0 10 0                  
+   2: 00000000:0050 00000000:0000 0A 00000000:00000000 00:00000000 00000000     0        0 22797555 1 0000000000000000 100 0 0 10 0                  
+   3: 0654640A:0050 0454640A:888E 01 00000000:00000000 02:000AFBB1 00000000    33        0 23127618 4 0000000000000000 108 4 23 10 -1                
+   4: 0654640A:0050 0454640A:887E 01 00000000:00000000 02:000AFBB1 00000000    33        0 23122974 3 0000000000000000 105 4 23 20 -1                
+   5: 0654640A:0050 0454640A:8890 01 00000000:00000000 02:000AFBB1 00000000    33        0 23128501 4 0000000000000000 108 4 23 10 -1                
+   6: 0654640A:0050 0454640A:88A2 01 00000000:00000000 02:000AFBDD 00000000    33        0 23127694 3 0000000000000000 114 4 25 10 -1                
+   7: 0654640A:0050 0454640A:8878 01 00000000:00000000 02:000AFBB1 00000000    33        0 23128508 3 0000000000000000 105 4 23 20 -1                
+   8: 0654640A:0050 0454640A:889A 01 00000000:00000000 02:000AFBDC 00000000    33        0 23131137 2 0000000000000000 125 4 31 10 -1                
+
+------------------------------------------------------------
+>>> FOUND: /proc/net/tcp6
+  sl  local_address                         remote_address                        st tx_queue rx_queue tr tm-&gt;when retrnsmt   uid  timeout inode
+   0: 00000000000000000000000000000000:0016 00000000000000000000000000000000:0000 0A 00000000:00000000 00:00000000 00000000     0        0 22797526 1 0000000000000000 100 0 0 10 0
+
+------------------------------------------------------------
+>>> FOUND: /proc/1/cmdline
+/bin/sh /usr/sbin/apache2ctl -D FOREGROUND 
+------------------------------------------------------------
+>>> FOUND: /proc/self/cmdline
+/usr/sbin/apache2 -D FOREGROUND 
+------------------------------------------------------------
+>>> FOUND: /proc/self/mounts
+overlay / overlay rw,relatime,lowerdir=/var/lib/docker/900000.900000/overlay2/l/S6MZXV7XSB3IINWMENF2CWQ4FW:/var/lib/docker/900000.900000/overlay2/l/VV3NFH5BRHCMDV6P2MK5SE56IZ:/var/lib/docker/900000.900000/overlay2/l/LEIO6ZFB4AIISPKFSUESARMW6V:/var/lib/docker/900000.900000/overlay2/l/MDVT3PFR7D4XO52AA7JOIEPQFJ:/var/lib/docker/900000.900000/overlay2/l/54E5QZFV6FBAKGUORYMWM6RCJJ:/var/lib/docker/900000.900000/overlay2/l/5EUA3ABEUY46UQKOF7B26L2567:/var/lib/docker/900000.900000/overlay2/l/CY2EC3JUQJCZQ55LNS3GUP7BUC:/var/lib/docker/900000.900000/overlay2/l/C2IVJE2UPCWT5HXD4FCNX43YJV:/var/lib/docker/900000.900000/overlay2/l/GNJPM3J3COAXBHFF4D3KKCJKNQ:/var/lib/docker/900000.900000/overlay2/l/EM4LIURZKITSZQIVDYKUDKJY3X:/var/lib/docker/900000.900000/overlay2/l/PVKHIBNDDFGG2ZTHNOR6357WVT:/var/lib/docker/900000.900000/overlay2/l/25KLGBYAHLEBMPPATE3KOZXKVT,upperdir=/var/lib/docker/900000.900000/overlay2/0fcd8c5f5f29d41094cefd9eeb9ff0454b6510d9e6a0785caa017f2fe533a4d9/diff,workdir=/var/lib/docker/900000.900000/overlay2/0fcd8c5f5f29d41094cefd9eeb9ff0454b6510d9e6a0785caa017f2fe533a4d9/work,nouserxattr 0 0
+sysfs /sys sysfs rw,nosuid,nodev,noexec,relatime 0 0
+cgroup /sys/fs/cgroup cgroup2 rw,nosuid,nodev,noexec,relatime,nsdelegate,memory_recursiveprot 0 0
+proc /proc proc rw,nosuid,nodev,noexec,relatime 0 0
+tmpfs /dev tmpfs rw,nosuid,size=65536k,mode=755,uid=900000,gid=900000,inode64 0 0
+mqueue /dev/mqueue mqueue rw,nosuid,nodev,noexec,relatime 0 0
+devpts /dev/pts devpts rw,nosuid,noexec,relatime,gid=900005,mode=620,ptmxmode=666 0 0
+shm /dev/shm tmpfs rw,nosuid,nodev,noexec,relatime,size=65536k,uid=900000,gid=900000,inode64 0 0
+sysboxfs /sys/devices/virtual fuse rw,nosuid,nodev,relatime,user_id=0,group_id=0,default_permissions,allow_other 0 0
+sysboxfs /sys/kernel fuse rw,nosuid,nodev,relatime,user_id=0,group_id=0,default_permissions,allow_other 0 0
+sysboxfs /sys/module/nf_conntrack/parameters fuse rw,nosuid,nodev,relatime,user_id=0,group_id=0,default_permissions,allow_other 0 0
+sysboxfs /proc/swaps fuse rw,nosuid,nodev,relatime,user_id=0,group_id=0,default_permissions,allow_other 0 0
+sysboxfs /proc/sys fuse rw,nosuid,nodev,relatime,user_id=0,group_id=0,default_permissions,allow_other 0 0
+sysboxfs /proc/uptime fuse rw,nosuid,nodev,relatime,user_id=0,group_id=0,default_permissions,allow_other 0 0
+udev /dev/kmsg devtmpfs rw,nosuid,relatime,size=3975836k,nr_inodes=993959,mode=755,inode64 0 0
+/dev/vda1 /etc/resolv.conf ext4 rw,relatime,discard,errors=remount-ro 0 0
+/dev/vda1 /etc/hostname ext4 rw,relatime,discard,errors=remount-ro 0 0
+/dev/vda1 /etc/hosts ext4 rw,relatime,discard,errors=remount-ro 0 0
+/dev/vda1 /var/lib/kubelet ext4 rw,relatime,discard,errors=remount-ro 0 0
+/dev/vda1 /var/lib/k0s ext4 rw,relatime,discard,errors=remount-ro 0 0
+/dev/vda1 /var/lib/buildkit ext4 rw,relatime,discard,errors=remount-ro 0 0
+/dev/vda1 /var/lib/containerd/io.containerd.snapshotter.v1.overlayfs ext4 rw,relatime,discard,errors=remount-ro 0 0
+/dev/vda1 /var/lib/docker ext4 rw,relatime,discard,errors=remount-ro 0 0
+/dev/vda1 /var/lib/rancher/k3s ext4 rw,relatime,discard,errors=remount-ro 0 0
+/dev/vda1 /var/lib/rancher/rke2 ext4 rw,relatime,discard,errors=remount-ro 0 0
+/dev/vda1 /usr/src/linux-headers-6.8.0-136-generic ext4 ro,relatime,idmapped,discard,errors=remount-ro 0 0
+/dev/vda1 /usr/src/linux-hwe-6.8-headers-6.8.0-136 ext4 ro,relatime,idmapped,discard,errors=remount-ro 0 0
+/dev/vda1 /usr/lib/modules/6.8.0-136-generic ext4 ro,relatime,idmapped,discard,errors=remount-ro 0 0
+udev /dev/null devtmpfs rw,nosuid,relatime,size=3975836k,nr_inodes=993959,mode=755,inode64 0 0
+udev /dev/random devtmpfs rw,nosuid,relatime,size=3975836k,nr_inodes=993959,mode=755,inode64 0 0
+udev /dev/full devtmpfs rw,nosuid,relatime,size=3975836k,nr_inodes=993959,mode=755,inode64 0 0
+udev /dev/tty devtmpfs rw,nosuid,relatime,size=3975836k,nr_inodes=993959,mode=755,inode64 0 0
+udev /dev/zero devtmpfs rw,nosuid,relatime,size=3975836k,nr_inodes=993959,mode=755,inode64 0 0
+udev /dev/urandom de
+------------------------------------------------------------
+>>> FOUND: /proc/version
+Linux version 6.8.0-136-generic (buildd@lcy02-amd64-082) (x86_64-linux-gnu-gcc-12 (Ubuntu 12.3.0-1ubuntu1~22.04.3) 12.3.0, GNU ld (GNU Binutils for Ubuntu) 2.38) #136~22.04.1-Ubuntu SMP PREEMPT_DYNAMIC Fri Jul  3 16:29:11 UTC 
+
+------------------------------------------------------------
+>>> FOUND: /var/www/html/index.php
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot; /&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;/&gt;
+  &lt;title&gt;VaultDocs – Secure Document Portal&lt;/title&gt;
+  &lt;link href=&quot;https://fonts.googleapis.com/css2?family=DM+Serif+Display&amp;family=DM+Sans:wght@400;500;600&amp;display=swap&quot; rel=&quot;stylesheet&quot;/&gt;
+  &lt;style&gt;
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0d1117;
+      --surface: #161b22;
+      --border: #21262d;
+      --accent: #3fb950;
+      --accent2: #58a6ff;
+      --text: #e6edf3;
+      --muted: #8b949e;
+      --danger: #f85149;
+    }
+
+    body {
+      font-family: &#039;DM Sans&#039;, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+      background: var(--surface);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      font-family: &#039;DM Serif Display&#039;, serif;
+      font-size: 1.4rem;
+      color: var(--accent);
+      letter-spacing: -0.5px;
+    }
+
+    .logo span { color: var(--text); }
+
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      margin-left: 1.5rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    nav a:hover { color: var(--text); }
+
+    .badge {
+      background: #1c2d1e;
+      color: var(--accent);
+      border: 1px solid #2ea04326;
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 20px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .hero {
+      padding: 5rem 2rem 3rem;
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .hero h1 {
+      font-family: &#039;DM Serif Display&#039;, serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+
+    .main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem;
+      flex: 1;
+      width: 100%;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .card h2 {
+      font-family: &#039;DM Serif Display&#039;, serif;
+      font-size: 1.15rem;
+      margin-bottom: 0.5rem;
+      color: var(--text);
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    .doc-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1rem;
+    }
+
+    .doc-item {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem;
+      text-decoration: none;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .doc-item:hover {
+      border-color: var(--accent2);
+      background: #161b2288;
+    }
+
+    .doc-icon {
+      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+
+    .doc-name {
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    .doc-meta {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .viewer {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.25rem;
+      font-family: &#039;Courier New&#039;, monospace;
+      font-size: 0.82rem;
+      color: #cdd9e5;
+      white-space: pre-wrap;
+      word-break: break-all;
+------------------------------------------------------------
+>>> FOUND: /home/vboxuser/.bashrc
+# ~/.bashrc: executed by bash(1) for non-login shells.
+# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
+# for examples
+
+# If not running interactively, don&#039;t do anything
+case $- in
+    *i*) ;;
+      *) return;;
+esac
+
+# don&#039;t put duplicate lines or lines starting with space in the history.
+# See bash(1) for more options
+HISTCONTROL=ignoreboth
+
+# append to the history file, don&#039;t overwrite it
+shopt -s histappend
+
+# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+HISTSIZE=1000
+HISTFILESIZE=2000
+
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
+
+# If set, the pattern &quot;**&quot; used in a pathname expansion context will
+# match all files and zero or more directories and subdirectories.
+#shopt -s globstar
+
+# make less more friendly for non-text input files, see lesspipe(1)
+#[ -x /usr/bin/lesspipe ] &amp;&amp; eval &quot;$(SHELL=/bin/sh lesspipe)&quot;
+
+# set variable identifying the chroot you work in (used in the prompt below)
+if [ -z &quot;${debian_chroot:-}&quot; ] &amp;&amp; [ -r /etc/debian_chroot ]; then
+    debian_chroot=$(cat /etc/debian_chroot)
+fi
+
+# set a fancy prompt (non-color, unless we know we &quot;want&quot; color)
+case &quot;$TERM&quot; in
+    xterm-color|*-256color) color_prompt=yes;;
+esac
+
+# uncomment for a colored prompt, if the terminal has the capability; turned
+# off by default to not distract the user: the focus in a terminal window
+# should be on the output of commands, not on the prompt
+#force_color_prompt=yes
+
+if [ -n &quot;$force_color_prompt&quot; ]; then
+    if [ -x /usr/bin/tput ] &amp;&amp; tput setaf 1 &gt;&amp;/dev/null; then
+	# We have color support; assume it&#039;s compliant with Ecma-48
+	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+	# a case would tend to support setf rather than setaf.)
+	color_prompt=yes
+    else
+	color_prompt=
+    fi
+fi
+
+if [ &quot;$color_prompt&quot; = yes ]; then
+    PS1=&#039;${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ &#039;
+else
+    PS1=&#039;${debian_chroot:+($debian_chroot)}\u@\h:\w\$ &#039;
+fi
+unset color_prompt force_color_prompt
+
+# If this is an xterm set the title to user@host:dir
+case &quot;$TERM&quot; in
+xterm*|rxvt*)
+    PS1=&quot;\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1&quot;
+    ;;
+*)
+    ;;
+esac
+
+# enable color support of ls and also add handy aliases
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors &amp;&amp; eval &quot;$(dircolors -b ~/.dircolors)&quot; || eval &quot;$(dircolors -b)&quot;
+    alias ls=&#039;ls --color=auto&#039;
+    #alias dir=&#039;dir --color=auto&#039;
+    #alias vdir=&#039;vdir --color=auto&#039;
+
+    #alias grep=&#039;grep --color=auto&#039;
+    #alias fgrep=&#039;fgrep --color=auto&#039;
+    #alias egrep=&#039;egrep --color=auto&#039;
+fi
+
+# colored GCC warnings and errors
+#export GCC_COLORS=&#039;error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01&#039;
+
+# some more ls aliases
+#alias ll=&#039;ls -l&#039;
+#alias la=&#039;ls -A&#039;
+#alias l=&#039;ls -CF&#039;
+
+# Alias definitions.
+# You may want to put all your additions into a separate file like
+# ~/.bash_aliases, instead of adding them here directly.
+# See /usr/share/doc/bash-doc/examples in the bash-doc package.
+
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
+
+# enable programmable completion features (you don&#039;t need to enable
+# this, if it&#039;s already enabled in /etc/bash.bashrc and /etc/profile
+# sources /etc/bash.bashrc).
+if ! shopt -oq posix; then
+  if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+  elif [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+  fi
+fi
+
+------------------------------------------------------------
+>>> FOUND: /home/vboxuser/.profile
+# ~/.profile: executed by the command interpreter for login shells.
+# This file is not read by bash(1), if ~/.bash_profile or ~/.bash_login
+# exists.
+# see /usr/share/doc/bash/examples/startup-files for examples.
+# the files are located in the bash-doc package.
+
+# the default umask is set in /etc/profile; for setting the umask
+# for ssh logins, install and configure the libpam-umask package.
+#umask 022
+
+# if running bash
+if [ -n &quot;$BASH_VERSION&quot; ]; then
+    # include .bashrc if it exists
+    if [ -f &quot;$HOME/.bashrc&quot; ]; then
+	. &quot;$HOME/.bashrc&quot;
+    fi
+fi
+
+# set PATH so it includes user&#039;s private bin if it exists
+if [ -d &quot;$HOME/bin&quot; ] ; then
+    PATH=&quot;$HOME/bin:$PATH&quot;
+fi
+
+# set PATH so it includes user&#039;s private bin if it exists
+if [ -d &quot;$HOME/.local/bin&quot; ] ; then
+    PATH=&quot;$HOME/.local/bin:$PATH&quot;
+fi
+
+------------------------------------------------------------
+>>> FOUND: /etc/issue
+Debian GNU/Linux 12 \n \l
+
+
+------------------------------------------------------------
+>>> FOUND: /etc/motd
+
+The programs included with the Debian GNU/Linux system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+
+------------------------------------------------------------

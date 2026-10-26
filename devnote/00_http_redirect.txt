@@ -1,0 +1,16 @@
+### STEP 0: http -> https redirect
+HTTP/1.1 301 Moved Permanently
+Server: openresty/1.27.1.2
+Date: Sat, 10 Oct 2026 19:27:12 GMT
+Content-Type: text/html
+Content-Length: 175
+Connection: keep-alive
+Location: https://kicyber-81cdac2d8817-devnote-0-0.chals.io/
+
+<html>
+<head><title>301 Moved Permanently</title></head>
+<body>
+<center><h1>301 Moved Permanently</h1></center>
+<hr><center>openresty/1.27.1.2</center>
+</body>
+</html>

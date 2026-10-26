@@ -1,0 +1,3 @@
+
+query: { rootVault }
+{"data":{"rootVault":"KPMG_CTF{QPv_XrGZAFxc8KmwCR8fh8jP6vP_nYpYhYLxvjL1PLFu}"}}

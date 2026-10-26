@@ -1,0 +1,12 @@
+# Flask signed session cookies observed during the run.
+# Payload is base64url(JSON).
+#
+# Decoded:
+#   eyJ1c2VybmFtZSI6Imd1ZXN0In0  ->  {"username": "guest"}
+#   eyJ1c2VybmFtZSI6ImFkbWluIn0  ->  {"username": "admin"}
+#
+# guest: session=eyJ1c2VybmFtZSI6Imd1ZXN0In0.asqRGg.JmhR5P9Tieb9iUyGfljOn4xAISI
+# admin: session=eyJ1c2VybmFtZSI6ImFkbWluIn0.asqRVw.ToLLsIoQigHE850hPXSneROzRFA
+#
+# Note: if the Flask SECRET_KEY were recovered, the admin cookie could be forged
+# with flask-unsign. Not needed here - the SQLi already leaked the flag as guest.

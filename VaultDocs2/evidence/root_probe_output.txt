@@ -1,0 +1,51 @@
+===ID===
+uid=0(root) gid=0(root) groups=0(root)
+===HOSTNAME===
+ddc07d8eb024
+===ROOTFLAG===
+KPMG_CTF{MamhP_3IBGs1INvwz7Hk03NJ0KbOwPNk48rUjjEvHTWk}
+===USERFLAG===
+FLAG{default_user_flag
+===ENV_PID1===
+HOSTNAME=ddc07d8eb024
+PWD=/
+ROOT_FLAG=KPMG_CTF{MamhP_3IBGs1INvwz7Hk03NJ0KbOwPNk48rUjjEvHTWk}
+HOME=/root
+SHLVL=0
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+===ENTRYPOINT===
+#!/bin/bash
+set -e
+
+# ── dynamic flags ────────────────────────────────────────────
+: "${USER_FLAG:=FLAG{default_user_flag}}"
+: "${ROOT_FLAG:=FLAG{default_root_flag}}"
+
+# Generate flags at container startup
+printf '%s\n' "$USER_FLAG" > /home/vboxuser/user.txt
+printf '%s\n' "$ROOT_FLAG" > /root/root.txt
+
+# Set correct ownership and permissions
+chown vboxuser:vboxuser /home/vboxuser/user.txt
+chmod 400 /home/vboxuser/user.txt
+
+chown root:root /root/root.txt
+chmod 400 /root/root.txt
+
+# ── SSH ──────────────────────────────────────────────────────
+ssh-keygen -A 2>/dev/null || true
+/usr/sbin/sshd
+
+# ── Apache ───────────────────────────────────────────────────
+exec apache2ctl -D FOREGROUND
+===ROOTLS===
+total 20
+drwx------ 1 root root 4096 Oct 10 20:28 .
+drwxr-xr-x 1 root root 4096 Oct 10 20:30 ..
+-rw-r--r-- 1 root root  571 Apr 10  2021 .bashrc
+-rw-r--r-- 1 root root  161 Jul  9  2019 .profile
+-r-------- 1 root root   55 Oct 10 20:28 root.txt
+===SEARCH_FLAGS===
+/root/root.txt
+/tmp/probe.sh
+===DONE===

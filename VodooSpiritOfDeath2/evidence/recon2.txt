@@ -1,0 +1,203 @@
+$ cat /entrypoint.sh 2>&1
+cat: /entrypoint.sh: Permission denied
+
+------------------------------------------------------------
+$ cat /etc/supervisor/conf.d/supervisord.conf 2>&1
+[supervisord]
+nodaemon=true
+logfile=/tmp/supervisord.log
+pidfile=/tmp/supervisord.pid
+
+[program:portal]
+command=python3 /opt/portal/app.py
+autostart=true
+autorestart=true
+stderr_logfile=/var/log/portal.err
+stdout_logfile=/var/log/portal.log
+
+[program:fsguard]
+command=/usr/local/bin/acme-fs-guard.sh
+autostart=true
+autorestart=true
+stderr_logfile=/var/log/acme-fs-guard.err
+stdout_logfile=/var/log/acme-fs-guard.log
+
+------------------------------------------------------------
+$ cat /usr/local/bin/acme-fs-guard.sh 2>&1
+#!/bin/bash
+# Continuously reconciles /home/maya.chen back to its baseline (captured
+# once at setup time), deleting anything a player session creates shortly
+# after it appears. Files only -- never touches processes -- so it cannot
+# interrupt a live shell/SSH/python session. Runs as its own supervisord
+# program, independent of any player connection.
+set -u
+
+HOME_DIR=/home/maya.chen
+BASELINE=/var/lib/acme/.maya-home-baseline.list
+INTERVAL="${CLEANUP_INTERVAL_SECONDS:-2}"
+
+while true; do
+    if [ -d "$HOME_DIR" ] && [ -f "$BASELINE" ]; then
+        while IFS= read -r path; do
+            rel="${path#$HOME_DIR/}"
+            if [ "$path" = "$rel" ]; then
+                continue  # malformed entry, skip rather than risk misinterpreting it
+            fi
+            if grep -Fxq "$rel" "$BASELINE"; then
+                continue  # part of the original challenge install
+            fi
+            if [ -L "$path" ]; then
+                rm -f "$path" 2>/dev/null && echo "$(date -Iseconds) removed symlink: $rel"
+            elif [ -d "$path" ]; then
+                # only removes if now empty; a non-empty new directory is
+                # caught on a later pass once its contents are gone (find
+                # -depth below already lists children before parents, so
+                # this is normally already empty by the time we reach it)
+                rmdir "$path" 2>/dev/null && echo "$(date -Iseconds) removed dir: $rel"
+            else
+                rm -f "$path" 2>/dev/null && echo "$(date -Iseconds) removed file: $rel"
+            fi
+        done < <(find "$HOME_DIR" -mindepth 1 -depth 2>/dev/null)
+    fi
+    sleep "$INTERVAL"
+done
+
+------------------------------------------------------------
+$ ls -la /opt/portal/ 2>&1; ls -la /opt/ 2>&1
+ls: cannot open directory '/opt/portal/': Permission denied
+total 16
+drwxr-xr-x 1 root root 4096 Sep 17 10:11 .
+drwxr-xr-x 1 root root 4096 Oct 10 20:59 ..
+drwx------ 1 root root 4096 Oct 10 20:57 portal
+
+------------------------------------------------------------
+$ cat /home/maya.chen/.local/share/acme-agent/.vault/user.txt 2>&1
+KPMG_CTF{6cf60da16034c94ec03370ce6f90308c}
+------------------------------------------------------------
+$ cat /home/maya.chen/Documents/meeting-notes.txt 2>&1
+Q2 sync notes
+- Migration cutover went fine, thanks Alex
+- Ping Derek re: headcount before Friday
+
+------------------------------------------------------------
+$ cat /home/maya.chen/logs/deploy.log 2>&1
+2026-06-04 09:12:03 INFO  deploy started: payments-api v1.14.2
+2026-06-04 09:12:41 INFO  smoke tests passed
+2026-06-04 09:12:42 INFO  deploy complete
+2026-06-17 16:40:11 INFO  deploy started: logging-pipeline v0.9.0
+2026-06-17 16:41:02 INFO  deploy complete
+
+------------------------------------------------------------
+$ cat /home/maya.chen/.config/acme-cli/config.json 2>&1
+{
+  "agent_version": "2.3.1",
+  "endpoint": "https://internal.acmefin.com/api/v1",
+  "poll_interval_seconds": 300,
+  "log_level": "info"
+}
+
+------------------------------------------------------------
+$ cat /home/maya.chen/scripts/rotate_logs.sh 2>&1
+#!/bin/bash
+# Rotates local agent logs older than 14 days.
+find "$HOME/logs" -name '*.log' -mtime +14 -delete
+echo "log rotation complete"
+
+------------------------------------------------------------
+$ cat /home/maya.chen/backups/2025-legacy/export.csv 2>&1
+order_id,client,status,amount
+A-1024,Northwind Commerce,shipped,4820.00
+A-1031,Harborlight Insurance,pending,1190.50
+A-1042,Ridgeline Capital,shipped,9800.00
+
+------------------------------------------------------------
+$ ls -la /var/lib/acme/ 2>&1; ls -la /root 2>&1
+total 28
+drwxr-xr-x 4 root root 4096 Oct 10 20:57 .
+drwxr-xr-x 1 root root 4096 Oct 10 20:56 ..
+-rw------- 1 root root  405 Oct 10 20:57 .maya-home-baseline.list
+-rw------- 1 root root   65 Oct 10 20:57 .maya_session_token
+drwxr-xr-x 2 root root 4096 Oct 10 20:56 archive
+drwxr-xr-x 3 root root 4096 Oct 10 20:57 portal
+ls: cannot open directory '/root': Permission denied
+
+------------------------------------------------------------
+$ ls -lR /etc/sudoers.d 2>&1; cat /etc/sudoers 2>&1 | tail -30
+/etc/sudoers.d:
+total 4
+-r--r----- 1 root root 958 Feb  3  2020 README
+cat: /etc/sudoers: Permission denied
+
+------------------------------------------------------------
+$ find / -iname '*flag*' -o -iname '*root.txt*' 2>/dev/null | head -40
+/usr/src/linux-headers-6.8.0-136-generic/include/config/NEED_SG_DMA_FLAGS
+/usr/src/linux-headers-6.8.0-136-generic/include/config/ARCH_USES_HIGH_VMA_FLAGS
+/usr/src/linux-headers-6.8.0-136-generic/include/config/TRACE_IRQFLAGS_SUPPORT
+/usr/src/linux-headers-6.8.0-136-generic/include/config/TRACE_IRQFLAGS_NMI_SUPPORT
+/usr/src/linux-headers-6.8.0-136-generic/include/config/PAGE_IDLE_FLAG
+/usr/src/linux-hwe-6.8-headers-6.8.0-136/include/asm-generic/irqflags.h
+/usr/src/linux-hwe-6.8-headers-6.8.0-136/include/trace/events/mmflags.h
+/usr/src/linux-hwe-6.8-headers-6.8.0-136/include/linux/pageblock-flags.h
+/usr/src/linux-hwe-6.8-headers-6.8.0-136/include/linux/irqflags_types.h
+/usr/src/linux-hwe-6.8-headers-6.8.0-136/include/linux/page-flags-layout.h
+/usr/src/linux-hwe-6.8-headers-6.8.0-136/include/linux/irqflags.h
+/usr/src/linux-hwe-6.8-headers-6.8.0-136/include/linux/page-flags.h
+/usr/src/linux-hwe-6.8-headers-6.8.0-136/include/linux/kernel-page-flags.h
+/usr/src/linux-hwe-6.8-headers-6.8.0-136/include/linux/sched/sd_flags.h
+/usr/src/linux-hwe-6.8-headers-6.8.0-136/include/linux/sched/task_flags.h
+/usr/src/linux-hwe-6.8-headers-6.8.0-136/include/uapi/linux/tty_flags.h
+/usr/src/linux-hwe-6.8-headers-6.8.0-136/include/uapi/linux/kernel-page-flags.h
+/usr/src/linux-hwe-6.8-headers-6.8.0-136/scripts/coccinelle/locks/flags.cocci
+/usr/src/linux-hwe-6.8-headers-6.8.0-136/tools/perf/trace/beauty/mmap_flags.sh
+/usr/src/linux-hwe-6.8-headers-6.8.0-136/tools/perf/trace/beauty/move_mount_flags.sh
+/usr/src/linux-hwe-6.8-headers-6.8.0-136/tools/perf/trace/beauty/mount_flags.sh
+/usr/src/linux-hwe-6.8-headers-6.8.0-136/tools/perf/trace/beauty/mremap_flags.sh
+/usr/src/linux-hwe-6.8-headers-6.8.0-136/tools/perf/trace/beauty/rename_flags.sh
+/usr/src/linux-hwe-6.8-headers-6.8.0-136/arch/sh/include/asm/irqflags.h
+/usr/src/linux-hwe-6.8-headers-6.8.0-136/arch/s390/include/asm/irqflags.h
+/usr/src/linux-hwe-6.8-headers-6.8.0-136/arch/riscv/include/asm/irqflags.h
+/usr/src/linux-hwe-6.8-headers-6.8.0-136/arch/xtensa/include/asm/irqflags.h
+/usr/src/linux-hwe-6.8-headers-6.8.0-136/arch/nios2/include/asm/irqflags.h
+/usr/src/linux-hwe-6.8-headers-6.8.0-136/arch/hexagon/include/asm/irqflags.h
+/usr/src/linux-hwe-6.8-headers-6.8.0-136/arch/arm64/include/asm/irqflags.h
+/usr/src/linux-hwe-6.8-headers-6.8.0-136/arch/arm64/include/asm/daifflags.h
+/usr/src/linux-hwe-6.8-headers-6.8.0-136/arch/mips/include/asm/irqflags.h
+/usr/src/linux-hwe-6.8-headers-6.8.0-136/arch/m68k/include/asm/irqflags.h
+/usr/src/linux-hwe-6.8-headers-6.8.0-136/arch/arm/include/asm/irqflags.h
+/usr/src/linux-hwe-6.8-headers-6.8.0-136/arch/loongarch/include/asm/irqflags.h
+/usr/src/linux-hwe-6.8-headers-6.8.0-136/arch/sparc/include/asm/irqflags_64.h
+/usr/src/linux-hwe-6.8-headers-6.8.0-136/arch/sparc/include/asm/irqflags.h
+/usr/src/linux-hwe-6.8-headers-6.8.0-136/arch/sparc/include/asm/irqflags_32.h
+/usr/src/linux-hwe-6.8-headers-6.8.0-136/arch/powerpc/include/asm/irqflags.h
+/usr/src/linux-hwe-6.8-headers-6.8.0-136/arch/alpha/include/asm/irqflags.h
+
+------------------------------------------------------------
+$ ls -la /usr/bin/ | grep -iE 'gcc|cc|clang|make|perl|python|nc|socat|tar|base64' 2>&1
+-rwxr-xr-x 1 root root     43352 Sep  5  2019 base64
+-rwxr-xr-x 1 root root       853 Oct 18  2019 cautious-launcher
+-rwxr-xr-x 1 root root     35096 Apr  9  2024 fincore
+lrwxrwxrwx 1 root root         7 Apr  9  2024 i386 -> setarch
+lrwxrwxrwx 1 root root         7 Apr  9  2024 linux32 -> setarch
+lrwxrwxrwx 1 root root         7 Apr  9  2024 linux64 -> setarch
+lrwxrwxrwx 1 root root        23 Mar 18  2025 pdb3.8 -> ../lib/python3.8/pdb.py
+-rwxr-xr-x 2 root root   3478464 Nov 23  2023 perl
+-rwxr-xr-x 2 root root   3478464 Nov 23  2023 perl5.30.0
+lrwxrwxrwx 1 root root        31 Mar 13  2020 py3versions -> ../share/python3/py3versions.py
+lrwxrwxrwx 1 root root         9 Mar 13  2020 python3 -> python3.8
+-rwxr-xr-x 1 root root   5490456 Mar 18  2025 python3.8
+-rwxr-xr-x 1 root root     76168 Mar  7  2022 redis-benchmark
+lrwxrwxrwx 1 root root        29 Jan 16  2025 rrsync -> ../share/rsync/scripts/rrsync
+-rwxr-xr-x 1 root root    512856 Jan 16  2025 rsync
+-rwxr-xr-x 1 root root     39256 Sep  5  2019 runcon
+-rwxr-xr-x 1 root root     27136 Apr  9  2024 setarch
+-rwxr-xr-x 1 root root     39256 Sep  5  2019 sync
+-rwxr-xr-x 1 root root    448112 Dec  5  2023 tar
+-rwxr-xr-x 1 root root     43352 Sep  5  2019 truncate
+-rwxr-xr-x 2 root root      2346 Apr  8  2022 uncompress
+lrwxrwxrwx 1 root root         7 Apr  9  2024 x86_64 -> setarch
+
+------------------------------------------------------------
+$ cat /home/maya.chen/.cache/acme-portal/session.tmp 2>&1
+tmp cache placeholder, safe to ignore
+
+------------------------------------------------------------

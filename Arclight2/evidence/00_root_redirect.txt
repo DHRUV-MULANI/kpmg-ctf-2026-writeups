@@ -1,0 +1,13 @@
+HTTP/1.1 302 FOUND
+Server: Werkzeug/3.1.9 Python/3.11.17
+Date: Sun, 11 Oct 2026 03:02:09 GMT
+Content-Type: text/html; charset=utf-8
+Content-Length: 199
+Location: /login
+Connection: close
+
+<!doctype html>
+<html lang=en>
+<title>Redirecting...</title>
+<h1>Redirecting...</h1>
+<p>You should be redirected automatically to the target URL: <a href="/login">/login</a>. If not, click the link.

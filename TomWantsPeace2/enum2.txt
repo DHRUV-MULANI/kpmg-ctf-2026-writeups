@@ -1,0 +1,30 @@
+== flag search ==
+/:
+total 72
+drwxr-xr-x    1 root   root    4096 Oct 11 02:45 .
+drwxr-xr-x    1 root   root    4096 Oct 11 02:45 ..
+-rwxr-xr-x    1 root   root       0 Oct 11 02:45 .dockerenv
+lrwxrwxrwx    1 root   root       7 Apr  4  2025 bin -> usr/bin
+drwxr-xr-x    2 root   root    4096 Apr 15  2020 boot
+drwxr-xr-x    5 root   root     360 Oct 11 02:45 dev
+drwxr-xr-x    1 root   root    4096 Oct 11 02:45 etc
+drwxr-xr-x    1 root   root    4096 Oct 11 02:45 home
+lrwxrwxrwx    1 root   root       7 Apr  4  2025 lib -> usr/lib
+lrwxrwxrwx    1 root   root       9 Apr  4  2025 lib32 -> usr/lib32
+lrwxrwxrwx    1 root   root       9 Apr  4  2025 lib64 -> usr/lib64
+lrwxrwxrwx    1 root   root      10 Apr  4  2025 libx32 -> usr/libx32
+drwxr-xr-x    2 root   root    4096 Apr  4  2025 media
+drwxr-xr-x    2 root   root    4096 Apr  4  2025 mnt
+drwxr-xr-x    1 root   root    4096 Oct 11 02:45 opt
+dr-xr-xr-x 1015 root   root       0 Oct 11 02:45 proc
+drwx------    1 root   root    4096 Oct 11 02:50 root
+drwxr-xr-x    1 root   root    4096 Oct 11 02:50 run
+lrwxrwxrwx    1 root   root       8 Apr  4  2025 sbin -> usr/sbin
+drwxr-xr-x    1 root   root    4096 Oct 11 02:45 srv
+-rwx------    1 root   root     277 May 22 22:11 start.sh
+dr-xr-xr-x   13 nobody nogroup    0 Oct 11 02:45 sys
+drwxrwxrwt    1 root   root    4096 Oct 11 02:50 tmp
+drwxr-xr-x    1 root   root    4096 Apr  4  2025 usr
+drwxr-xr-x    1 root   root    4096 Apr  4  2025 var
+ls: cannot open directory '/root': Permission denied
+== find flags ==

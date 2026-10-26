@@ -1,0 +1,2 @@
+query: { me { username role } }
+{"data":{"me":{"role":"standard","username":"evid1"}}}

@@ -1,0 +1,7 @@
+=== Healthy Hijack - 1  flags ===
+
+User flag (/home/appuser/user.txt, uid 1000):
+KPMG_CTF{5aPpZrq2OS51019_pLF7fU2xhbwlhgFasoBE0eHVKPsL}
+
+Root flag (/root/root.txt, read as root):
+KPMG_CTF{091734c0b3cb2cfaada1e4f4e3cc005a}

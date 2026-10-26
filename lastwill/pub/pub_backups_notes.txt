@@ -1,0 +1,3 @@
+Reminder to self: the internal diagnostics branch doesn't show up on a normal full subscribe. Smthn about how MQTT treats topics starting with a certain character as broker reserved and skips them on wildcard matches. Have to ask for the "internal" branch by its exact name if I want to see it.
+
+Also, ops flagged this again: whenever a second device boots up using the same client ID as one that's already connected, the broker kicks the original off without warning, and it fires an "unexpected disconnect" alert downstream. Annoying race condition, haven't had time to fix it. Don't spin up a duplicate client ID unless you mean to bump whatever's already using it.

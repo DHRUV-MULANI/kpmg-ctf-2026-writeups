@@ -1,0 +1,24 @@
+# GreenLeaf Gateway Configuration Backup
+# Date: 2024-01-10
+# Device: GL-GW-001
+# =================================
+
+[network]
+interface=eth0
+ip_address=10.0.1.5
+netmask=255.255.255.0
+gateway=10.0.1.1
+
+[services]
+http_port=80
+mqtt_port=non-standard
+
+[logging]
+level=INFO
+max_file_size=10MB
+retention_days=30
+
+[maintenance]
+last_service=2024-01-05
+next_service=2024-04-05
+technician=R. Singh

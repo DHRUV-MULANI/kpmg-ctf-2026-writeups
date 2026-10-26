@@ -1,0 +1,409 @@
+      &lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot; /&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;/&gt;
+  &lt;title&gt;VaultDocs – Secure Document Portal&lt;/title&gt;
+  &lt;link href=&quot;https://fonts.googleapis.com/css2?family=DM+Serif+Display&amp;family=DM+Sans:wght@400;500;600&amp;display=swap&quot; rel=&quot;stylesheet&quot;/&gt;
+  &lt;style&gt;
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0d1117;
+      --surface: #161b22;
+      --border: #21262d;
+      --accent: #3fb950;
+      --accent2: #58a6ff;
+      --text: #e6edf3;
+      --muted: #8b949e;
+      --danger: #f85149;
+    }
+
+    body {
+      font-family: &#039;DM Sans&#039;, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+      background: var(--surface);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      font-family: &#039;DM Serif Display&#039;, serif;
+      font-size: 1.4rem;
+      color: var(--accent);
+      letter-spacing: -0.5px;
+    }
+
+    .logo span { color: var(--text); }
+
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      margin-left: 1.5rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    nav a:hover { color: var(--text); }
+
+    .badge {
+      background: #1c2d1e;
+      color: var(--accent);
+      border: 1px solid #2ea04326;
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 20px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .hero {
+      padding: 5rem 2rem 3rem;
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .hero h1 {
+      font-family: &#039;DM Serif Display&#039;, serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+
+    .main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem;
+      flex: 1;
+      width: 100%;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .card h2 {
+      font-family: &#039;DM Serif Display&#039;, serif;
+      font-size: 1.15rem;
+      margin-bottom: 0.5rem;
+      color: var(--text);
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    .doc-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1rem;
+    }
+
+    .doc-item {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem;
+      text-decoration: none;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .doc-item:hover {
+      border-color: var(--accent2);
+      background: #161b2288;
+    }
+
+    .doc-icon {
+      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+
+    .doc-name {
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    .doc-meta {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .viewer {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.25rem;
+      font-family: &#039;Courier New&#039;, monospace;
+      font-size: 0.82rem;
+      color: #cdd9e5;
+      white-space: pre-wrap;
+      word-break: break-all;
+      min-height: 200px;
+      max-height: 500px;
+      overflow-y: auto;
+      line-height: 1.6;
+    }
+
+    .viewer-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.75rem;
+    }
+
+    .viewer-title {
+      font-size: 0.8rem;
+      color: var(--muted);
+      font-family: monospace;
+    }
+
+    .url-bar {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .url-bar input {
+      flex: 1;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.5rem 0.75rem;
+      color: var(--text);
+      font-family: monospace;
+      font-size: 0.85rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .url-bar input:focus { border-color: var(--accent2); }
+
+    .url-bar button {
+      background: var(--accent2);
+      color: #0d1117;
+      border: none;
+      border-radius: 6px;
+      padding: 0.5rem 1rem;
+      font-weight: 600;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+
+    .url-bar button:hover { opacity: 0.85; }
+
+    .error-box {
+      background: #2d1117;
+      border: 1px solid #f8514933;
+      border-radius: 6px;
+      padding: 0.75rem 1rem;
+      color: var(--danger);
+      font-size: 0.85rem;
+      margin-top: 0.5rem;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 1.2rem 2rem;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+
+    .stats {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .stat { text-align: center; }
+    .stat-val {
+      font-family: &#039;DM Serif Display&#039;, serif;
+      font-size: 1.8rem;
+      color: var(--accent);
+      display: block;
+    }
+    .stat-label { font-size: 0.8rem; color: var(--muted); }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+  
+    .doc-form {
+      margin: 0;
+    }
+
+    .doc-form .doc-item {
+      width: 100%;
+      font-family: inherit;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .doc-form .doc-item:focus {
+      outline: 2px solid var(--accent2);
+      outline-offset: 2px;
+    }
+
+    .viewer-intro {
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;header&gt;
+  &lt;div class=&quot;logo&quot;&gt;Vault&lt;span&gt;Docs&lt;/span&gt;&lt;/div&gt;
+  &lt;nav&gt;
+    &lt;a href=&quot;/&quot;&gt;Home&lt;/a&gt;
+    &lt;a href=&quot;/?page=docs/about&quot;&gt;About&lt;/a&gt;
+    &lt;a href=&quot;/?page=docs/contact&quot;&gt;Contact&lt;/a&gt;
+    &lt;span class=&quot;badge&quot;&gt;v2.4.1&lt;/span&gt;
+  &lt;/nav&gt;
+&lt;/header&gt;
+
+&lt;?php
+$allowed_dir = realpath(&#039;/var/www/html/docs&#039;);
+$error = &#039;&#039;;
+$content = &#039;&#039;;
+$requested = &#039;&#039;;
+
+if (isset($_POST[&#039;page&#039;])) {
+    $page = $_POST[&#039;page&#039;];
+    $requested = htmlspecialchars($page);
+    // Intentionally vulnerable - no path traversal protection
+    $filepath = &#039;/var/www/html/&#039; . $page;
+    if (file_exists($filepath) &amp;&amp; is_file($filepath)) {
+        $content = file_get_contents($filepath);
+    } else {
+        // Still vulnerable to /etc/passwd etc via absolute-like paths
+        if (file_exists($page) &amp;&amp; is_file($page)) {
+            $content = file_get_contents($page);
+        } else {
+            $error = &quot;Document not found&quot;;
+        }
+    }
+}
+?&gt;
+
+&lt;div class=&quot;main&quot;&gt;
+  &lt;?php if (!isset($_POST[&#039;page&#039;]) || (!$content &amp;&amp; !$error)): ?&gt;
+  &lt;div class=&quot;hero&quot;&gt;
+    &lt;h1&gt;Secure Document Management Portal&lt;/h1&gt;
+    &lt;p&gt;Access, manage, and share internal documentation with enterprise-grade access controls and audit logging.&lt;/p&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;card&quot; style=&quot;margin-bottom:1.5rem&quot;&gt;
+    &lt;div class=&quot;stats&quot;&gt;
+      &lt;div class=&quot;stat&quot;&gt;&lt;span class=&quot;stat-val&quot;&gt;1,248&lt;/span&gt;&lt;span class=&quot;stat-label&quot;&gt;Documents&lt;/span&gt;&lt;/div&gt;
+      &lt;div class=&quot;stat&quot;&gt;&lt;span class=&quot;stat-val&quot;&gt;32&lt;/span&gt;&lt;span class=&quot;stat-label&quot;&gt;Active Users&lt;/span&gt;&lt;/div&gt;
+      &lt;div class=&quot;stat&quot;&gt;&lt;span class=&quot;stat-val&quot;&gt;99.9%&lt;/span&gt;&lt;span class=&quot;stat-label&quot;&gt;Uptime&lt;/span&gt;&lt;/div&gt;
+      &lt;div class=&quot;stat&quot;&gt;&lt;span class=&quot;stat-val&quot;&gt;AES-256&lt;/span&gt;&lt;span class=&quot;stat-label&quot;&gt;Encryption&lt;/span&gt;&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;?php endif; ?&gt;
+
+  &lt;div class=&quot;card&quot;&gt;
+    &lt;h2&gt;Document Viewer&lt;/h2&gt;
+
+    &lt;div class=&quot;viewer-intro&quot;&gt;
+      &lt;p&gt;Select a document from Quick Access to preview it.&lt;/p&gt;
+    &lt;/div&gt;
+
+    &lt;?php if ($error): ?&gt;
+      &lt;div class=&quot;error-box&quot;&gt;⚠ &lt;?= $error ?&gt;&lt;/div&gt;
+    &lt;?php elseif ($content): ?&gt;
+      &lt;div class=&quot;viewer-header&quot;&gt;
+        &lt;span class=&quot;viewer-title&quot;&gt;📄 Document Preview&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;viewer&quot;&gt;&lt;?= htmlspecialchars($content) ?&gt;&lt;/div&gt;
+    &lt;?php endif; ?&gt;
+  &lt;/div&gt;
+
+  &lt;?php if (!isset($_POST[&#039;page&#039;]) || (!$content &amp;&amp; !$error)): ?&gt;
+  &lt;div class=&quot;card&quot;&gt;
+    &lt;p class=&quot;section-label&quot;&gt;Quick Access&lt;/p&gt;
+    &lt;div class=&quot;doc-grid&quot;&gt;
+      &lt;form method=&quot;POST&quot; action=&quot;/&quot; class=&quot;doc-form&quot;&gt;
+        &lt;input type=&quot;hidden&quot; name=&quot;page&quot; value=&quot;docs/readme&quot;&gt;
+        &lt;button type=&quot;submit&quot; class=&quot;doc-item&quot;&gt;
+          &lt;span class=&quot;doc-icon&quot;&gt;📋&lt;/span&gt;
+          &lt;div&gt;&lt;div class=&quot;doc-name&quot;&gt;readme&lt;/div&gt;&lt;div class=&quot;doc-meta&quot;&gt;Getting started&lt;/div&gt;&lt;/div&gt;
+        &lt;/button&gt;
+      &lt;/form&gt;
+      &lt;form method=&quot;POST&quot; action=&quot;/&quot; class=&quot;doc-form&quot;&gt;
+        &lt;input type=&quot;hidden&quot; name=&quot;page&quot; value=&quot;docs/about&quot;&gt;
+        &lt;button type=&quot;submit&quot; class=&quot;doc-item&quot;&gt;
+          &lt;span class=&quot;doc-icon&quot;&gt;ℹ️&lt;/span&gt;
+          &lt;div&gt;&lt;div class=&quot;doc-name&quot;&gt;about&lt;/div&gt;&lt;div class=&quot;doc-meta&quot;&gt;Platform info&lt;/div&gt;&lt;/div&gt;
+        &lt;/button&gt;
+      &lt;/form&gt;
+      &lt;form method=&quot;POST&quot; action=&quot;/&quot; class=&quot;doc-form&quot;&gt;
+        &lt;input type=&quot;hidden&quot; name=&quot;page&quot; value=&quot;docs/contact&quot;&gt;
+        &lt;button type=&quot;submit&quot; class=&quot;doc-item&quot;&gt;
+          &lt;span class=&quot;doc-icon&quot;&gt;✉️&lt;/span&gt;
+          &lt;div&gt;&lt;div class=&quot;doc-name&quot;&gt;contact&lt;/div&gt;&lt;div class=&quot;doc-meta&quot;&gt;Support&lt;/div&gt;&lt;/div&gt;
+        &lt;/button&gt;
+      &lt;/form&gt;
+      &lt;form method=&quot;POST&quot; action=&quot;/&quot; class=&quot;doc-form&quot;&gt;
+        &lt;input type=&quot;hidden&quot; name=&quot;page&quot; value=&quot;docs/changelog&quot;&gt;
+        &lt;button type=&quot;submit&quot; class=&quot;doc-item&quot;&gt;
+          &lt;span class=&quot;doc-icon&quot;&gt;📝&lt;/span&gt;
+          &lt;div&gt;&lt;div class=&quot;doc-name&quot;&gt;changelog&lt;/div&gt;&lt;div class=&quot;doc-meta&quot;&gt;v2.4.1 notes&lt;/div&gt;&lt;/div&gt;
+        &lt;/button&gt;
+      &lt;/form&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;?php endif; ?&gt;
+&lt;/div&gt;
+
+&lt;footer&gt;
+  &amp;copy; 2024 VaultDocs Inc. &amp;mdash; All documents are encrypted at rest. &amp;mdash; &lt;a href=&quot;/?page=docs/privacy&quot; style=&quot;color:var(--muted)&quot;&gt;Privacy Policy&lt;/a&gt;
+&lt;/footer&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+

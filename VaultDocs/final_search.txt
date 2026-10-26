@@ -1,0 +1,21 @@
+=== grep KPMG (whole fs) ===
+/home/vboxuser/user.txt:KPMG_CTF{ggjBJYSdrv71TTljSzxF7eMh4ViOdgVaxrjLEAervoTq}
+=== motd.dynamic ===
+Linux 47a1e3a5969d 6.8.0-136-generic #136~22.04.1-Ubuntu SMP PREEMPT_DYNAMIC Fri Jul  3 16:29:11 UTC  x86_64
+=== runit ===
+/run/runit
+/run/runit/supervise
+=== any file containing 'FLAG' under /etc /var /root /home ===
+/root/root.txt:1:FLAG{default_root_flag
+=== env vars (full) ===
+HOME=/root
+HOSTNAME=47a1e3a5969d
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+PWD=/
+SHLVL=0
+USER_FLAG=KPMG_CTF{ggjBJYSdrv71TTljSzxF7eMh4ViOdgVaxrjLEAervoTq}
+=== docker labels / image env hints ===
+
+STDERR: /bin/tar: Removing leading `/' from member names
+/tmp/probe6.sh: line 13: strings: command not found
+

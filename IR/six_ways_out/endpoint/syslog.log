@@ -1,0 +1,33 @@
+Sep 22 09:07:00 prod-web-03 systemd[1]: Starting Session 41 of user admin.
+Sep 22 09:08:40 prod-web-03 systemd[1]: Started Session 41 of user admin.
+Sep 22 09:08:45 prod-web-03 systemd[1]: nginx.service: Reloaded.
+Sep 22 09:13:48  prod-web-03 gunicorn[12301]: Booting worker with pid: 12310
+Sep 22 09:13:50  prod-web-03 gunicorn[12301]: POST /api/v1/export 200 342ms from 45.89.125.17
+Sep 22 09:13:51  prod-web-03 kernel: [87432.119] audit: type=1326 audit(1790068431.000:0): uid=33 exe="/usr/bin/python3" sig=0
+Sep 22 09:14:05  prod-web-03 sudo[19231]: www-data -> root via /usr/bin/python3
+Sep 22 09:14:07  prod-web-03 su[19234]: Successful su for root by www-data
+Sep 22 09:18:22  prod-web-03 kernel: [87803.004] SIP INVITE: 10.0.1.30 -> 91.189.91.83 (VoIP)
+Sep 22 09:18:26  prod-web-03 kernel: [87807.210] RTP stream: 10.0.1.30:10002 <-> 91.189.91.83:10000
+Sep 22 09:20:20  prod-web-03 cron[987]: (root) CMD (/usr/lib/apt/apt.systemd.daily)
+Sep 22 09:23:40  prod-web-03 apt-get[22100]: Updating package lists from security.ubuntu.com
+Sep 22 09:23:44  prod-web-03 apt-get[22100]: Fetched 4218B from security.ubuntu.com
+Sep 22 09:24:00  prod-web-03 apt-get[22100]: Reading package lists... Done
+Sep 22 09:40:15 prod-web-03 kernel: [89415.302] TCP: 10.0.1.15:43847 -> 198.244.146.163:80 SYN
+Sep 22 09:40:20 prod-web-03 kernel: [89420.017] TCP: established 10.0.1.15 -> 198.244.146.163:80
+Sep 22 09:41:08 prod-web-03 kernel: [89468.441] UDP: 10.0.1.15 -> 66.132.172.130:53 (burst, 19 queries)
+Sep 22 09:42:18 prod-web-03 kernel: [89538.820] TCP: 10.0.1.15:44201 -> 20.122.142.214:25 SYN
+Sep 22 09:42:20 prod-web-03 kernel: [89540.114] TCP: established 10.0.1.15 -> 20.122.142.214:25
+Sep 22 09:43:35 prod-web-03 kernel: [89615.003] ICMP: 10.0.1.15 -> 221.162.63.50 type=8 (burst, id=0xc0de)
+Sep 22 09:44:55 prod-web-03 kernel: [89695.118] TCP: 10.0.1.15:43301 -> 198.244.146.163:21 SYN
+Sep 22 09:45:00 prod-web-03 kernel: [89700.205] TCP: established 10.0.1.15 -> 198.244.146.163:21
+Sep 22 09:45:05 prod-web-03 kernel: [89705.330] TCP: 10.0.1.15:44350 -> 198.244.146.163:30001 SYN
+Sep 22 09:46:55 prod-web-03 kernel: [89815.710] TCP: 10.0.1.15:43401 -> 66.132.172.130:8080 SYN
+Sep 22 09:47:00 prod-web-03 kernel: [89820.001] TCP: established 10.0.1.15 -> 66.132.172.130:8080
+Sep 22 09:48:40 prod-web-03 kernel: [89920.884] audit: backlog limit exceeded
+Sep 22 09:48:45 prod-web-03 kernel: [89925.001] inode 87234 (/var/log/auth.log) truncated to 0
+Sep 22 09:48:48 prod-web-03 kernel: [89928.234] inode 87240 (/var/log/syslog) truncated to 0
+Sep 22 09:52:00 prod-web-03 cron[987]: (root) RELOAD (/etc/cron.d/sys-health-check)
+Sep 22 09:53:01 prod-web-03 cron[21100]: (root) CMD (/usr/bin/curl -s http://198.244.146.163/api/ping 2>/dev/null | /bin/bash)
+Sep 22 09:54:01 prod-web-03 cron[21150]: (root) CMD (/usr/bin/curl -s http://198.244.146.163/api/ping 2>/dev/null | /bin/bash)
+Sep 22 09:57:00 prod-web-03 sshd[29312]: Accepted publickey for admin from 99.56.34.67 port 51899 ssh2
+Sep 22 09:57:00 prod-web-03 systemd[1]: Started Session 42 of user admin.

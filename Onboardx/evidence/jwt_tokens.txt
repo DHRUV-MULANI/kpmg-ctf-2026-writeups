@@ -1,0 +1,9 @@
+=== hunter01 JWT (current token) ===
+Token: eyJhbGciOiJSUzI1NiIsImtpZCI6InByb2QtcnNhLWtleS0yMDI2IiwidHlwIjoiSldUIn0.eyJzdWIiOjQsInVzZXJuYW1lIjoiaHVudGVyMDEiLCJyb2xlIjoidXNlciIsImlhdCI6MTc5MTY5MzA5MywiZXhwIjoxNzkxNzE0NjkzfQ.pxKSw0U-9mtqvXXOrRO4pUg-PZUgqWiAWHUCfeI4H8-8N_k-drGEdDKmgL8myhXhCHDLJZVvTpgQWLVeP7-4g201U77lVeKX79XLoOamZZr-XS5QuQRbEixauotk9Qp2qF8yshxPvKO-6S-dI0nYLO8zEA2_alGfuaCKp7YamevWUM_zG5Myc-uN2KgRZRJTa9FrTYgpFqKy1A2L6EWScbahnMx5lRqJCk5Fqm0QbwFJQq1axDC8CNwnnXju5_Z5WgHwPKShLiMQDnnBRlIZzOSaMELS8ENUMjIrmQZg0egWcz5KEZOYcPGYNk_cLZwI3yElDzi5ZaT-uk_C5HL6Zg
+Header: {"alg":"RS256","kid":"prod-rsa-key-2026","typ":"JWT"}
+Payload: {"sub":4,"username":"hunter01","role":"user","iat":1791693093,"exp":1791714693}
+
+=== admin pending user JWT (user id 6, username admin) ===
+Token: eyJhbGciOiJSUzI1NiIsImtpZCI6InByb2QtcnNhLWtleS0yMDI2IiwidHlwIjoiSldUIn0.eyJzdWIiOjYsInVzZXJuYW1lIjoiYWRtaW4iLCJyb2xlIjoidXNlciIsImlhdCI6MTc5MTY5MDgxMywiZXhwIjoxNzkxNzEyNDEzfQ.mphYpZmOM8ZPk54S4U156iX1Q-WUx771V6k5IGL3G-kyyq-q2DVIno3ptaSNlRbwHMlwUDgoB5cem33AnuEtRmNqgMLqgwSAtUF5NXtfQubNr7DixiIjHXLRhbstl5tQJzjPG7jdJBXfU9hvqRb9G119U3yYDlk65TpgUDihKrhL1T-MhDSVdwbla4lV71BWsMsgZxDRfA8gH9P_kLTlIOR5O5Co_rWVf5y2kf9srrz4NrJ7sQGEuSypIjl03VGtuY-LE3RJy614n_X4FTMG-mKH2p0Q2hZBwxdn2u2TdcQhpvlbQVuOvpp3oiRyN6GyOvSbRAE53xQQG3esU01VsA
+Header: {"alg":"RS256","kid":"prod-rsa-key-2026","typ":"JWT"}
+Payload: {"sub":6,"username":"admin","role":"user","iat":1791690813,"exp":1791712413}

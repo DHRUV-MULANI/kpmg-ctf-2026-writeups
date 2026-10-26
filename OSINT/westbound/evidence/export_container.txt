@@ -1,0 +1,8 @@
+westbound-export.zip.enc
+size          = 21408
+header        = b'Salted__' (ascii "Salted__")
+salt (hex)    = 2ae0cbb125f555e2
+salt (ascii)  = b'*\xe0\xcb\xb1%\xf5U\xe2'
+ciphertext    = 21392 bytes
+cipher        = AES-256-CBC / PBKDF2 / openssl-compatible (per vault page)
+plaintext     = ZIP (expects PK\x03\x04)

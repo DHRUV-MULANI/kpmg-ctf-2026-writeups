@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Network - Internal Ops Portal</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header class="top">
+    <div class="brand">Internal Ops Portal</div>
+    <div class="meta">host: ops-gw01 &middot; env: internal-ops</div>
+  </header>
+  <nav class="main">
+    <a href="/">Dashboard</a>
+    <a href="/inventory">Inventory</a>
+    <a href="/monitoring">Monitoring</a>
+    <a href="/status">Service Status</a>
+    <a href="/tickets">Tickets</a>
+    <a href="/backups">Backups</a>
+    <a href="/dns">DNS</a>
+    <a href="/network">Network</a>
+    <a href="/cron-reports">Cron Reports</a>
+    <a href="/docs">Docs / Wiki</a>
+    <a href="/wiki/notes">Notes</a>
+  </nav>
+  <main>
+    
+<h1>Network Segmentation (2023 revision)</h1>
+<pre>
+                       [ internet ]
+                            |
+                       [ lb-01/lb-02 ]
+                            |
+   dmz vlan  ---   [ web-01 web-02 web-03 ]
+                            |
+   app vlan  ---   [ app-01 app-02 app-03 ]
+                            |
+   db vlan   ---   [ db-01 db-02 db-03 ]  (no direct internet egress)
+
+   mgmt vlan ---   [ mon-01 backup-01 dns-01 dns-02 vpn-01 ]
+                   [ ops-gw01 -- consolidated legacy workloads, P2V cluster ]
+</pre>
+<p class="lead">ops-gw01 hosts several workloads consolidated during the 2011
+P2V project. See inventory for details on what was migrated.</p>
+
+  </main>
+  <footer>
+    Internal Ops Portal &middot; ops-gw01 &middot; for authorized personnel only &middot; build portal-frontend@3.4.1
+  </footer>
+</body>
+</html>

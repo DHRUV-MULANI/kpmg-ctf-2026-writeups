@@ -1,0 +1,7 @@
+proof.png LSB (bit0 RGB, MSB-first):
+
+you found the layer under the picture. most never get this far.
+the marker everyone submits is bait: KPMG_CTF{n0t_th3_r34l_0n3}  <- don't.
+the rest of me is in four pieces: a locker, a wire, a desk, a voice.
+one holds the others. one is a door, one is a code, one is a key. match them yourself.
+nothing here is what it says it is.

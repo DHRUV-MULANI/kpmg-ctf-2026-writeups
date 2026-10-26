@@ -1,0 +1,151 @@
+GitHub OSINT recon for user: nova-drifts
+Generated: Sun Oct 11 03:59:10 AM UTC 2026
+API: https://api.github.com/users/nova-drifts (id 114867635, created 2022-10-02T14:21:41Z)
+
+Repos: config-archive, dotfiles, driftlog, ld53-jam, shader-doodles
+Gists: 0   Branches beyond main: none   Tags: driftlog/backup-2024 only
+
+============================================================
+REPO: config-archive
+============================================================
+--- git log --all --oneline --decorate ---
+c6741d3 (HEAD -> main, origin/main, origin/HEAD) archive old prototype configs
+
+--- tracked files ---
+README.md
+old.env
+
+--- all blobs (rev-list --objects --all) ---
+c6741d3240bc8d66dbcd95e7d4b30d1196918445
+4aa14a02cbb91f02a7d43191a6772f5ebde60f60 
+708fd951bc0219945707ea98404b3d87135301eb README.md
+d5128e007681a6c5e53dec3f17b75c5fec0b1c76 old.env
+
+============================================================
+REPO: dotfiles
+============================================================
+--- git log --all --oneline --decorate ---
+e7eed2d (HEAD -> main, origin/main, origin/HEAD) add NOTES
+8365ace initial dotfiles
+
+--- tracked files ---
+.vimrc
+NOTES.md
+README.md
+extra.txt
+
+--- all blobs (rev-list --objects --all) ---
+e7eed2df588b2cf82992706a59ac3d22bd31bb2a
+8365acee733401f30cda5813c94bf013cc4ac9d2
+2533138d15d7d6da76b95ca901a0768caf3473ca 
+17357aad55c2e23229a624ae65041b4f479e13ef .vimrc
+85d13aaa58fa6eaf5104c2f2a8c5954449c8d2c3 NOTES.md
+37139b9a3e6fb0713c4705f4a06f2115e5faf9c1 README.md
+482d219b5ae15a2ed8fe7cd107884c2613846e03 extra.txt
+35f8c58d19bf451f22d3540cfcc6f42769207003 
+
+============================================================
+REPO: driftlog
+============================================================
+--- git log --all --oneline --decorate ---
+7c655e9 (HEAD -> main, tag: backup-2024, origin/main, origin/HEAD) responsive pass for small screens
+a6528de 404 page and basic meta tags
+437db6b tidy repo, drop scratch notes
+62e1d79 type scale, switch to Fraunces
+eacd4d2 contact section placeholder
+143f02a add bio and journal sections
+46a71d4 gallery grid and hero section
+70e32f7 initial static site skeleton
+
+--- tracked files ---
+404.html
+README.md
+index.html
+style.css
+
+--- all blobs (rev-list --objects --all) ---
+7c655e90a30dbe0e7e41bd154dcbb537994fcef0
+a6528def6f89b22a315ba2f15bbeaa97c5b7d8a6
+437db6b9422e11efc7e32ca2e13e7f96d34b60ad
+62e1d79d79d8ca4ea15689a877f0423bf7aae10f
+eacd4d29c25dec33cc6637cdba9f79ada59286b9
+143f02aa52d16b86b95bbf19597d31f2de7d57d1
+46a71d49919a712612fdcf717a0defe56dae0908
+70e32f7be1e79077bee69d991a1a6d2917398cb5
+21c4ead42887023018627f1509557aaad8f0bab8 backup-2024
+747252219ebc6852861ee645ea6c7ab73128b23b 
+2fb0183dcdd57c68b2b0c77d4621e8a0c309f02b 404.html
+80eb9a9706a20ac5b7de6a53de60b3f9d376ad43 README.md
+a3b3e1c102b7cb092ddde026701228a4e42598f8 index.html
+ef756087b7a98c00791b727953f58cc53f15a16a style.css
+6dd23f37f9ddec39e07c119f819bab3aeda2b97d 
+23386b274025d8a13f8de212dd7998f87d26ff97 style.css
+f017acb09648eac10eec8da3bd0c4dcaa7825459 
+0075e535d54e2acc2f4de5d9e4c87d2bd291e990 
+a51db964ff1c0c5cd7c55c2fcb572fdd032005ad humans.txt
+aa232caac4329e222fd860e9ef43eddef71c7922 
+ee04c9aae79fea56a209ccc1eacf82e2a03e00ee style.css
+6ef740912dfbf7686dc7f441d0380be5da36e74a 
+d78f537928545645a34bba6adcb5f60d6743b99d index.html
+5afd4c4d1656f3dcfa771552b5938ba4cfc6d3bd 
+a0a3fb52b28715b17d4e8d7ab1a3c844878b98a9 index.html
+1e32e23d1dd6bbbd45e2605656d8ac296e1f6129 
+
+============================================================
+REPO: ld53-jam
+============================================================
+--- git log --all --oneline --decorate ---
+9c51da1 (HEAD -> main, origin/main, origin/HEAD) jam skeleton, player movement
+
+--- tracked files ---
+README.md
+game.gd
+
+--- all blobs (rev-list --objects --all) ---
+9c51da143bc2914151e5003600f322f04f609992
+ee8d4727d14342b72e5490dda075d6d5f5d7b882 
+e6f53069cf8d58111a756b0227da994d4373386e README.md
+61510e14cd75b8840807846a94b864f5acc1f39e game.gd
+
+============================================================
+REPO: shader-doodles
+============================================================
+--- git log --all --oneline --decorate ---
+31989f7 (HEAD -> main, origin/main, origin/HEAD) first few shader sketches
+
+--- tracked files ---
+README.md
+wip.frag
+
+--- all blobs (rev-list --objects --all) ---
+31989f70c3f3b7b9ce43785a7c8ea9735ca29fd2
+43e58022a074844fad56fdd7b94979debb75e2f8 
+51ced3ee0d7eefba65c5d1fbcf865025aeda28e6 README.md
+4160208dc0ac9ccb51fc49098401546e47eae2d6 wip.frag
+
+############################################################
+HIDDEN CONTENT (deleted files / tags) recovered
+############################################################
+
+--- driftlog: deleted humans.txt (commit 70e32f7, blob a51db964) ---
+Nova Keller
+# socials draft - decide which handle I am actually keeping
+linkedin: https://www.linkedin.com/in/nova-drifts/
+linkedin: https://www.linkedin.com/in/nova-keller-/
+
+--- config-archive: old.env ---
+# old.env - deprecated prototyping config. do not use.
+APP_ENV=staging
+DEBUG=0
+# I was pretty sure this was the puzzle flag at one point:
+FLAG=KPMG_CTF{n0va_dr1fted_h0m3}
+# ...it wasn't. left it here on purpose to catch scrapers. this is a DEAD END.
+
+--- driftlog: annotated tag backup-2024 ---
+object 7c655e90a30dbe0e7e41bd154dcbb537994fcef0
+type commit
+tag backup-2024
+tagger nvk_dev <nvk_dev@users.noreply.github.com> 1791491913 +0000
+
+pre-cleanup backup, do not ship. leftover prod: FLAG=KPMG_CTF{g0ld3n_h0ur_k33p3r}
+

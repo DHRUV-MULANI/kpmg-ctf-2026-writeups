@@ -1,0 +1,12 @@
+== README ==
+almost there! look closer
+
+== .final ==
+total 12
+drwx------ 2 root root 4096 Oct 11 02:45 .
+drwx------ 1 root root 4096 Oct 11 02:50 ..
+-rw------- 1 root root   55 Oct 11 02:45 root.txt
+
+---  ---
+cat: ';': No such file or directory
+cat: echo: No such file or directory

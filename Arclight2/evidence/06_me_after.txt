@@ -1,0 +1,2 @@
+--- decoded session (after) ---
+{"role":"root","username":"evid1"}{"data":{"me":{"role":"root","username":"evid1"}}}

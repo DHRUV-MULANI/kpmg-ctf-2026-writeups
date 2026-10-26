@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>nulltide.example</title>
+<style>
+  :root{--bg:#0b0c0f;--card:#15171c;--line:#262a31;--fg:#e4e7ec;--dim:#8a919c;--acc:#4fe3d0;--acc2:#ff6b6b;
+        --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,"DejaVu Sans Mono",monospace;
+        --sans:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.65 var(--sans)}
+  a{color:var(--acc)}
+  .top{border-bottom:1px solid var(--line);padding:18px 0;background:#0f1116}
+  .wrap{max-width:880px;margin:0 auto;padding:0 20px}
+  .brand{font:800 20px/1 var(--mono)}
+  .brand b{color:var(--acc)}
+  .brand span{color:var(--dim);font-weight:400;font-size:13px;margin-left:10px}
+  main{padding:26px 0 70px}
+  article{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:18px 20px;margin-bottom:18px}
+  article h2{margin:.1em 0 .35em;font-size:19px}
+  .date{font:12px var(--mono);color:var(--dim)}
+  .tag{display:inline-block;font:11px var(--mono);color:var(--acc);border:1px solid #1d3b39;
+       background:#0f1a1a;border-radius:99px;padding:2px 8px;margin-left:8px}
+  blockquote{margin:12px 0;padding:10px 14px;border-left:3px solid var(--acc2);background:#1a1416;
+             border-radius:0 6px 6px 0;color:#f0d7d7;font-style:italic}
+  code{font-family:var(--mono);background:#0e1116;border:1px solid var(--line);padding:1px 6px;border-radius:4px;font-size:13px}
+  footer{border-top:1px solid var(--line);color:var(--dim);font:12px var(--mono);padding:16px 0 40px}
+</style>
+</head>
+<body>
+<div class="top"><div class="wrap"><div class="brand">null<b>tide</b>.net <span>trophies and tides</span></div></div></div>
+<div class="wrap">
+<main>
+  <article>
+    <div class="date">2026-03-08 <span class="tag">trophies</span></div>
+    <h2>the locker is open</h2>
+    <p>Three souvenirs from the westbound job are up: the sensor dump, the helpdesk call, and the
+       view from my desk. Take them - none of them will help you.</p>
+    <p>&rarr; <a href="../files/">nulltide.example/files/</a></p>
+  </article>
+
+  <article>
+    <div class="date">2026-03-07 <span class="tag">opsec</span></div>
+    <h2>on writing things down</h2>
+    <p>Rules I actually follow, since people keep asking:</p>
+    <blockquote>Never type a key that you can say out loud. Never leave a password where a search
+      engine can reach it. And never trust a photo's paperwork - I edit mine by hand, so the
+      paperwork says whatever I want it to say.</blockquote>
+    <p>The export is packed and encrypted. The marker is inside it. The key is not in the file,
+       not in the mail, and not on this page.</p>
+  </article>
+
+  <article>
+    <div class="date">2026-02-26 <span class="tag">code</span></div>
+    <h2>tidewatch</h2>
+    <p>Small tool I use to watch a target's egress. Public repo, because hiding in plain sight works
+       better than hiding - and because nobody reads the history of a recon tool.</p>
+    <p>&rarr; <a href="../git/">gitstash.example/nulltide/tidewatch</a></p>
+  </article>
+
+  <article>
+    <div class="date">2026-02-14 <span class="tag">drop</span></div>
+    <h2>vault notes</h2>
+    <p>Drops live at <code>vault.nulltide.example/d/&lt;code&gt;</code>. The code is written down once,
+       on paper, and burned after. If you are reading this looking for it: it is in front of you,
+       in a picture, and you have already seen it.</p>
+  </article>
+</main>
+<footer><div class="wrap">nulltide.example - fictional site. no analytics, no cookies, no cloud.</div></footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,62 @@
+$ ls -la /etc/rc.local /etc/init.d /etc/cron* /var/spool/cron /var/spool/at* 2>&1 | head -40
+ls: cannot access '/etc/rc.local': No such file or directory
+ls: cannot access '/var/spool/cron': No such file or directory
+ls: cannot access '/var/spool/at*': No such file or directory
+/etc/cron.d:
+total 16
+drwxr-xr-x 2 root root 4096 Apr  4  2025 .
+drwxr-xr-x 1 root root 4096 Oct 11 02:33 ..
+-rw-r--r-- 1 root root  201 Feb 14  2020 e2scrub_all
+
+/etc/cron.daily:
+total 20
+drwxr-xr-x 2 root root 4096 Apr  4  2025 .
+drwxr-xr-x 1 root root 4096 Oct 11 02:33 ..
+-rwxr-xr-x 1 root root 1478 Apr  9  2020 apt-compat
+-rwxr-xr-x 1 root root 1187 Sep  5  2019 dpkg
+
+/etc/init.d:
+total 48
+drwxr-xr-x 1 root root 4096 Sep 17 10:10 .
+drwxr-xr-x 1 root root 4096 Oct 11 02:33 ..
+-rwxr-xr-x 1 root root 3809 Jul 28  2019 hwclock.sh
+-rwxr-xr-x 1 root root 4579 Mar 20  2024 nginx
+-rwxr-xr-x 1 root root  924 Feb 13  2020 procps
+-rwxr-xr-x 1 root root 1614 Feb  7  2020 redis-server
+-rwxr-xr-x 1 root root 4417 Nov 11  2022 rsync
+-rwxr-xr-x 1 root root 3939 Apr  3  2023 ssh
+-rwxr-xr-x 1 root root 3729 Nov  1  2019 supervisor
+
+------------------------------------------------------------
+$ ls -la /home/maya.chen/scripts/ /home/maya.chen/.local/share/acme-agent/ 2>&1
+/home/maya.chen/.local/share/acme-agent/:
+total 12
+drwxr-xr-x 3 maya.chen maya.chen 4096 Oct 11 02:33 .
+drwxr-xr-x 3 maya.chen maya.chen 4096 Oct 11 02:33 ..
+drwxr-xr-x 2 maya.chen maya.chen 4096 Oct 11 02:33 .vault
+
+/home/maya.chen/scripts/:
+total 12
+drwxr-xr-x 2 maya.chen maya.chen 4096 Oct 11 02:33 .
+drwxr-xr-x 9 maya.chen maya.chen 4096 Oct 11 02:48 ..
+-rwxr--r-- 1 maya.chen maya.chen  139 Oct 11 02:33 rotate_logs.sh
+
+------------------------------------------------------------
+$ stat -c '%A %U %G %n' /home/maya.chen/scripts/rotate_logs.sh /home/maya.chen/logs/deploy.log 2>&1
+-rwxr--r-- maya.chen maya.chen /home/maya.chen/scripts/rotate_logs.sh
+-rw-r--r-- maya.chen maya.chen /home/maya.chen/logs/deploy.log
+
+------------------------------------------------------------
+$ rm -f /run/lock/pslog; for i in $(seq 1 70); do ps -eo user,pid,ppid,args --no-headers 2>/dev/null | grep -vE 'sshd|ps -eo|grep -vE|seq 1 70' >> /run/lock/pslog; sleep 1; done; echo '--- unique-ish (user,cmd) seen ---'; awk '{print $1, $4, $5, $6}' /run/lock/pslog | sort | uniq -c | sort -rn | head -40
+--- unique-ish (user,cmd) seen ---
+    280 www-data nginx: worker process
+     70 root python3 /opt/portal/app.py 
+     70 root nginx: master process
+     70 root /usr/bin/python3 /usr/bin/supervisord -c
+     70 root /bin/bash /usr/local/bin/acme-fs-guard.sh 
+     70 root /bin/bash /entrypoint.sh 
+     70 redis /usr/bin/redis-server 0.0.0.0:6379 
+     69 root sleep 2 
+      1 root grep -Fxq .local/share/acme-agent
+
+------------------------------------------------------------

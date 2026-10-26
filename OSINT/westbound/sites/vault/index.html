@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>403 Forbidden</title>
+<style>
+  :root{--bg:#0b0d10;--card:#14181d;--line:#242b33;--fg:#d6dde4;--dim:#7f8b98;--acc:#4fe3d0;--warn:#ff7b72;
+        --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,"DejaVu Sans Mono",monospace;
+        --sans:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 var(--sans);
+       display:flex;align-items:center;justify-content:center;min-height:100vh}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:28px 30px;max-width:580px;width:92%}
+  h1{font:800 20px/1.2 var(--mono);margin:0 0 6px}
+  .sub{color:var(--dim);font:12.5px var(--mono);margin-bottom:18px}
+  .deny{border-left:3px solid var(--warn);background:#1a1416;padding:12px 14px;border-radius:0 6px 6px 0;color:#ffd7d3;font-family:var(--mono);font-size:13.5px}
+  code{font-family:var(--mono);background:#0e1216;border:1px solid var(--line);padding:1px 6px;border-radius:4px;font-size:13px}
+  p{color:var(--dim);font-size:13.5px}
+  footer{margin-top:22px;border-top:1px solid var(--line);padding-top:12px;color:var(--dim);font:11.5px var(--mono)}
+</style>
+</head>
+<body>
+<div class="card">
+  <h1>vault.nulltide.example</h1>
+  <div class="sub">personal dead-drop service · operator: nulltide</div>
+  <div class="deny">403 - token required.<br>
+    drops are addressed as <code>/d/&lt;code&gt;</code>. codes are issued once.</div>
+  <p>The service stores nothing for you. If you are reading this, you are either on the wrong path
+     or you have not finished reading his things.</p>
+  <footer>fictional host · no logs, no cookies, no mercy</footer>
+</div>
+</body>
+</html>

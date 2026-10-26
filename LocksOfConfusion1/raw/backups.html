@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Backups - Internal Ops Portal</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header class="top">
+    <div class="brand">Internal Ops Portal</div>
+    <div class="meta">host: ops-gw01 &middot; env: internal-ops</div>
+  </header>
+  <nav class="main">
+    <a href="/">Dashboard</a>
+    <a href="/inventory">Inventory</a>
+    <a href="/monitoring">Monitoring</a>
+    <a href="/status">Service Status</a>
+    <a href="/tickets">Tickets</a>
+    <a href="/backups">Backups</a>
+    <a href="/dns">DNS</a>
+    <a href="/network">Network</a>
+    <a href="/cron-reports">Cron Reports</a>
+    <a href="/docs">Docs / Wiki</a>
+    <a href="/wiki/notes">Notes</a>
+  </nav>
+  <main>
+    
+<h1>Backup Jobs</h1>
+<table>
+  <tr><th>Job</th><th>When</th><th>Result</th><th>Detail</th></tr>
+  
+  <tr>
+    <td>nightly-db-01</td>
+    <td>2026-09-21 02:00</td>
+    <td><span class="badge ok">success</span></td>
+    <td>postgresql dump, 41.2GB, verified</td>
+  </tr>
+  
+  <tr>
+    <td>nightly-db-02</td>
+    <td>2026-09-21 02:00</td>
+    <td><span class="badge ok">success</span></td>
+    <td>postgresql dump, 41.2GB, verified</td>
+  </tr>
+  
+  <tr>
+    <td>nightly-app-tier</td>
+    <td>2026-09-21 02:30</td>
+    <td><span class="badge ok">success</span></td>
+    <td>config + state snapshot, 3.1GB</td>
+  </tr>
+  
+  <tr>
+    <td>weekly-full-web</td>
+    <td>2026-09-20 01:00</td>
+    <td><span class="badge ok">success</span></td>
+    <td>full image backup, 18.9GB</td>
+  </tr>
+  
+  <tr>
+    <td>nightly-git-01</td>
+    <td>2026-09-21 03:00</td>
+    <td><span class="badge ok">success</span></td>
+    <td>repo mirror sync, 6.4GB</td>
+  </tr>
+  
+  <tr>
+    <td>nightly-wiki-01</td>
+    <td>2026-09-21 03:15</td>
+    <td><span class="badge ok">success</span></td>
+    <td>database + attachments, 2.2GB</td>
+  </tr>
+  
+  <tr>
+    <td>nightly-mail-01</td>
+    <td>2026-09-21 02:45</td>
+    <td><span class="badge ok">success</span></td>
+    <td>maildir incremental, 900MB</td>
+  </tr>
+  
+  <tr>
+    <td>nightly-db-03</td>
+    <td>2026-09-20 02:00</td>
+    <td><span class="badge ok">retry-success</span></td>
+    <td>see TICK-4390</td>
+  </tr>
+  
+  <tr>
+    <td>monthly-offsite-sync</td>
+    <td>2026-09-01 04:00</td>
+    <td><span class="badge ok">success</span></td>
+    <td>tape archive sync, cold storage</td>
+  </tr>
+  
+  <tr>
+    <td>weekly-full-app</td>
+    <td>2026-09-14 01:00</td>
+    <td><span class="badge ok">success</span></td>
+    <td>full image backup, 22.4GB</td>
+  </tr>
+  
+  <tr>
+    <td>tape-restore-RST-88213</td>
+    <td>2011-06-14 (historical)</td>
+    <td><span class="badge warn">partial-restore</span></td>
+    <td>legacy-03 provisioning state, pulled for TICK-4471 -- see MIG-2011-004 for archive location</td>
+  </tr>
+  
+  <tr>
+    <td>nightly-mon-01</td>
+    <td>2026-09-21 03:30</td>
+    <td><span class="badge ok">success</span></td>
+    <td>prometheus TSDB snapshot, 5.8GB</td>
+  </tr>
+  
+  <tr>
+    <td>nightly-batch-01</td>
+    <td>2026-09-21 02:10</td>
+    <td><span class="badge ok">success</span></td>
+    <td>job state + queue snapshot, 400MB</td>
+  </tr>
+  
+  <tr>
+    <td>weekly-full-db</td>
+    <td>2026-09-14 01:30</td>
+    <td><span class="badge ok">success</span></td>
+    <td>full base backup + WAL archive, 210GB</td>
+  </tr>
+  
+  <tr>
+    <td>nightly-vpn-01</td>
+    <td>2026-09-21 04:00</td>
+    <td><span class="badge ok">success</span></td>
+    <td>config snapshot, 12MB</td>
+  </tr>
+  
+</table>
+
+  </main>
+  <footer>
+    Internal Ops Portal &middot; ops-gw01 &middot; for authorized personnel only &middot; build portal-frontend@3.4.1
+  </footer>
+</body>
+</html>

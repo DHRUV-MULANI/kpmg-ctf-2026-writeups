@@ -1,0 +1,12 @@
+2024-03-15 06:00:01 [INFO] Gateway boot sequence started
+2024-03-15 06:00:02 [INFO] Loading configuration from /etc/gateway/gateway.conf
+2024-03-15 06:00:03 [INFO] MQTT client initialized
+2024-03-15 06:00:04 [INFO] Connecting to local broker
+2024-03-15 06:00:05 [INFO] Connected to broker
+2024-03-15 06:00:06 [INFO] Telemetry publisher started (publishing to plant/sensors/#)
+2024-03-15 06:00:07 [INFO] Modbus interface initialized (2 devices)
+2024-03-15 06:00:08 [INFO] OPC UA server started on port 4840
+2024-03-15 06:00:09 [WARN] OPC UA certificate expired, using fallback
+2024-03-15 06:00:10 [INFO] Gateway startup complete. All systems nominal.
+2024-03-15 06:00:11 [INFO] Heartbeat timer started (60s interval)
+2024-03-15 06:00:12 [INFO] Last Will set on plant/gateway/heartbeat_lost

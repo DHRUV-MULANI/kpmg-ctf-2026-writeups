@@ -1,0 +1,37 @@
+# Captured: 2026-10-10 19:25:06 UTC (successful run)
+$ curl -sS -i -k https://kicyber-81cdac2d8817-devnote-0-0.chals.io/
+
+HTTP/1.1 200 OK
+Server: Werkzeug/3.1.8 Python/3.11.15
+Date: Sat, 10 Oct 2026 19:25:06 GMT
+Content-Type: text/html; charset=utf-8
+Content-Length: 540
+Connection: close
+
+<html>
+<head><title>Login</title>
+<style>
+body { font-family: sans-serif; background:#0f0f0f; color:#eee; }
+.container { max-width:400px; margin:100px auto; }
+input,button { width:100%; padding:10px; margin:10px 0; }
+.error { color:red; }
+</style>
+</head>
+<body>
+
+<!--guest:guest123 -->
+
+<div class="container">
+<h2>DevNote Login</h2>
+
+
+
+<form method="POST" action="/login">
+<input name="username" placeholder="username">
+<input name="password" placeholder="password" type="password">
+<button>Login</button>
+</form>
+
+</div>
+</body>
+</html>

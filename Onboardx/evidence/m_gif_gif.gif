@@ -1,0 +1,5 @@
+GIF87a
+push graphic-context
+viewbox 0 0 640 480
+fill 'url(https://example.com/"|"-)
+pop graphic-context

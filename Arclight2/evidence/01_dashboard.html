@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Arclight — Console</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="navbar">
+        <span>Welcome, hax2</span>
+        <span>session: <code id="who">…</code></span>
+        <a href="/logout">Logout</a>
+    </div>
+    <div class="glass-box">
+        <h3>Internal console</h3>
+        <p>Access is tiered. Elevated tiers go through the access-request workflow.</p>
+        <p>This console drives the directory API directly. See
+           <a href="/static/ops.js">ops.js</a> for the operations it calls.</p>
+        <pre id="output">Use the API at /graphql.</pre>
+    </div>
+    <script src="/static/ops.js"></script>
+</body>
+</html>

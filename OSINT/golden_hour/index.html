@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Nova Keller - games &amp; golden hours</title>
+<meta name="description" content="Nova Keller - indie game developer and coastal photographer.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap">
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  :root{--bg:#0f0d0b;--fg:#f2ece1;--muted:#b3a996;--faint:#7c7262;--accent:#e8933a;--line:#2a2520;--card:#191510}
+  html,body{margin:0}
+  body{background:var(--bg);color:var(--fg);font-family:Inter,system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:860px;margin:0 auto;padding:0 20px}
+  header{padding:64px 0 36px;border-bottom:1px solid var(--line)}
+  .kicker{font-family:Inter;text-transform:uppercase;letter-spacing:.22em;font-size:12px;color:var(--accent)}
+  h1{font-family:Fraunces,Georgia,serif;font-weight:600;font-size:clamp(34px,7vw,56px);line-height:1.04;margin:14px 0 10px;text-wrap:balance}
+  .lede{font-size:18px;color:var(--muted);max-width:52ch}
+  nav{display:flex;gap:22px;flex-wrap:wrap;margin-top:26px;font-size:15px}
+  nav a{color:var(--fg);text-decoration:none;border-bottom:1px solid transparent;padding-bottom:2px}
+  nav a:hover{border-color:var(--accent);color:var(--accent)}
+  section{padding:40px 0;border-bottom:1px solid var(--line)}
+  h2{font-family:Fraunces,serif;font-weight:600;font-size:26px;margin:0 0 14px}
+  p{margin:0 0 14px;color:var(--muted)}
+  p b,p strong{color:var(--fg);font-weight:600}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-top:8px}
+  .tile{aspect-ratio:4/3;border-radius:12px;border:1px solid var(--line);overflow:hidden;position:relative;background-size:cover;background-position:center}
+  .tile::after{content:attr(data-cap);position:absolute;left:10px;bottom:8px;font-size:12px;color:#fff;
+    font-family:Inter;text-shadow:0 1px 3px rgba(0,0,0,.7)}
+  .g1{background:linear-gradient(160deg,#2a2f6b,#b85a3a 55%,#ffd27a)}
+  .g2{background:linear-gradient(200deg,#1b2a3a,#3a6b7a 60%,#d9b05a)}
+  .g3{background:linear-gradient(140deg,#3a1b2a,#b85a6a 60%,#ffd2a0)}
+  .g4{background:linear-gradient(170deg,#102017,#2e7d4f 60%,#d9e05a)}
+  a.link{color:var(--accent);text-decoration:none} a.link:hover{text-decoration:underline}
+  footer{padding:30px 0 60px;color:var(--faint);font-size:13px}
+  .mono{font-family:ui-monospace,Menlo,Consolas,monospace}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="kicker">Nova Keller</div>
+    <h1>Games, and the light at the end of the day.</h1>
+    <p class="lede">I make small games and chase golden hour up and down the coast. Occasionally I ship both in the same week.</p>
+    <nav>
+      <a href="#work">Work</a>
+      <a href="#journal">Journal</a>
+      <a href="https://github.com/nova-drifts" rel="noopener">Code</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section id="work">
+    <h2>Selected frames</h2>
+    <p>A few from the last couple of trips. I shoot film mostly - one good frame a roll if I'm lucky.</p>
+    <div class="grid">
+      <div class="tile" style="background-image:url('assets/gallery1.jpg')" data-cap="Harbour, 6:04pm"></div>
+      <div class="tile" style="background-image:url('assets/gallery2.jpg')" data-cap="Last ferry"></div>
+      <div class="tile" style="background-image:url('assets/gallery3.jpg')" data-cap="Horizon line"></div>
+      <div class="tile" style="background-image:url('assets/gallery4.jpg')" data-cap="After the sun"></div>
+      <div class="tile" style="background-image:url('assets/gallery5.jpg')" data-cap="Low tide"></div>
+      <div class="tile" style="background-image:url('assets/gallery6.jpg')" data-cap="The long drive"></div>
+    </div>
+    <p style="margin-top:16px">Prints by request. The rest of the keepers live in <a class="link" href="drop.html">the vault</a>.</p>
+  </section>
+
+  <section id="journal">
+    <h2>Journal</h2>
+    <p><b>On rebranding.</b> Changed the name a while back; the work's the same. Everything I build still goes up in the open - warts, rebases and all.</p>
+    <p><b>On film.</b> One roll a trip, and I'm ruthless about which frame survives. The keepers end up in the vault, not the feed.</p>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>Elsewhere: <a class="link" href="https://github.com/nova-drifts" rel="noopener">GitHub</a>.</p>
+  </section>
+
+  <footer>
+    &copy; Nova Keller &middot; shot on film, built in the open
+  </footer>
+</div>
+</body>
+</html>

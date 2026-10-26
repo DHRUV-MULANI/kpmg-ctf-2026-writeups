@@ -1,0 +1,172 @@
+$ id; hostname; cat /etc/os-release | head -4
+uid=1000(maya.chen) gid=1000(maya.chen) groups=1000(maya.chen)
+d868b347c522
+NAME="Ubuntu"
+VERSION="20.04.6 LTS (Focal Fossa)"
+ID=ubuntu
+ID_LIKE=debian
+
+------------------------------------------------------------
+$ sudo --version 2>&1 | head -4; dpkg -l | grep -i sudo
+Sudo version 1.8.31
+Sudoers policy plugin version 1.8.31
+Sudoers file grammar version 46
+Sudoers I/O plugin version 1.8.31
+hi  sudo                           1.8.31-1ubuntu1                   amd64        Provide limited super user privileges to specific users
+
+------------------------------------------------------------
+$ ls -la /home/; ls -la /home/maya.chen/
+total 24
+drwxr-xr-x 1 root         root         4096 Oct 10 20:57 .
+drwxr-xr-x 1 root         root         4096 Oct 10 20:57 ..
+drwxr-xr-x 2 alex.johnson alex.johnson 4096 Oct 10 20:56 alex.johnson
+drwxr-xr-x 2 derek.ross   derek.ross   4096 Oct 10 20:56 derek.ross
+drwxr-xr-x 9 maya.chen    maya.chen    4096 Oct 10 20:57 maya.chen
+drwxr-xr-x 2 sarah.patel  sarah.patel  4096 Oct 10 20:57 sarah.patel
+total 48
+drwxr-xr-x 9 maya.chen maya.chen 4096 Oct 10 20:57 .
+drwxr-xr-x 1 root      root      4096 Oct 10 20:57 ..
+-rw-r--r-- 1 maya.chen maya.chen  220 Feb 25  2020 .bash_logout
+-rw-r--r-- 1 maya.chen maya.chen 3771 Feb 25  2020 .bashrc
+drwxr-xr-x 3 maya.chen maya.chen 4096 Oct 10 20:58 .cache
+drwxr-xr-x 3 maya.chen maya.chen 4096 Oct 10 20:57 .config
+drwxr-xr-x 3 maya.chen maya.chen 4096 Oct 10 20:57 .local
+-rw-r--r-- 1 maya.chen maya.chen  807 Feb 25  2020 .profile
+drwxr-xr-x 2 maya.chen maya.chen 4096 Oct 10 20:57 Documents
+drwxr-xr-x 3 maya.chen maya.chen 4096 Oct 10 20:57 backups
+drwxr-xr-x 2 maya.chen maya.chen 4096 Oct 10 20:57 logs
+drwxr-xr-x 2 maya.chen maya.chen 4096 Oct 10 20:57 scripts
+
+------------------------------------------------------------
+$ find /home/maya.chen -type f 2>/dev/null | head -60
+/home/maya.chen/.bashrc
+/home/maya.chen/.cache/acme-portal/session.tmp
+/home/maya.chen/.local/share/acme-agent/.vault/user.txt
+/home/maya.chen/scripts/rotate_logs.sh
+/home/maya.chen/.config/acme-cli/config.json
+/home/maya.chen/logs/deploy.log
+/home/maya.chen/backups/2025-legacy/export.csv
+/home/maya.chen/.profile
+/home/maya.chen/.bash_logout
+/home/maya.chen/Documents/meeting-notes.txt
+
+------------------------------------------------------------
+$ uname -a; ls -l /usr/bin/sudo; ls -l /usr/bin/sudoedit
+Linux d868b347c522 6.8.0-136-generic #136~22.04.1-Ubuntu SMP PREEMPT_DYNAMIC Fri Jul  3 16:29:11 UTC  x86_64 x86_64 x86_64 GNU/Linux
+-rwsr-xr-x 1 root root 166056 Feb  3  2020 /usr/bin/sudo
+lrwxrwxrwx 1 root root 4 Feb  3  2020 /usr/bin/sudoedit -> sudo
+
+------------------------------------------------------------
+$ ls -la /tmp /var/tmp /dev/shm /run/lock 2>&1
+/dev/shm:
+total 0
+drwxr-xr-t 2 root root  40 Oct 10 20:56 .
+drwxr-xr-x 5 root root 360 Oct 10 20:56 ..
+
+/run/lock:
+total 8
+drwxrwxrwt 2 root root 4096 Apr  4  2025 .
+drwxr-xr-x 1 root root 4096 Oct 10 20:58 ..
+
+/tmp:
+total 16
+drwxr-xr-t 1 root root 4096 Oct 10 20:57 .
+drwxr-xr-x 1 root root 4096 Oct 10 20:57 ..
+-rw-r--r-- 1 root root  663 Oct 10 20:57 supervisord.log
+-rw-r--r-- 1 root root    4 Oct 10 20:57 supervisord.pid
+
+/var/tmp:
+total 12
+drwxr-xr-t 1 root root 4096 Apr  4  2025 .
+drwxr-xr-x 1 root root 4096 Sep 17 10:10 ..
+
+------------------------------------------------------------
+$ sudo -l 2>&1 | head -20
+sudo: a terminal is required to read the password; either use the -S option to read from standard input or configure an askpass helper
+
+------------------------------------------------------------
+$ find / -perm -4000 -type f 2>/dev/null
+/usr/lib/openssh/ssh-keysign
+/usr/bin/passwd
+/usr/bin/newgrp
+/usr/bin/chsh
+/usr/bin/mount
+/usr/bin/gpasswd
+/usr/bin/chfn
+/usr/bin/su
+/usr/bin/umount
+/usr/bin/sudo
+
+------------------------------------------------------------
+$ getcap -r / 2>/dev/null
+
+------------------------------------------------------------
+$ cat /etc/crontab 2>/dev/null; ls -la /etc/cron.d 2>/dev/null; crontab -l 2>&1
+total 16
+drwxr-xr-x 2 root root 4096 Apr  4  2025 .
+drwxr-xr-x 1 root root 4096 Oct 10 20:57 ..
+-rw-r--r-- 1 root root  201 Feb 14  2020 e2scrub_all
+bash: crontab: command not found
+
+------------------------------------------------------------
+$ cat /etc/passwd
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+sync:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/usr/sbin/nologin
+man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
+mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
+news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
+uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin
+proxy:x:13:13:proxy:/bin:/usr/sbin/nologin
+www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
+backup:x:34:34:backup:/var/backups:/usr/sbin/nologin
+list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin
+irc:x:39:39:ircd:/var/run/ircd:/usr/sbin/nologin
+gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologin
+nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
+_apt:x:100:65534::/nonexistent:/usr/sbin/nologin
+redis:x:101:101::/var/lib/redis:/usr/sbin/nologin
+sshd:x:102:65534::/run/sshd:/usr/sbin/nologin
+maya.chen:x:1000:1000::/home/maya.chen:/bin/bash
+derek.ross:x:1001:1001::/home/derek.ross:/bin/bash
+alex.johnson:x:1002:1002::/home/alex.johnson:/bin/bash
+sarah.patel:x:1003:1003::/home/sarah.patel:/bin/bash
+
+------------------------------------------------------------
+$ env
+SHELL=/bin/bash
+PWD=/home/maya.chen
+LOGNAME=maya.chen
+MOTD_SHOWN=pam
+HOME=/home/maya.chen
+SSH_CONNECTION=10.103.174.4 44596 10.103.174.6 22
+USER=maya.chen
+SHLVL=0
+SSH_CLIENT=10.103.174.4 44596 22
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+_=/usr/bin/env
+
+------------------------------------------------------------
+$ ps auxww
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           1  0.0  0.0   3984  3168 ?        Ss   20:56   0:00 /bin/bash /entrypoint.sh
+root         201  0.0  0.0  12196  4424 ?        Ss   20:56   0:00 sshd: /usr/sbin/sshd [listener] 0 of 10-100 startups
+redis        218  0.0  0.0  47228  4916 ?        Ssl  20:56   0:00 /usr/bin/redis-server 0.0.0.0:6379
+root         246  0.0  0.0  51224  2192 ?        Ss   20:57   0:00 nginx: master process /usr/sbin/nginx
+www-data     247  0.0  0.0  51548  3412 ?        S    20:57   0:00 nginx: worker process
+www-data     248  0.0  0.0  51548  3412 ?        S    20:57   0:00 nginx: worker process
+www-data     249  0.0  0.0  51548  3412 ?        S    20:57   0:00 nginx: worker process
+root         250  0.0  0.2  28076 23212 ?        S    20:57   0:00 /usr/bin/python3 /usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf
+www-data     251  0.0  0.0  51548  3408 ?        S    20:57   0:00 nginx: worker process
+root         253  0.0  0.0   4212  3328 ?        S    20:57   0:00 /bin/bash /usr/local/bin/acme-fs-guard.sh
+root         254  0.0  0.3  31712 26760 ?        S    20:57   0:01 python3 /opt/portal/app.py
+root        1186  0.0  0.0  12672  7972 ?        Ss   20:58   0:00 sshd: maya.chen [priv]
+maya.ch+    1224  0.0  0.0  12672  5376 ?        S    20:58   0:00 sshd: maya.chen@notty
+root       11605  0.0  0.0   2744  1656 ?        S    20:59   0:00 sleep 2
+maya.ch+   11606  0.0  0.0   5900  3012 ?        Rs   20:59   0:00 ps auxww
+
+------------------------------------------------------------

@@ -1,0 +1,11 @@
+# Captured: 2026-10-10 19:25 UTC (successful run)
+
+$ curl -sS -k -c admin_cookies.txt -d 'username=admin&password=Adm1n_Ultra_S3cr3t!' \
+    https://kicyber-81cdac2d8817-devnote-0-0.chals.io/login
+
+HTTP/1.1 302 FOUND
+Location: /dashboard
+Set-Cookie: session=eyJ1c2VybmFtZSI6ImFkbWluIn0.asqRVw.ToLLsIoQigHE850hPXSneROzRFA; HttpOnly; Path=/
+
+# Admin dashboard body STILL only shows the query interface; it does NOT print the secret.
+# => Being admin is not the gate; the /dashboard?q= interface is the real bug.

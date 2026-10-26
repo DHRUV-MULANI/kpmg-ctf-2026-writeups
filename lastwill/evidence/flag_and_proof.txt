@@ -1,0 +1,63 @@
+# Evidence: Last Will (KPMG IAS 2026 - IoT, 20 pts)
+
+## Target
+- Web portal: https://kicyber-e7d544a91579-lastwill-0-0.chals.io/  (decoy login / file archive)
+- Plant gateway (MQTT broker): 0.cloud.chals.io:16792
+
+## 1. MQTT CONNECT handshake (broker confirmed)
+Sent MQTT 3.1.1 CONNECT, received CONNACK:
+```
+resp: 20020000   -> CONNACK, session present=0, return code 0x00 (connection accepted)
+```
+
+## 2. Wildcard subscribe "#" -> live telemetry only
+```
+plant/sensors/tank1/level        = 80.6
+plant/sensors/tank2/level        = 84.9
+plant/sensors/pump2/rpm          = 2713.3
+plant/sensors/pump4/rpm          = 2710.9
+plant/sensors/compressor1/pressure = 103.1
+plant/sensors/valve3/state       = open/closed
+```
+No retained messages, no $SYS topics visible.
+
+## 3. Web portal /pub archive (recursive download)
+- robots.txt: Disallow /pub/
+- /pub/README.txt:
+  GreenLeaf Industries - Plant Historian Archive ... gateway GL-GW-001 ... ops@greenleaf-industries.local
+- /pub/backups/config_backup_2024.txt: gateway config, mqtt_port=non-standard
+- /pub/backups/notes.txt (KEY INTEL):
+  "the internal diagnostics branch doesn't show up on a normal full subscribe.
+   Smthn about how MQTT treats topics starting with a certain character as broker
+   reserved and skips them on wildcard matches. Have to ask for the 'internal'
+   branch by its exact name ... whenever a second device boots up using the same
+   client ID as one that's already connected, the broker kicks the original off
+   without warning, and it fires an 'unexpected disconnect' alert downstream."
+- /pub/logs/gateway_startup.log (KEY INTEL):
+  "... Last Will set on plant/gateway/heartbeat_lost"
+- /pub/docs/network_diagram_old.txt: IoT Gateway ---MQTT---> Historian
+
+## 4. Subscribe to '$'-prefixed (reserved) topic branches
+MQTT wildcards do NOT match topics beginning with '$'. Subscribed to $internal/#, $diag/#, ...
+```
+$internal/gateway/registry retain=True: {"primary_device": "gateway01"}
+```
+-> Gateway device client ID = gateway01
+
+## 5. Trigger the Last Will (client-ID session bump)
+Watcher subscribes to plant/gateway/heartbeat_lost + $internal/#.
+A second client connects with client_id="gateway01" -> broker kicks the real gateway.
+Broker fires its Last Will (plant/gateway/heartbeat_lost):
+```
+plant/gateway/heartbeat_lost: S1BNR19DVEZ7aUItZHByc0JUNlNjYVhId09qV2trTldCcjRWWHBDZTB1OUhPbi1yUEx4TjJ9
+```
+(base64)
+```
+
+## 6. Flag
+```
+$ echo S1BNR19DVEZ7aUItZHByc0JUNlNjYVhId09qV2trTldCcjRWWHBDZTB1OUhPbi1yUEx4TjJ9 | base64 -d
+KPMG_CTF{iB-dprsBT6ScaXHwOjWkkNWBr4VXpCe0u9HOn-rPLxN2}
+```
+
+FLAG: KPMG_CTF{iB-dprsBT6ScaXHwOjWkkNWBr4VXpCe0u9HOn-rPLxN2}

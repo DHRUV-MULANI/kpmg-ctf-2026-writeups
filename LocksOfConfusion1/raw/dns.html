@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>DNS - Internal Ops Portal</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header class="top">
+    <div class="brand">Internal Ops Portal</div>
+    <div class="meta">host: ops-gw01 &middot; env: internal-ops</div>
+  </header>
+  <nav class="main">
+    <a href="/">Dashboard</a>
+    <a href="/inventory">Inventory</a>
+    <a href="/monitoring">Monitoring</a>
+    <a href="/status">Service Status</a>
+    <a href="/tickets">Tickets</a>
+    <a href="/backups">Backups</a>
+    <a href="/dns">DNS</a>
+    <a href="/network">Network</a>
+    <a href="/cron-reports">Cron Reports</a>
+    <a href="/docs">Docs / Wiki</a>
+    <a href="/wiki/notes">Notes</a>
+  </nav>
+  <main>
+    
+<h1>Internal DNS Records</h1>
+<table>
+  <tr><th>Name</th><th>Type</th><th>Value</th><th>Note</th></tr>
+  
+  <tr>
+    <td>www.internal</td>
+    <td>A</td>
+    <td>10.50.4.10</td>
+    <td></td>
+  </tr>
+  
+  <tr>
+    <td>app.internal</td>
+    <td>A</td>
+    <td>10.50.5.20</td>
+    <td></td>
+  </tr>
+  
+  <tr>
+    <td>db.internal</td>
+    <td>A</td>
+    <td>10.50.6.30</td>
+    <td></td>
+  </tr>
+  
+  <tr>
+    <td>grafana.internal</td>
+    <td>A</td>
+    <td>10.50.9.10</td>
+    <td></td>
+  </tr>
+  
+  <tr>
+    <td>jenkins.internal</td>
+    <td>A</td>
+    <td>10.50.3.9</td>
+    <td></td>
+  </tr>
+  
+  <tr>
+    <td>git.internal</td>
+    <td>A</td>
+    <td>10.50.3.4</td>
+    <td></td>
+  </tr>
+  
+  <tr>
+    <td>wiki.internal</td>
+    <td>A</td>
+    <td>10.50.3.6</td>
+    <td></td>
+  </tr>
+  
+  <tr>
+    <td>vpn.internal</td>
+    <td>A</td>
+    <td>10.50.1.20</td>
+    <td></td>
+  </tr>
+  
+  <tr>
+    <td>mail.internal</td>
+    <td>A</td>
+    <td>10.50.1.30</td>
+    <td></td>
+  </tr>
+  
+  <tr>
+    <td>ns1.internal</td>
+    <td>A</td>
+    <td>10.50.1.2</td>
+    <td></td>
+  </tr>
+  
+  <tr>
+    <td>ns2.internal</td>
+    <td>A</td>
+    <td>10.50.1.3</td>
+    <td></td>
+  </tr>
+  
+  <tr>
+    <td>backup.internal</td>
+    <td>A</td>
+    <td>10.50.10.2</td>
+    <td></td>
+  </tr>
+  
+  <tr>
+    <td>legacy-03.internal</td>
+    <td>CNAME</td>
+    <td>ops-gw01.internal</td>
+    <td>retired host, see MIG-2011-004</td>
+  </tr>
+  
+  <tr>
+    <td>ops-gw01.internal</td>
+    <td>A</td>
+    <td>10.50.9.7</td>
+    <td>consolidated ops gateway</td>
+  </tr>
+  
+  <tr>
+    <td>old-vpn.internal</td>
+    <td>A</td>
+    <td>10.50.1.19</td>
+    <td>decommissioned 2020, DNS entry not yet cleaned up</td>
+  </tr>
+  
+  <tr>
+    <td>test-app.internal</td>
+    <td>A</td>
+    <td>10.50.5.99</td>
+    <td>unused, reserved for QA</td>
+  </tr>
+  
+</table>
+
+  </main>
+  <footer>
+    Internal Ops Portal &middot; ops-gw01 &middot; for authorized personnel only &middot; build portal-frontend@3.4.1
+  </footer>
+</body>
+</html>

@@ -1,0 +1,55 @@
+=== id ===
+uid=0(root) gid=0(root) groups=0(root)
+=== root.txt ===
+FLAG{default_root_flag
+=== host-side mounts contents ===
+--- /var/lib/kubelet ---
+total 8
+drwxr-xr-x 2 root root 4096 Oct 10 19:28 .
+drwxr-xr-x 1 root root 4096 Oct 10 19:28 ..
+--- /var/lib/k0s ---
+total 8
+drwxr-xr-x 2 root root 4096 Oct 10 19:28 .
+drwxr-xr-x 1 root root 4096 Oct 10 19:28 ..
+--- /var/lib/rancher/k3s ---
+total 8
+drwxr-xr-x 2 root root 4096 Oct 10 19:28 .
+drwxr-xr-x 4 root root 4096 Oct 10 19:28 ..
+--- /var/lib/rancher/rke2 ---
+total 8
+drwxr-xr-x 2 root root 4096 Oct 10 19:28 .
+drwxr-xr-x 4 root root 4096 Oct 10 19:28 ..
+--- /var/lib/containerd ---
+total 12
+drwxr-xr-x 3 root root 4096 Oct 10 19:28 .
+drwxr-xr-x 1 root root 4096 Oct 10 19:28 ..
+drwx------ 2 root root 4096 Oct 10 19:28 io.containerd.snapshotter.v1.overlayfs
+--- /var/lib/buildkit ---
+total 8
+drwxr-xr-x 2 root root 4096 Oct 10 19:28 .
+drwxr-xr-x 1 root root 4096 Oct 10 19:28 ..
+--- /run ---
+total 36
+drwxr-xr-x 1 root root 4096 Oct 10 19:44 .
+drwxr-xr-x 1 root root 4096 Oct 10 19:44 ..
+-rw-r--r-- 1 root root    0 Sep 14 18:43 adduser
+drwxr-xr-x 1 root root 4096 Oct 10 19:28 apache2
+drwxrwxrwt 1 root root 4096 Sep 14 18:43 lock
+-rw-r--r-- 1 root root  109 Oct 10 19:44 motd.dynamic
+drwxr-xr-x 3 root root 4096 Sep 14 18:44 runit
+=== /run ===
+total 36
+drwxr-xr-x 1 root root 4096 Oct 10 19:44 .
+drwxr-xr-x 1 root root 4096 Oct 10 19:44 ..
+-rw-r--r-- 1 root root    0 Sep 14 18:43 adduser
+drwxr-xr-x 1 root root 4096 Oct 10 19:28 apache2
+drwxrwxrwt 1 root root 4096 Sep 14 18:43 lock
+-rw-r--r-- 1 root root  109 Oct 10 19:44 motd.dynamic
+drwxr-xr-x 3 root root 4096 Sep 14 18:44 runit
+drwxr-xr-x 2 root root 4096 Sep 15 08:37 sshd
+-rw-r--r-- 1 root root    3 Oct 10 19:28 sshd.pid
+=== whoami direct ===
+root
+
+STDERR: /bin/tar: Removing leading `/' from member names
+

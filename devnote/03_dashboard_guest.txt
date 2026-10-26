@@ -1,0 +1,35 @@
+# Captured: 2026-10-10 19:25:15 UTC (successful run)
+$ curl -sS -i -k -b cookies.txt https://kicyber-81cdac2d8817-devnote-0-0.chals.io/dashboard
+
+HTTP/1.1 200 OK
+Server: Werkzeug/3.1.8 Python/3.11.15
+Date: Sat, 10 Oct 2026 19:25:15 GMT
+Content-Type: text/html; charset=utf-8
+Content-Length: 517
+Vary: Cookie
+Connection: close
+
+<html>
+<head><title>Dashboard</title>
+<style>
+body { font-family: sans-serif; background:#0f0f0f; color:#eee; }
+.container { max-width:400px; margin:100px auto; }
+input,button { width:100%; padding:10px; margin:10px 0; }
+.error { color:red; }
+</style>
+</head>
+<body>
+<div class="container">
+<h2>Welcome guest</h2>
+
+<p><b>Note:</b> Only admin should have access to sensitive data.</p>
+
+<p><b>Dev Query Interface (internal use):</b></p>
+<code>/dashboard?q=</code>
+
+
+
+<a href="/logout">Logout</a>
+</div>
+</body>
+</html>

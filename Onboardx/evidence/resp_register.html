@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register | OnboardX Intranet</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+  <!--
+    TODO(dave): retire the legacy PHP admin panel once everyone is migrated
+    to the new /admin dashboard. -mgmt
+  -->
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><a href="/">🐇 OnboardX</a></div>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/careers">Careers</a>
+      <a href="/about">About</a>
+      
+        <a href="/login">Login</a>
+        <a href="/register">Register</a>
+      
+    </nav>
+  </header>
+
+  <main class="container">
+    
+<div class="formbox">
+  <h1>Create your account</h1>
+  
+  <form method="POST" action="/register">
+    <label>Username<input type="text" name="username" required></label>
+    <label>Password<input type="password" name="password" required></label>
+    <button class="btn" type="submit">Register</button>
+  </form>
+  <p>New accounts are reviewed by HR within <strong>48 hours</strong> before full access is
+     granted. You can still browse the portal while you wait.</p>
+</div>
+
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2026 OnboardX. All rights reserved. | <a href="#">Privacy</a> | <a href="#">Status Page</a></p>
+  </footer>
+  <script src="/static/js/main.js"></script>
+</body>
+</html>

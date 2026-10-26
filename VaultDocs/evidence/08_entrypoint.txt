@@ -1,0 +1,24 @@
+#!/bin/bash
+set -e
+
+# ── dynamic flags ────────────────────────────────────────────
+: "${USER_FLAG:=FLAG{default_user_flag}}"
+: "${ROOT_FLAG:=FLAG{default_root_flag}}"
+
+# Generate flags at container startup
+printf '%s\n' "$USER_FLAG" > /home/vboxuser/user.txt
+printf '%s\n' "$ROOT_FLAG" > /root/root.txt
+
+# Set correct ownership and permissions
+chown vboxuser:vboxuser /home/vboxuser/user.txt
+chmod 400 /home/vboxuser/user.txt
+
+chown root:root /root/root.txt
+chmod 400 /root/root.txt
+
+# ── SSH ──────────────────────────────────────────────────────
+ssh-keygen -A 2>/dev/null || true
+/usr/sbin/sshd
+
+# ── Apache ───────────────────────────────────────────────────
+exec apache2ctl -D FOREGROUND

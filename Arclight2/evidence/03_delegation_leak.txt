@@ -1,0 +1,3 @@
+
+query: { staff(id: 1) { id username team delegations { id owner tier token } } }
+{"data":{"staff":{"delegations":[{"id":101,"owner":"k.mercer","tier":"root","token":"71f2706cbfdf445a"}],"id":1,"team":"platform","username":"k.mercer"}}}

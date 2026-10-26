@@ -1,0 +1,13 @@
+# Captured: 2026-10-10 19:25:14 UTC (successful run)
+$ curl -sS -i -k -c cookies.txt -d 'username=guest&password=guest123' \
+    https://kicyber-81cdac2d8817-devnote-0-0.chals.io/login
+
+HTTP/1.1 302 FOUND
+Server: Werkzeug/3.1.8 Python/3.11.15
+Date: Sat, 10 Oct 2026 19:25:14 GMT
+Content-Type: text/html; charset=utf-8
+Content-Length: 207
+Location: /dashboard
+Vary: Cookie
+Set-Cookie: session=eyJ1c2VybmFtZSI6Imd1ZXN0In0.asqRGg.JmhR5P9Tieb9iUyGfljOn4xAISI; HttpOnly; Path=/
+Connection: close

@@ -1,0 +1,51 @@
+uid=0(root) gid=1000(Ross) groups=1000(Ross)
+---
+f94d0d15662f
+---
+total 24
+drwx------ 1 root root 4096 Oct 11 02:50 .
+drwxr-xr-x 1 root root 4096 Oct 11 02:54 ..
+-rw-r--r-- 1 root root    0 Oct 11 02:50 .bash_history
+-rw-r--r-- 1 root root 3106 Dec  5  2019 .bashrc
+drwx------ 2 root root 4096 Oct 11 02:45 .final
+-rw-r--r-- 1 root root  161 Dec  5  2019 .profile
+-rw-r--r-- 1 root root   26 Oct 11 02:45 README
+---
+---
+#!/bin/bash
+
+set -e
+
+/opt/create_user.sh
+/opt/setup_misdirections.sh
+/opt/setup_caps.sh
+/opt/generate_archive.sh
+
+rm -f /opt/create_user.sh /opt/setup_misdirections.sh /opt/setup_caps.sh /opt/generate_archive.sh
+
+chmod 700 /start.sh
+
+service cron start
+
+exec /usr/sbin/sshd -D
+---
+total 12
+drwxr-xr-x 1 root root 4096 May 22 23:17 .
+drwxr-xr-x 1 root root 4096 Apr  4  2025 ..
+-rwxr-xr-x 1 root root  579 May 15 15:45 cleanup.sh
+---
+#!/bin/bash
+
+find /tmp -mindepth 1 -delete 2>/dev/null
+find /dev/shm -mindepth 1 -delete 2>/dev/null
+
+cat /dev/null > /home/Ross/.bash_history 2>/dev/null
+cat /dev/null > /root/.bash_history 2>/dev/null
+
+find /home/Ross -mindepth 1 -not -path "/home/Ross/.ssh*" \
+    \( -type f \( -name "*.sh" -o -name "*.py" -o -name "*.pl" -o -name "*.rb" -o -name "*.elf" -o -name "linpeas*" -o -name "peas*" \) \
+    -o -type d \( -name "PEASS*" -o -name "exploit*" -o -name "priv*" -o -name "tools*" \) \) \
+    -delete 2>/dev/null
+
+find /srv/backups -type f -mmin +10 -delete 2>/dev/null
+---

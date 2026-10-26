@@ -1,0 +1,1 @@
+{"output":"import os\n\nclass Settings:\n    JWT_SECRET: str = os.environ.get(\"JWT_SECRET\", \"y0u_f0und_th3_k3y\")\n    ALGORITHM: str  = \"HS256\"\n    FLAG: str       = os.environ.get(\"FLAG\", \"KPMG_CTF{find_me_if_you_can}\")\n\nsettings = Settings()"}

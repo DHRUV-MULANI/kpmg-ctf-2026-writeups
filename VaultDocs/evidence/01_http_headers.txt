@@ -1,0 +1,13 @@
+HTTP/1.1 200 OK
+Date: Sat, 10 Oct 2026 19:45:47 GMT
+Server: Apache/2.4.68 (Debian)
+Content-Type: text/html; charset=UTF-8
+
+HTTP/1.1 301 Moved Permanently
+Server: openresty/1.27.1.2
+Date: Sat, 10 Oct 2026 19:45:48 GMT
+Content-Type: text/html
+Content-Length: 175
+Connection: keep-alive
+Location: https://kicyber-b17458a15769-vaultdocs-1-0-0.chals.io/
+

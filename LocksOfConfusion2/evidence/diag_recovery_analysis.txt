@@ -1,0 +1,56 @@
+=== file ===
+diag-recovery: ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID[sha1]=1bdfde06ee3b56828369086aaa6f35a910d2ec39, for GNU/Linux 3.2.0, not stripped
+
+=== objdump main ===
+0000000000001070 <main>:
+    1070:	48 83 ec 08          	sub    rsp,0x8
+    1074:	31 ff                	xor    edi,edi
+    1076:	e8 b5 ff ff ff       	call   1030 <setgid@plt>
+    107b:	31 ff                	xor    edi,edi
+    107d:	e8 be ff ff ff       	call   1040 <setuid@plt>
+    1082:	31 d2                	xor    edx,edx
+    1084:	48 8d 35 7e 0f 00 00 	lea    rsi,[rip+0xf7e]        # 2009 <_IO_stdin_used+0x9>
+    108b:	31 c0                	xor    eax,eax
+    108d:	48 8d 3d 70 0f 00 00 	lea    rdi,[rip+0xf70]        # 2004 <_IO_stdin_used+0x4>
+    1094:	e8 b7 ff ff ff       	call   1050 <execl@plt>
+    1099:	b8 01 00 00 00       	mov    eax,0x1
+    109e:	48 83 c4 08          	add    rsp,0x8
+    10a2:	c3                   	ret
+    10a3:	66 2e 0f 1f 84 00 00 	cs nop WORD PTR [rax+rax*1+0x0]
+    10aa:	00 00 00 
+    10ad:	0f 1f 00             	nop    DWORD PTR [rax]
+
+
+=== .rodata ===
+
+diag-recovery:     file format elf64-x86-64
+
+Contents of section .rodata:
+ 2000 01000200 2f62696e 2f736800           ..../bin/sh.    
+
+=== strings (key) ===
+execl
+/bin/sh
+execl@GLIBC_2.2.5
+.gnu.hash
+
+=== jail_shell key strings ===
+chroot
+chdir
+setgid
+setuid
+execl
+/opt/diagnostics/landing
+chdir(landing)
+/opt/jail
+chroot
+setgid
+setuid
+PATH=/nonexistent
+execl
+jail_shell.c
+chroot@GLIBC_2.2.5
+chdir@GLIBC_2.2.5
+setgid@GLIBC_2.2.5
+setuid@GLIBC_2.2.5
+execl@GLIBC_2.2.5

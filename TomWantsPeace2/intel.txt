@@ -1,0 +1,51 @@
+===== /opt/internal/dev_notes.txt =====
+app-internal — ops maintenance log
+
+2024-09-03
+  Verified cron jobs running cleanly.
+  /opt/scripts/backup.sh producing archives in /srv/backups as expected.
+  Ross shell access confirmed for legacy webapp compatibility.
+
+2024-07-18
+  Docker engine active and healthy.
+  Kernel upgrade request rejected by app team (ticket #3301). Still on 4.4.x build.
+  Old DB admin credentials (admin/changeme123) marked expired.
+  Python 3.8 retained on system for legacy webapp compatibility layer — removal blocked by app team.
+
+2024-03-12
+  Legacy deploy keys removed from /root/.deploy/ per sec-ops request #88.
+  Ross provisioned. Sudo access restricted to /usr/bin/id per least-privilege policy.
+
+===== /opt/scripts/backup.sh =====
+#!/bin/bash
+tar -czf /srv/backups/app_$(date +%Y%m%d_%H%M).tar.gz /var/www/html 2>/dev/null
+
+===== /etc/cron.d/app_backup =====
+MAILTO=""
+# Application backup — managed by ops-team
+0 * * * * Ross /opt/scripts/backup.sh
+
+===== /etc/cron.d/system_cleanup =====
+MAILTO=""
+*/10 * * * * root /usr/local/bin/cleanup.sh
+
+===== /var/tmp/system_snapshot.log =====
+System Snapshot — app-internal
+Generated: 2024-07-18 09:23:41
+
+OS      : Ubuntu 20.04.6 LTS
+Kernel  : 4.4.0-21-generic
+Uptime  : 47 days, 3:12
+Load    : 0.12  0.08  0.03
+
+Filesystem:
+  /         7.4G / 20G  (37%)
+  /tmp      0  / 1.0G   (0%)
+
+Network:
+  eth0      172.17.0.3
+
+Notes:
+  Kernel update pending — app team blocked (ticket #3301)
+  Sudoers last reviewed 2024-03-12
+  Ross active for webapp compatibility layer

